@@ -66,9 +66,9 @@ export default function Step4Page() {
 
         <div className="mt-8">
           {addressChanged ? (
-            <Link href="/start/result" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">결과 보기 →</Link>
+            <Link href="/start/step5" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">다음 →</Link>
           ) : (
-            <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">결과 보기 →</button>
+            <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">다음 →</button>
           )}
         </div>
       </section>
