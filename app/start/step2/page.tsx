@@ -128,16 +128,21 @@ export default function Step2Page() {
           </p>
         </div>
 
-        <button
-          disabled={!expiryDate}
-          className={`w-full px-6 py-3 rounded-xl font-medium text-sm transition-colors ${
-            expiryDate
-              ? "bg-blue-700 text-white hover:bg-blue-800"
-              : "bg-gray-100 text-gray-400 cursor-not-allowed"
-          }`}
-        >
-          다음 →
-        </button>
+        {expiryDate ? (
+          <Link
+            href="/start/step3"
+            className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center"
+          >
+            다음 →
+          </Link>
+        ) : (
+          <button
+            disabled
+            className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed"
+          >
+            다음 →
+          </button>
+        )}
       </section>
     </main>
   );
