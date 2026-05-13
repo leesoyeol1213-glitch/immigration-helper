@@ -13,14 +13,12 @@ export default function StartPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* 상단 헤더 */}
       <header className="px-6 py-4 border-b border-gray-100 max-w-2xl mx-auto">
         <Link href="/" className="text-sm text-gray-500 hover:text-blue-700">
           ← 처음으로
         </Link>
       </header>
 
-      {/* 진행 표시 */}
       <div className="max-w-2xl mx-auto px-6 pt-6">
         <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
           <span>1 / 5</span>
@@ -32,7 +30,6 @@ export default function StartPage() {
         </div>
       </div>
 
-      {/* 질문 영역 */}
       <section className="max-w-2xl mx-auto px-6 py-10">
         <h1 className="text-2xl font-medium text-gray-900 mb-2">
           어떤 비자를 가지고 계신가요?
@@ -41,7 +38,6 @@ export default function StartPage() {
           외국인등록증에 적힌 체류자격을 선택하세요.
         </p>
 
-        {/* 옵션 카드들 */}
         <div className="space-y-3">
           {visaOptions.map((option) => (
             <button
@@ -66,18 +62,22 @@ export default function StartPage() {
           ))}
         </div>
 
-        {/* 하단 버튼 */}
         <div className="mt-8">
-          <button
-            disabled={!visa}
-            className={`w-full px-6 py-3 rounded-xl font-medium text-sm transition-colors ${
-              visa
-                ? "bg-blue-700 text-white hover:bg-blue-800"
-                : "bg-gray-100 text-gray-400 cursor-not-allowed"
-            }`}
-          >
-            다음 →
-          </button>
+          {visa === "E-9" ? (
+            <Link
+              href="/start/step2"
+              className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center"
+            >
+              다음 →
+            </Link>
+          ) : (
+            <button
+              disabled
+              className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed"
+            >
+              다음 →
+            </button>
+          )}
         </div>
 
         {visa === "other" && (
