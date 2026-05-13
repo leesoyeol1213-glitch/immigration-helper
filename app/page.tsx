@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
-// 다국어 텍스트 정의
 const TEXTS = {
   ko: {
     flag: "🇰🇷",
@@ -72,13 +72,11 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-blue-50">
-      {/* 상단 헤더 */}
       <header className="px-6 py-4 flex items-center justify-between max-w-5xl mx-auto">
         <h2 className="text-lg font-medium">
           <span className="text-blue-700">서류</span>도우미
         </h2>
 
-        {/* 언어 선택 드롭다운 */}
         <div className="relative">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -114,7 +112,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* 히어로 섹션 */}
       <section className="max-w-2xl mx-auto px-6 py-16 text-center">
         <div className="inline-block px-3 py-1 bg-blue-100 rounded-full mb-6">
           <p className="text-xs font-medium text-blue-800">{t.badge}</p>
@@ -132,11 +129,13 @@ export default function Home() {
           {t.subLine2}
         </p>
 
-        <button className="px-6 py-3 bg-blue-700 text-white rounded-xl font-medium text-sm hover:bg-blue-800 transition-colors shadow-sm">
+        <Link
+          href="/start"
+          className="inline-block px-6 py-3 bg-blue-700 text-white rounded-xl font-medium text-sm hover:bg-blue-800 transition-colors shadow-sm"
+        >
           {t.cta}
-        </button>
+        </Link>
 
-        {/* 통계 카드 */}
         <div className="grid grid-cols-3 gap-3 mt-12">
           <div className="bg-white border border-gray-100 rounded-xl p-4">
             <p className="text-lg font-medium text-gray-900">{t.stat1Value}</p>
@@ -152,7 +151,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 면책 조항 */}
         <div className="mt-12 p-4 bg-amber-50 border border-amber-100 rounded-xl text-left">
           <p className="text-xs text-amber-800 leading-relaxed">
             <strong>{t.disclaimerTitle}</strong> {t.disclaimerText}
