@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { generatePdf } from "@/lib/pdf";
+import { generatePdf, fillOfficialForm } from "@/lib/pdf";
 
 interface Doc {
   name: string;
@@ -10,18 +10,25 @@ interface Doc {
   isExtra?: boolean;
 }
 
+interface PersonalInfo {
+  name: string;
+  nameKr: string;
+  passport: string;
+  alienNo: string;
+  phone: string;
+}
+
 export default function ResultPage() {
   const [expiry, setExpiry] = useState<string>("");
   const [company, setCompany] = useState<string>("");
   const [address, setAddress] = useState<string>("");
-  const [personalInfo, setPersonalInfo] = useState<any>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
+  const [isGenerating, setIsGenerating] = useState<string>("");
 
   useEffect(() => {
     setExpiry(localStorage.getItem("answer_expiry") || "");
     setCompany(localStorage.getItem("answer_company") || "");
     setAddress(localStorage.getItem("answer_address") || "");
-
     const info = sessionStorage.getItem("personal_info");
     if (info) setPersonalInfo(JSON.parse(info));
   }, []);
@@ -47,33 +54,33 @@ export default function ResultPage() {
     ? Math.floor((expiryDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
     : null;
 
-  const handleDownloadPdf = async () => {
+  const handleDownload = async (type: "official" | "summary") => {
     if (!personalInfo) {
       alert("본인 정보가 없습니다. step5부터 다시 시작해주세요.");
       return;
     }
 
-    setIsGenerating(true);
+    setIsGenerating(type);
     try {
-      const pdfBytes = await generatePdf({
-        ...personalInfo,
-        expiry,
-        company,
-        address,
-      });
+      const data = { ...personalInfo, expiry, company, address };
+      const pdfBytes = type === "official"
+        ? await fillOfficialForm(data)
+        : await generatePdf(data);
 
       const blob = new Blob([pdfBytes as BlobPart], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `체류연장신청서_${personalInfo.name || "신청서"}.pdf`;
+      a.download = type === "official"
+        ? `통합신청서_${personalInfo.name}.pdf`
+        : `요약지_${personalInfo.name}.pdf`;
       a.click();
       URL.revokeObjectURL(url);
     } catch (err) {
-      alert("PDF 생성 중 오류가 발생했습니다. 콘솔을 확인하세요.");
+      alert("PDF 생성 중 오류 발생. 콘솔 확인하세요.");
       console.error(err);
     } finally {
-      setIsGenerating(false);
+      setIsGenerating("");
     }
   };
 
@@ -112,18 +119,34 @@ export default function ResultPage() {
         )}
 
         {personalInfo && (
-          <div className="bg-blue-700 text-white rounded-xl p-6 mb-6">
-            <h2 className="text-sm font-medium mb-2">📄 통합신청서 PDF</h2>
-            <p className="text-xs text-blue-100 mb-4">
-              {personalInfo.name}님의 정보로 자동 생성됩니다
-            </p>
-            <button
-              onClick={handleDownloadPdf}
-              disabled={isGenerating}
-              className="w-full px-4 py-3 bg-white text-blue-700 rounded-lg font-medium text-sm hover:bg-blue-50 transition-colors disabled:opacity-50"
-            >
-              {isGenerating ? "생성 중..." : "PDF 다운로드 ↓"}
-            </button>
+          <div className="space-y-3 mb-6">
+            <div className="bg-blue-700 text-white rounded-xl p-6">
+              <h2 className="text-sm font-medium mb-1">📄 통합신청서 (공식 양식)</h2>
+              <p className="text-xs text-blue-100 mb-3">
+                출입국 공식 양식에 정보 자동 채움 — 출력 후 그대로 제출
+              </p>
+              <button
+                onClick={() => handleDownload("official")}
+                disabled={isGenerating !== ""}
+                className="w-full px-4 py-3 bg-white text-blue-700 rounded-lg font-medium text-sm hover:bg-blue-50 transition-colors disabled:opacity-50"
+              >
+                {isGenerating === "official" ? "생성 중..." : "공식 양식 PDF ↓"}
+              </button>
+            </div>
+
+            <div className="bg-gray-100 border border-gray-200 rounded-xl p-4">
+              <h2 className="text-sm font-medium text-gray-900 mb-1">📋 요약지 (참고용)</h2>
+              <p className="text-xs text-gray-600 mb-3">
+                본인 정보 한눈에 보기
+              </p>
+              <button
+                onClick={() => handleDownload("summary")}
+                disabled={isGenerating !== ""}
+                className="w-full px-4 py-2 bg-white text-gray-700 rounded-lg font-medium text-sm border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50"
+              >
+                {isGenerating === "summary" ? "생성 중..." : "요약지 PDF ↓"}
+              </button>
+            </div>
           </div>
         )}
 
@@ -147,7 +170,7 @@ export default function ResultPage() {
 
         <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 mb-6">
           <p className="text-xs text-amber-700 leading-relaxed">
-            <strong>⚠️ 안내:</strong> 이 체크리스트는 일반적인 경우 기준입니다. 사례별로 다를 수 있으니 출입국 사무소의 안내를 우선하세요.
+            <strong>⚠️ 안내:</strong> 자동 채움 위치가 약간 어긋날 수 있습니다. 출력 후 확인하고 필요시 수기로 수정하세요. 최종 책임은 본인에게 있습니다.
           </p>
         </div>
 
