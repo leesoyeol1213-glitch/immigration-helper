@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { generatePdf } from "@/lib/pdf";
 
 interface Doc {
   name: string;
@@ -13,15 +14,20 @@ export default function ResultPage() {
   const [expiry, setExpiry] = useState<string>("");
   const [company, setCompany] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [personalInfo, setPersonalInfo] = useState<any>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
     setExpiry(localStorage.getItem("answer_expiry") || "");
     setCompany(localStorage.getItem("answer_company") || "");
     setAddress(localStorage.getItem("answer_address") || "");
+
+    const info = sessionStorage.getItem("personal_info");
+    if (info) setPersonalInfo(JSON.parse(info));
   }, []);
 
   const docs: Doc[] = [
-    { name: "통합신청서", desc: "곧 앱에서 자동 생성됩니다 🎯" },
+    { name: "통합신청서", desc: "아래에서 PDF 다운로드 가능 ✨" },
     { name: "여권 사본", desc: "본인 여권을 복사하세요" },
     { name: "외국인등록증 사본", desc: "본인 등록증을 복사하세요" },
     { name: "근로계약서", desc: "회사 인사팀에 요청하세요" },
@@ -37,19 +43,54 @@ export default function ResultPage() {
 
   const today = new Date();
   const expiryDate = expiry ? new Date(expiry) : null;
-  const daysLeft = expiryDate ? Math.floor((expiryDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)) : null;
+  const daysLeft = expiryDate
+    ? Math.floor((expiryDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+    : null;
+
+  const handleDownloadPdf = async () => {
+    if (!personalInfo) {
+      alert("본인 정보가 없습니다. step5부터 다시 시작해주세요.");
+      return;
+    }
+
+    setIsGenerating(true);
+    try {
+      const pdfBytes = await generatePdf({
+        ...personalInfo,
+        expiry,
+        company,
+        address,
+      });
+
+      const blob = new Blob([pdfBytes as BlobPart], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `체류연장신청서_${personalInfo.name || "신청서"}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert("PDF 생성 중 오류가 발생했습니다. 콘솔을 확인하세요.");
+      console.error(err);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   const handleReset = () => {
     localStorage.removeItem("answer_expiry");
     localStorage.removeItem("answer_company");
     localStorage.removeItem("answer_address");
+    sessionStorage.removeItem("personal_info");
     window.location.href = "/";
   };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-blue-50">
       <header className="px-6 py-4 border-b border-gray-100 max-w-2xl mx-auto">
-        <Link href="/start/step4" className="text-sm text-gray-500 hover:text-blue-700">← 이전</Link>
+        <Link href="/start/step5" className="text-sm text-gray-500 hover:text-blue-700">
+          ← 이전
+        </Link>
       </header>
 
       <section className="max-w-2xl mx-auto px-6 py-10">
@@ -67,6 +108,22 @@ export default function ResultPage() {
               {daysLeft < 0 ? "⚠️ 체류기간이 만료되었습니다" : `⚠️ 체류기간 ${daysLeft}일 남음`}
             </p>
             <p className="text-xs text-red-700">즉시 신청이 필요합니다.</p>
+          </div>
+        )}
+
+        {personalInfo && (
+          <div className="bg-blue-700 text-white rounded-xl p-6 mb-6">
+            <h2 className="text-sm font-medium mb-2">📄 통합신청서 PDF</h2>
+            <p className="text-xs text-blue-100 mb-4">
+              {personalInfo.name}님의 정보로 자동 생성됩니다
+            </p>
+            <button
+              onClick={handleDownloadPdf}
+              disabled={isGenerating}
+              className="w-full px-4 py-3 bg-white text-blue-700 rounded-lg font-medium text-sm hover:bg-blue-50 transition-colors disabled:opacity-50"
+            >
+              {isGenerating ? "생성 중..." : "PDF 다운로드 ↓"}
+            </button>
           </div>
         )}
 
