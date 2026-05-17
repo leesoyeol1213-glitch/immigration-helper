@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "서류도우미 - 외국인 행정서류 작성 도우미",
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

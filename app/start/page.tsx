@@ -2,61 +2,38 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import LanguageHeader, { useLang } from "@/components/LanguageHeader";
+import { TEXTS } from "@/lib/i18n";
 
 export default function StartPage() {
+  const lang = useLang();
   const [visa, setVisa] = useState<string>("");
 
   const visaOptions = [
-    { value: "E-9", label: "E-9 비자 (비전문 취업)", desc: "제조업, 농업, 어업 등" },
-    { value: "other", label: "다른 비자입니다", desc: "준비 중입니다" },
+    { value: "E-9", label: TEXTS.visaE9Label[lang], desc: TEXTS.visaE9Desc[lang] },
+    { value: "other", label: TEXTS.visaOtherLabel[lang], desc: TEXTS.visaOtherDesc[lang] },
   ];
 
   return (
     <main className="min-h-screen bg-white">
-      <header className="px-6 py-4 border-b border-gray-100 max-w-2xl mx-auto">
-        <Link href="/" className="text-sm text-gray-500 hover:text-blue-700">
-          ← 처음으로
-        </Link>
-      </header>
-
-      <div className="max-w-2xl mx-auto px-6 pt-6">
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-          <span>1 / 5</span>
-          <span>·</span>
-          <span>상황 확인</span>
-        </div>
-        <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
-          <div className="h-full bg-blue-700 rounded-full" style={{ width: "20%" }}></div>
-        </div>
-      </div>
+      <LanguageHeader backHref="/" backLabel={TEXTS.back[lang]} />
 
       <section className="max-w-2xl mx-auto px-6 py-10">
-        <h1 className="text-2xl font-medium text-gray-900 mb-2">
-          어떤 비자를 가지고 계신가요?
-        </h1>
-        <p className="text-sm text-gray-500 mb-8">
-          외국인등록증에 적힌 체류자격을 선택하세요.
-        </p>
+        <h1 className="text-2xl font-medium text-gray-900 mb-2">{TEXTS.visaTitle[lang]}</h1>
+        <p className="text-sm text-gray-500 mb-8">{TEXTS.visaSub[lang]}</p>
 
         <div className="space-y-3">
           {visaOptions.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => setVisa(option.value)}
+            <button key={option.value} onClick={() => setVisa(option.value)}
               className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
-                visa === option.value
-                  ? "border-blue-700 bg-blue-50"
-                  : "border-gray-200 hover:border-blue-300"
-              }`}
-            >
+                visa === option.value ? "border-blue-700 bg-blue-50" : "border-gray-200 hover:border-blue-300"
+              }`}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium text-gray-900">{option.label}</p>
                   <p className="text-xs text-gray-500 mt-1">{option.desc}</p>
                 </div>
-                {visa === option.value && (
-                  <span className="text-blue-700 text-lg">✓</span>
-                )}
+                {visa === option.value && <span className="text-blue-700 text-lg">✓</span>}
               </div>
             </button>
           ))}
@@ -64,27 +41,19 @@ export default function StartPage() {
 
         <div className="mt-8">
           {visa === "E-9" ? (
-            <Link
-              href="/start/step2"
-              className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center"
-            >
-              다음 →
+            <Link href="/start/step2" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
+              {TEXTS.next[lang]}
             </Link>
           ) : (
-            <button
-              disabled
-              className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed"
-            >
-              다음 →
+            <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
+              {TEXTS.next[lang]}
             </button>
           )}
         </div>
 
         {visa === "other" && (
           <div className="mt-4 p-3 bg-amber-50 border border-amber-100 rounded-lg">
-            <p className="text-xs text-amber-800">
-              현재는 E-9 비자만 지원합니다. 다른 비자는 곧 추가될 예정이에요.
-            </p>
+            <p className="text-xs text-amber-800">{TEXTS.visaOtherWarn[lang]}</p>
           </div>
         )}
       </section>
