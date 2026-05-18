@@ -151,6 +151,13 @@ export default function Home() {
           {t.cta}
         </Link>
 
+{/* ↓ 여기 추가 ↓ */}
+<div className="mt-4">
+  <Link href="/about" className="text-sm text-gray-500 hover:text-blue-700 underline">
+    {lang === "ko" ? "서비스 더 알아보기" : lang === "en" ? "Learn more →" : "Tìm hiểu thêm →"}
+  </Link>
+</div>
+
         {/* 핵심 기능 3개 박스 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 text-left">
           <div className="bg-white border-2 border-blue-100 rounded-xl p-5 hover:border-blue-300 transition-all">
