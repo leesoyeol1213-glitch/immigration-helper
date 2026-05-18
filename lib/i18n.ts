@@ -1,4 +1,4 @@
-export const TEXTS = {
+export const TEXTS: Record<string, any> = {
   // 비자 선택 (step1)
   visaTitle: {
     ko: "어떤 비자를 가지고 계신가요?",
@@ -317,6 +317,8 @@ export const TEXTS = {
 };
 
 export type Lang = "ko" | "en" | "vi" | "th" | "km" | "ne" | "si" | "my" | "zh";
+
+type TextItem = Partial<Record<Lang, string>> | Partial<Record<Lang, (n: number) => string>>;
 
 export const LANG_INFO: Record<Lang, { flag: string; name: string }> = {
   ko: { flag: "🇰🇷", name: "한국어" },

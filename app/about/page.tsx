@@ -64,6 +64,31 @@ const TEXTS: Record<Lang, any> = {
     ],
     ctaTitle: "지금 바로 사용해보세요",
     ctaBtn: "시작하기 →",
+    businessTitle: "💰 비즈니스 모델",
+    businessSub: "개인은 무료, 기업은 유료 — 사회적 가치 + 지속 가능성",
+    businessTiers: [
+      {
+        tier: "Free",
+        target: "외국인 근로자 (개인)",
+        price: "₩0 / 평생 무료",
+        features: ["기본 PDF 자동 생성", "AI OCR 자동 입력", "9개 언어 지원", "관할 사무소 안내"],
+        highlight: false,
+      },
+      {
+        tier: "Business",
+        target: "회사 / 기업 (B2B)",
+        price: "₩50,000~ / 월",
+        features: ["전 직원 통합 관리", "만료일 자동 알림 (전 직원)", "PDF 일괄 발급", "이력 관리 대시보드", "전담 지원"],
+        highlight: true,
+      },
+      {
+        tier: "Enterprise",
+        target: "정부/지자체 (B2G)",
+        price: "협의",
+        features: ["맞춤형 시스템", "API 통합", "온프레미스 배포 가능", "전용 서버"],
+        highlight: false,
+      },
+    ],
     disclaimer: "본 서비스는 서류 작성을 돕는 정보 제공 도구입니다. 최종 제출 및 승인 책임은 본인에게 있습니다.",
   },
   en: {
@@ -125,6 +150,31 @@ const TEXTS: Record<Lang, any> = {
     ],
     ctaTitle: "Try it now",
     ctaBtn: "Get Started →",
+    businessTitle: "💰 Business Model",
+    businessSub: "Free for individuals, paid for businesses — social value + sustainability",
+    businessTiers: [
+      {
+        tier: "Free",
+        target: "Foreign Workers",
+        price: "Forever Free",
+        features: ["Auto PDF generation", "AI OCR auto-fill", "9 languages", "Office finder"],
+        highlight: false,
+      },
+      {
+        tier: "Business",
+        target: "Companies (B2B)",
+        price: "From ₩50,000 / mo",
+        features: ["Manage all employees", "Auto expiry alerts", "Bulk PDF issuance", "Dashboard", "Dedicated support"],
+        highlight: true,
+      },
+      {
+        tier: "Enterprise",
+        target: "Government (B2G)",
+        price: "Contact us",
+        features: ["Custom system", "API integration", "On-premise deployment", "Dedicated server"],
+        highlight: false,
+      },
+    ],
     disclaimer: "This service helps with form preparation. Final responsibility is with the user.",
   },
   vi: {
@@ -186,6 +236,31 @@ const TEXTS: Record<Lang, any> = {
     ],
     ctaTitle: "Thử ngay",
     ctaBtn: "Bắt đầu →",
+    businessTitle: "💰 Mô hình kinh doanh",
+    businessSub: "Miễn phí cho cá nhân, có phí cho doanh nghiệp",
+    businessTiers: [
+      {
+        tier: "Miễn phí",
+        target: "Người lao động",
+        price: "Miễn phí mãi",
+        features: ["Tạo PDF tự động", "AI OCR", "9 ngôn ngữ", "Tìm văn phòng"],
+        highlight: false,
+      },
+      {
+        tier: "Doanh nghiệp",
+        target: "Công ty (B2B)",
+        price: "Từ ₩50,000/tháng",
+        features: ["Quản lý tất cả nhân viên", "Cảnh báo tự động", "PDF hàng loạt", "Bảng điều khiển", "Hỗ trợ chuyên dụng"],
+        highlight: true,
+      },
+      {
+        tier: "Doanh nghiệp lớn",
+        target: "Chính phủ (B2G)",
+        price: "Liên hệ",
+        features: ["Hệ thống tùy chỉnh", "Tích hợp API", "Triển khai tại chỗ", "Máy chủ riêng"],
+        highlight: false,
+      },
+    ],
     disclaimer: "Dịch vụ hỗ trợ chuẩn bị giấy tờ. Trách nhiệm cuối cùng thuộc về người dùng.",
   },
   th: {
@@ -649,6 +724,39 @@ export default function AboutPage() {
               <div key={i} className="bg-white border border-gray-100 rounded-xl p-3 text-center">
                 <p className="text-sm font-medium text-blue-700">{stat.value}</p>
                 <p className="text-xs text-gray-500 mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+{/* 비즈니스 모델 */}
+        <div className="mb-12">
+          <h2 className="text-lg font-medium text-gray-900 mb-2">{t.businessTitle}</h2>
+          <p className="text-sm text-gray-500 mb-4">{t.businessSub}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {t.businessTiers?.map((tier: any, i: number) => (
+              <div key={i} className={`rounded-xl p-5 border-2 ${
+                tier.highlight 
+                  ? "bg-gradient-to-br from-blue-700 to-blue-800 text-white border-blue-700" 
+                  : "bg-white border-gray-200"
+              }`}>
+                <p className={`text-xs font-semibold mb-1 ${tier.highlight ? "text-blue-200" : "text-gray-400"}`}>
+                  {tier.tier}
+                </p>
+                <p className={`text-sm font-medium mb-1 ${tier.highlight ? "text-white" : "text-gray-900"}`}>
+                  {tier.target}
+                </p>
+                <p className={`text-lg font-bold mb-4 ${tier.highlight ? "text-white" : "text-blue-700"}`}>
+                  {tier.price}
+                </p>
+                <ul className="space-y-1.5">
+                  {tier.features.map((f: string, j: number) => (
+                    <li key={j} className={`text-xs flex items-start gap-1.5 ${tier.highlight ? "text-blue-100" : "text-gray-600"}`}>
+                      <span className={tier.highlight ? "text-blue-300" : "text-blue-500"}>✓</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
