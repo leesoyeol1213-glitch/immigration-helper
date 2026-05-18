@@ -263,6 +263,57 @@ export const TEXTS = {
     en: "You have enough time.",
     vi: "Bạn có đủ thời gian.",
   },
+// 출입국 사무소
+  officeTitle: { 
+    ko: "📍 가까운 출입국 사무소", 
+    en: "📍 Your Immigration Office", 
+    vi: "📍 Văn phòng XNC gần bạn" 
+  },
+  officeDesc: { 
+    ko: "본인 주소 기준 관할 사무소입니다", 
+    en: "Your jurisdiction office based on your address", 
+    vi: "Văn phòng quản lý theo địa chỉ của bạn" 
+  },
+  officeAddress: { ko: "주소", en: "Address", vi: "Địa chỉ" },
+  officePhone: { ko: "전화", en: "Phone", vi: "Điện thoại" },
+  officeNotFound: { 
+    ko: "주소를 입력하면 가까운 사무소를 안내해드립니다", 
+    en: "Enter your address to find the nearest office", 
+    vi: "Nhập địa chỉ để tìm văn phòng gần nhất" 
+  },
+  officeDataSource: { 
+    ko: "데이터 출처: 법무부 출입국·외국인정책본부", 
+    en: "Source: Ministry of Justice Immigration Service", 
+    vi: "Nguồn: Bộ Tư pháp Hàn Quốc" 
+  },
+
+// OCR
+  ocrTitle: { 
+    ko: "📷 사진으로 자동 입력", 
+    en: "📷 Auto-fill from photo", 
+    vi: "📷 Tự động điền từ ảnh" 
+  },
+  ocrDesc: { 
+    ko: "외국인등록증 사진을 업로드하면 자동으로 정보가 채워집니다", 
+    en: "Upload a photo of your alien card to auto-fill", 
+    vi: "Tải lên ảnh thẻ ngoại kiều để tự động điền" 
+  },
+  ocrUpload: { ko: "사진 선택", en: "Choose photo", vi: "Chọn ảnh" },
+  ocrProcessing: { 
+    ko: "AI가 정보를 읽는 중", 
+    en: "AI is reading the image", 
+    vi: "AI đang đọc ảnh" 
+  },
+  ocrSuccess: { 
+    ko: "✅ 인식 완료! 정보를 확인하고 필요시 수정해주세요.", 
+    en: "✅ Recognition done! Please check and edit if needed.", 
+    vi: "✅ Đã nhận diện! Vui lòng kiểm tra và chỉnh sửa nếu cần." 
+  },
+  ocrWarning: { 
+    ko: "⚠️ AI 인식은 100% 정확하지 않을 수 있습니다. 반드시 확인하세요.", 
+    en: "⚠️ AI recognition may not be 100% accurate. Please verify.", 
+    vi: "⚠️ Nhận diện AI có thể không chính xác 100%. Vui lòng xác minh." 
+  },
 };
 
 export type Lang = "ko" | "en" | "vi";

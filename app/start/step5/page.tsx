@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import LanguageHeader, { useLang } from "@/components/LanguageHeader";
 import { TEXTS } from "@/lib/i18n";
+import { recognizeAlienCard } from "@/lib/ocr";
 
 export default function Step5Page() {
   const lang = useLang();
@@ -16,6 +17,11 @@ export default function Step5Page() {
   const [addressHome, setAddressHome] = useState("");
   const [email, setEmail] = useState("");
   const [companyName, setCompanyName] = useState("");
+
+  // OCR 상태
+  const [ocrProcessing, setOcrProcessing] = useState(false);
+  const [ocrProgress, setOcrProgress] = useState(0);
+  const [ocrSuccess, setOcrSuccess] = useState(false);
 
   useEffect(() => {
     const saved = sessionStorage.getItem("personal_info");
@@ -44,6 +50,33 @@ export default function Step5Page() {
     window.location.href = "/start/result";
   };
 
+  // OCR 핸들러
+  const handleOcrUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setOcrProcessing(true);
+    setOcrSuccess(false);
+    setOcrProgress(0);
+
+    try {
+      const result = await recognizeAlienCard(file, (p) => setOcrProgress(p));
+
+      // 인식된 정보 자동 입력 (기존 값 안 덮어씀)
+      if (result.name && !name) setName(result.name);
+      if (result.alienNo && !alienNo) setAlienNo(result.alienNo);
+      if (result.passport && !passport) setPassport(result.passport);
+      if (result.nationality && !nationality) setNationality(result.nationality);
+
+      setOcrSuccess(true);
+    } catch (err) {
+      console.error("OCR 오류:", err);
+      alert("이미지 인식에 실패했습니다. 다시 시도해주세요.");
+    } finally {
+      setOcrProcessing(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/start/step4" backLabel={TEXTS.prev[lang]} />
@@ -60,6 +93,48 @@ export default function Step5Page() {
       <section className="max-w-2xl mx-auto px-6 py-10">
         <h1 className="text-2xl font-medium text-gray-900 mb-2">{TEXTS.step5Title[lang]}</h1>
         <p className="text-sm text-gray-500 mb-6">{TEXTS.step5Sub[lang]}</p>
+
+        {/* OCR 박스 (강조!) */}
+        <div className="bg-gradient-to-br from-blue-700 to-blue-800 rounded-xl p-5 mb-6 text-white">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-2xl">📷</span>
+            <h2 className="text-base font-medium">{TEXTS.ocrTitle[lang]}</h2>
+            <span className="ml-auto text-xs bg-white text-blue-700 px-2 py-0.5 rounded-full font-medium">AI</span>
+          </div>
+          <p className="text-xs text-blue-100 mb-4">{TEXTS.ocrDesc[lang]}</p>
+
+          <label className="block">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleOcrUpload}
+              disabled={ocrProcessing}
+              className="hidden"
+            />
+            <div className={`w-full px-4 py-3 bg-white text-blue-700 rounded-lg font-medium text-sm text-center cursor-pointer hover:bg-blue-50 transition-colors ${ocrProcessing ? "opacity-50 cursor-not-allowed" : ""}`}>
+              {ocrProcessing 
+                ? `${TEXTS.ocrProcessing[lang]} ${ocrProgress}%` 
+                : `📁 ${TEXTS.ocrUpload[lang]}`
+              }
+            </div>
+          </label>
+
+          {ocrProcessing && (
+            <div className="mt-3 h-1 bg-blue-900 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-white rounded-full transition-all" 
+                style={{ width: `${ocrProgress}%` }}
+              ></div>
+            </div>
+          )}
+
+          {ocrSuccess && (
+            <div className="mt-3 p-3 bg-blue-900 rounded-lg">
+              <p className="text-xs text-blue-100">{TEXTS.ocrSuccess[lang]}</p>
+              <p className="text-xs text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
+            </div>
+          )}
+        </div>
 
         <div className="bg-green-50 border border-green-100 rounded-xl p-4 mb-6 flex items-start gap-2">
           <span className="text-base">🔒</span>

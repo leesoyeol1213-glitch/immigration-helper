@@ -5,6 +5,7 @@ import Link from "next/link";
 import LanguageHeader, { useLang } from "@/components/LanguageHeader";
 import { TEXTS } from "@/lib/i18n";
 import { generatePdf, fillOfficialForm } from "@/lib/pdf";
+import { findNearestOffice } from "@/lib/offices";
 
 interface Doc {
   name: string;
@@ -59,6 +60,10 @@ export default function ResultPage() {
     workplaceChangeDesc: { ko: "고용센터에서 먼저 발급받으세요", en: "Get from Employment Center first", vi: "Lấy từ Trung tâm Việc làm trước" },
   };
 
+    // 가까운 출입국 사무소 찾기
+  const nearestOffice = personalInfo?.addressKr 
+    ? findNearestOffice(personalInfo.addressKr) 
+    : null;
   const docs: Doc[] = [
     { name: docTexts.integratedForm[lang], desc: docTexts.integratedFormDesc[lang] },
     { name: docTexts.passportCopy[lang], desc: docTexts.passportCopyDesc[lang] },
@@ -161,6 +166,33 @@ export default function ResultPage() {
           </div>
         )}
 
+{nearestOffice && (
+          <div className="bg-white border-2 border-blue-200 rounded-xl p-5 mb-6">
+            <h2 className="text-sm font-medium text-blue-900 mb-3">
+              {TEXTS.officeTitle[lang]}
+            </h2>
+            <p className="text-xs text-gray-500 mb-4">
+              {TEXTS.officeDesc[lang]}
+            </p>
+            <div className="bg-blue-50 rounded-lg p-4 space-y-2">
+              <p className="text-base font-medium text-gray-900">
+                {nearestOffice.name[lang]}
+              </p>
+              <div className="text-xs text-gray-700">
+                <span className="font-medium">📍 {TEXTS.officeAddress[lang]}:</span> {nearestOffice.address}
+              </div>
+              <div className="text-xs text-gray-700">
+                <span className="font-medium">📞 {TEXTS.officePhone[lang]}:</span>{" "}
+                <a href={`tel:${nearestOffice.phone}`} className="text-blue-700 hover:underline">
+                  {nearestOffice.phone}
+                </a>
+              </div>
+            </div>
+            <p className="text-xs text-gray-400 mt-3">
+              ℹ️ {TEXTS.officeDataSource[lang]}
+            </p>
+          </div>
+        )}
         <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
           <h2 className="text-sm font-medium text-gray-900 mb-4">{TEXTS.docsTitle[lang]} ({docs.length})</h2>
           <ul className="space-y-3">

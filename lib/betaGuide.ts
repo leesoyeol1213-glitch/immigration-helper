@@ -1,5 +1,6 @@
 import { PDFDocument, rgb } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
+import QRCode from "qrcode";
 
 export async function generateBetaGuide(): Promise<Uint8Array> {
   const fontRes = await fetch("/fonts/NotoSansKR-Regular.ttf");
@@ -15,6 +16,14 @@ export async function generateBetaGuide(): Promise<Uint8Array> {
   const page = pdfDoc.addPage([595, 842]);
   const { width, height } = page.getSize();
 
+  // QR 코드 생성 (사이트 주소를 QR로 변환)
+  const qrDataUrl = await QRCode.toDataURL(
+    "https://immigration-helper-two.vercel.app",
+    { width: 400, margin: 1, color: { dark: "#1d4ed8", light: "#ffffff" } }
+  );
+  const qrPngBytes = await fetch(qrDataUrl).then((r) => r.arrayBuffer());
+  const qrImage = await pdfDoc.embedPng(qrPngBytes);
+
   // 헤더
   page.drawRectangle({
     x: 0, y: height - 60, width, height: 60,
@@ -27,7 +36,7 @@ export async function generateBetaGuide(): Promise<Uint8Array> {
     x: 165, y: height - 38, size: 11, font, color: rgb(0.85, 0.92, 1),
   });
 
-  // 큰 제목
+  // 제목
   let y = height - 100;
   page.drawText("외국인 근로자분께 부탁드립니다", {
     x: 40, y, size: 14, font: fontBold,
@@ -37,81 +46,94 @@ export async function generateBetaGuide(): Promise<Uint8Array> {
     x: 40, y, size: 9, font, color: rgb(0.4, 0.4, 0.4),
   });
 
-  // 본문 박스 함수
+  // QR 코드 박스 (가장 중요!)
+  y = height - 145;
+  page.drawRectangle({
+    x: 40, y: y - 180, width: width - 80, height: 180,
+    color: rgb(0.95, 0.97, 1),
+    borderColor: rgb(0.15, 0.39, 0.92), borderWidth: 1.5,
+  });
+
+  // QR 코드 이미지 삽입
+  page.drawImage(qrImage, {
+    x: 60, y: y - 165, width: 150, height: 150,
+  });
+
+  // QR 옆 설명
+  page.drawText("📱 휴대폰으로 스캔하세요", {
+    x: 230, y: y - 30, size: 12, font: fontBold,
+  });
+  page.drawText("Scan with your phone", {
+    x: 230, y: y - 50, size: 9, font, color: rgb(0.3, 0.3, 0.3),
+  });
+  page.drawText("Quét bằng điện thoại", {
+    x: 230, y: y - 65, size: 9, font, color: rgb(0.3, 0.3, 0.3),
+  });
+
+  page.drawText("또는 주소를 직접 입력하세요:", {
+    x: 230, y: y - 95, size: 9, font, color: rgb(0.4, 0.4, 0.4),
+  });
+  page.drawText("immigration-helper-two", {
+    x: 230, y: y - 115, size: 11, font: fontBold, color: rgb(0.15, 0.39, 0.92),
+  });
+  page.drawText(".vercel.app", {
+    x: 230, y: y - 132, size: 11, font: fontBold, color: rgb(0.15, 0.39, 0.92),
+  });
+
+  y -= 200;
+
+  // 사용 방법 박스
   const drawBox = (yPos: number, ko: string, en: string, vi: string) => {
     page.drawRectangle({
-      x: 40, y: yPos - 95, width: width - 80, height: 95,
+      x: 40, y: yPos - 75, width: width - 80, height: 75,
       borderColor: rgb(0.9, 0.9, 0.9), borderWidth: 1,
       color: rgb(0.98, 0.98, 1),
     });
-    page.drawText(ko, { x: 50, y: yPos - 18, size: 11, font: fontBold });
-    page.drawText(`🇺🇸 ${en}`, { x: 50, y: yPos - 45, size: 9, font, color: rgb(0.3, 0.3, 0.3) });
-    page.drawText(`🇻🇳 ${vi}`, { x: 50, y: yPos - 78, size: 9, font, color: rgb(0.3, 0.3, 0.3) });
+    page.drawText(ko, { x: 50, y: yPos - 18, size: 10, font: fontBold });
+    page.drawText(`🇺🇸 ${en}`, { x: 50, y: yPos - 40, size: 8.5, font, color: rgb(0.3, 0.3, 0.3) });
+    page.drawText(`🇻🇳 ${vi}`, { x: 50, y: yPos - 60, size: 8.5, font, color: rgb(0.3, 0.3, 0.3) });
   };
 
-  y = height - 145;
-
-  // 1번
   drawBox(y,
-    "1. 아래 사이트에 휴대폰으로 접속해주세요",
-    "Please visit the website below on your phone",
-    "Vui lòng truy cập trang web dưới đây bằng điện thoại"
-  );
-  y -= 110;
-
-  // 사이트 주소 박스 (큰 글씨)
-  page.drawRectangle({
-    x: 40, y: y - 40, width: width - 80, height: 40,
-    color: rgb(0.15, 0.39, 0.92),
-  });
-  page.drawText("immigration-helper-two.vercel.app", {
-    x: 90, y: y - 27, size: 15, font: fontBold, color: rgb(1, 1, 1),
-  });
-  y -= 60;
-
-  // 2번
-  drawBox(y,
-    "2. 본인 모국어를 선택해서 끝까지 진행해주세요",
+    "1. 본인 모국어를 선택해서 끝까지 진행해주세요",
     "Choose your language and go through to the end",
     "Chọn ngôn ngữ của bạn và tiếp tục đến cuối"
   );
-  y -= 110;
+  y -= 90;
 
-  // 3번
   drawBox(y,
-    "3. 다 끝나면 알려주세요. 이야기 듣고 싶어요",
-    "Please let me know when done. I want to hear your thoughts",
-    "Khi xong, hãy cho tôi biết. Tôi muốn nghe ý kiến của bạn"
+    "2. 다 끝나면 알려주세요. 이야기 듣고 싶어요",
+    "Please let me know when done. I want your feedback",
+    "Khi xong, hãy cho tôi biết ý kiến của bạn"
   );
-  y -= 130;
+  y -= 100;
 
-  // 궁금한 점 박스
+  // 질문 박스
   page.drawRectangle({
-    x: 40, y: y - 130, width: width - 80, height: 130,
+    x: 40, y: y - 95, width: width - 80, height: 95,
     color: rgb(1, 0.97, 0.85),
     borderColor: rgb(0.95, 0.85, 0.4), borderWidth: 1,
   });
   page.drawText("궁금한 점 / Questions / Câu hỏi:", {
-    x: 50, y: y - 20, size: 10, font: fontBold,
+    x: 50, y: y - 18, size: 9.5, font: fontBold,
   });
 
   const questions = [
-    "• 사용하기 쉬웠나요? / Was it easy? / Có dễ không?",
-    "• 이해 안 되는 부분이 있었나요? / Anything unclear? / Có gì không hiểu?",
-    "• 번역이 자연스러웠나요? / Was the translation natural? / Bản dịch có tự nhiên không?",
-    "• PDF 결과가 좋았나요? / Was the PDF good? / PDF có tốt không?",
-    "• 더 필요한 기능이 있나요? / Any missing features? / Còn thiếu chức năng nào?",
+    "• 사용하기 쉬웠나요? / Easy to use? / Có dễ không?",
+    "• 이해 안 되는 부분? / Anything unclear? / Có gì không hiểu?",
+    "• 번역이 자연스러웠나요? / Natural translation? / Tự nhiên không?",
+    "• PDF 결과 어땠나요? / How was the PDF? / PDF thế nào?",
   ];
 
-  let qy = y - 40;
+  let qy = y - 36;
   for (const q of questions) {
-    page.drawText(q, { x: 55, y: qy, size: 8.5, font, color: rgb(0.2, 0.2, 0.2) });
-    qy -= 16;
+    page.drawText(q, { x: 55, y: qy, size: 8, font, color: rgb(0.2, 0.2, 0.2) });
+    qy -= 13;
   }
 
   // 푸터
-  page.drawText("개인정보는 저장되지 않습니다 / No personal info is saved / Không lưu thông tin cá nhân", {
-    x: 40, y: 40, size: 8, font, color: rgb(0.5, 0.5, 0.5),
+  page.drawText("개인정보는 저장되지 않습니다 / No personal info saved / Không lưu thông tin", {
+    x: 40, y: 25, size: 7.5, font, color: rgb(0.5, 0.5, 0.5),
   });
 
   return await pdfDoc.save();
