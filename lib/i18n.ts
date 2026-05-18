@@ -316,13 +316,16 @@ export const TEXTS = {
   },
 };
 
-export type Lang = "ko" | "en" | "vi";
+export type Lang = "ko" | "en" | "vi" | "th" | "km" | "ne" | "si" | "my" | "zh";
 
-export function t(key: keyof typeof TEXTS, lang: Lang): string {
-  const item = TEXTS[key];
-  if (typeof item === "object" && !Array.isArray(item) && lang in item) {
-    const val = (item as Record<string, unknown>)[lang];
-    if (typeof val === "string") return val;
-  }
-  return "";
-}
+export const LANG_INFO: Record<Lang, { flag: string; name: string }> = {
+  ko: { flag: "🇰🇷", name: "한국어" },
+  en: { flag: "🇺🇸", name: "English" },
+  vi: { flag: "🇻🇳", name: "Tiếng Việt" },
+  th: { flag: "🇹🇭", name: "ภาษาไทย" },
+  km: { flag: "🇰🇭", name: "ខ្មែរ" },
+  ne: { flag: "🇳🇵", name: "नेपाली" },
+  si: { flag: "🇱🇰", name: "සිංහල" },
+  my: { flag: "🇲🇲", name: "မြန်မာ" },
+  zh: { flag: "🇨🇳", name: "中文" },
+};
