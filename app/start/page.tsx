@@ -11,6 +11,7 @@ export default function StartPage() {
 
   const visaOptions = [
     { value: "E-9", label: TEXTS.visaE9Label[lang], desc: TEXTS.visaE9Desc[lang] },
+    { value: "E-7", label: TEXTS.visaE7Label[lang], desc: TEXTS.visaE7Desc[lang] },
     { value: "other", label: TEXTS.visaOtherLabel[lang], desc: TEXTS.visaOtherDesc[lang] },
   ];
 
@@ -24,7 +25,10 @@ export default function StartPage() {
 
         <div className="space-y-3">
           {visaOptions.map((option) => (
-            <button key={option.value} onClick={() => setVisa(option.value)}
+            <button key={option.value} onClick={() => {
+  setVisa(option.value);
+  localStorage.setItem("answer_visa", option.value);
+}}
               className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
                 visa === option.value ? "border-blue-700 bg-blue-50" : "border-gray-200 hover:border-blue-300"
               }`}>
@@ -40,7 +44,7 @@ export default function StartPage() {
         </div>
 
         <div className="mt-8">
-          {visa === "E-9" ? (
+          {(visa === "E-9" || visa === "E-7") ? (
             <Link href="/start/step2" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
               {TEXTS.next[lang]}
             </Link>

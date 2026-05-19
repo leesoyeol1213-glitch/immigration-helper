@@ -31,6 +31,7 @@ export default function ResultPage() {
   const [expiry, setExpiry] = useState<string>("");
   const [company, setCompany] = useState<string>("");
   const [address, setAddress] = useState<string>("");
+  const [visa, setVisa] = useState("E-9");
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
   const [isGenerating, setIsGenerating] = useState<string>("");
 
@@ -38,6 +39,7 @@ export default function ResultPage() {
     setExpiry(localStorage.getItem("answer_expiry") || "");
     setCompany(localStorage.getItem("answer_company") || "");
     setAddress(localStorage.getItem("answer_address") || "");
+    setVisa(localStorage.getItem("answer_visa") || "E-9");
     const info = sessionStorage.getItem("personal_info");
     if (info) setPersonalInfo(JSON.parse(info));
   }, []);
@@ -58,6 +60,11 @@ export default function ResultPage() {
     leaseDesc: { ko: "지금 사는 곳의 계약서", en: "Current residence contract", vi: "Hợp đồng nơi ở hiện tại" },
     workplaceChange: { ko: "사업장 변경 허가서", en: "Workplace change permit", vi: "Giấy phép đổi nơi làm việc" },
     workplaceChangeDesc: { ko: "고용센터에서 먼저 발급받으세요", en: "Get from Employment Center first", vi: "Lấy từ Trung tâm Việc làm trước" },
+    // ↓ 추가 (마지막 } 직전에)
+  degree: { ko: "학위증명서", en: "Degree Certificate", vi: "Bằng tốt nghiệp" },
+  degreeDesc: { ko: "본국 또는 한국 대학 학위", en: "From home country or Korea", vi: "Từ quê hương hoặc Hàn Quốc" },
+  career: { ko: "경력증명서", en: "Career Certificate", vi: "Giấy chứng nhận kinh nghiệm" },
+  careerDesc: { ko: "이전 회사 경력 증명", en: "Previous work experience", vi: "Kinh nghiệm làm việc trước" },
   };
 
     // 가까운 출입국 사무소 찾기
@@ -78,6 +85,11 @@ export default function ResultPage() {
   if (company === "changed") {
     docs.push({ name: docTexts.workplaceChange[lang], desc: docTexts.workplaceChangeDesc[lang], isExtra: true });
   }
+  // ↓ E-7 전용 서류 추가
+if (visa === "E-7") {
+  docs.push({ name: docTexts.degree[lang], desc: docTexts.degreeDesc[lang], isExtra: true });
+  docs.push({ name: docTexts.career[lang], desc: docTexts.careerDesc[lang], isExtra: true });
+}
 
   const today = new Date();
   const expiryDate = expiry ? new Date(expiry) : null;
