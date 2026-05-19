@@ -10,6 +10,16 @@ const TEXTS: Record<Lang, any> = {
     badge: "📋 About",
     title: "서류도우미가 무엇인가요?",
     subtitle: "외국인 근로자를 위한 AI 기반 행정서류 작성 도우미입니다",
+    chungbukTitle: "📊 충북 외국인 현황 (출처: 충북도청 2025년)",
+    chungbukStats: [
+      { value: "80,416명", label: "충북 체류 외국인", subLabel: "전체 인구의 4.81%" },
+      { value: "전국 3위", label: "외국인 비중", subLabel: "충남, 경기 다음" },
+      { value: "음성군 16.68%", label: "외국인 비율 최고", subLabel: "도내 11개 시군 중" },
+      { value: "청주 28,555명", label: "외국인 최다 도시", subLabel: "도내 1위" },
+      { value: "58%", label: "20~30대 청년층", subLabel: "근로 연령대" },
+      { value: "+59%", label: "유학생 증가율", subLabel: "전국 1위" },
+    ],
+    chungbukInsight: "💡 충북 외국인 8만명 = 보은+옥천 인구 = 우리의 핵심 타겟 시장",
     problemTitle: "🎯 해결하려는 문제",
     problems: [
       "외국인 근로자는 한국어 행정 용어가 어렵습니다",
@@ -96,6 +106,16 @@ const TEXTS: Record<Lang, any> = {
     badge: "📋 About",
     title: "What is 서류도우미?",
     subtitle: "AI-powered form helper for foreign workers in Korea",
+    chungbukTitle: "📊 Chungbuk Foreigners (Source: Chungbuk Province 2025)",
+    chungbukStats: [
+      { value: "80,416", label: "Foreigners in Chungbuk", subLabel: "4.81% of population" },
+      { value: "#3 in Korea", label: "Foreigner ratio", subLabel: "After Chungnam, Gyeonggi" },
+      { value: "Eumseong 16.68%", label: "Highest ratio", subLabel: "Among 11 cities" },
+      { value: "Cheongju 28,555", label: "Most foreigners", subLabel: "#1 in province" },
+      { value: "58%", label: "Aged 20-30s", subLabel: "Working age" },
+      { value: "+59%", label: "Int'l student growth", subLabel: "#1 in Korea" },
+    ],
+    chungbukInsight: "💡 80,000+ foreigners in Chungbuk = Our core target market",
     problemTitle: "🎯 The Problem",
     problems: [
       "Korean administrative terms are difficult for foreign workers",
@@ -182,6 +202,16 @@ const TEXTS: Record<Lang, any> = {
     badge: "📋 Giới thiệu",
     title: "서류도우미 là gì?",
     subtitle: "Trợ lý AI điền giấy tờ cho người lao động nước ngoài tại Hàn Quốc",
+    chungbukTitle: "📊 Người nước ngoài tại Chungbuk (2025)",
+    chungbukStats: [
+      { value: "80,416", label: "Người nước ngoài Chungbuk", subLabel: "4.81% dân số" },
+      { value: "Hạng 3", label: "Tỷ lệ người nước ngoài", subLabel: "Toàn quốc" },
+      { value: "Eumseong 16.68%", label: "Tỷ lệ cao nhất", subLabel: "Trong 11 thành phố" },
+      { value: "Cheongju 28,555", label: "Nhiều nhất", subLabel: "Hạng 1 tỉnh" },
+      { value: "58%", label: "Tuổi 20-30", subLabel: "Tuổi lao động" },
+      { value: "+59%", label: "Tăng du học sinh", subLabel: "Hạng 1 toàn quốc" },
+    ],
+    chungbukInsight: "💡 80.000+ người nước ngoài Chungbuk = Thị trường mục tiêu",
     problemTitle: "🎯 Vấn đề",
     problems: [
       "Thuật ngữ hành chính tiếng Hàn khó với người nước ngoài",
@@ -699,6 +729,23 @@ export default function AboutPage() {
                 <p className="text-xs text-gray-700 flex-1">{tech.value}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+{/* 충북 통계 (충북 특화!) */}
+        <div className="mb-12">
+          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.chungbukTitle}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
+            {t.chungbukStats?.map((stat: any, i: number) => (
+              <div key={i} className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 rounded-xl p-4">
+                <p className="text-lg font-bold text-blue-700 mb-1">{stat.value}</p>
+                <p className="text-xs font-medium text-gray-800 mb-0.5">{stat.label}</p>
+                <p className="text-xs text-gray-500">{stat.subLabel}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+            <p className="text-sm text-amber-900 font-medium">{t.chungbukInsight}</p>
           </div>
         </div>
 
