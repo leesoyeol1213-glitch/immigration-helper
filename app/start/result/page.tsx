@@ -216,13 +216,13 @@ if (visa === "E-7") {
 
     {/* 길찾기 버튼 */}
     <a
-      href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(nearestOffice.address)}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-3 inline-flex items-center gap-2 text-xs font-medium text-blue-700 hover:text-blue-800"
-    >
-      🗺️ {TEXTS.officeDirections[lang]} →
-    </a>
+  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(nearestOffice.address)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.97]"
+>
+  🗺️ {TEXTS.officeDirections[lang]} 바로가기
+</a>
 
     <p className="text-xs text-gray-400 mt-3">
       ℹ️ {TEXTS.officeDataSource[lang]}
