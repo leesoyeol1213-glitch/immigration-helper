@@ -331,3 +331,48 @@ export const LANG_INFO: Record<Lang, { flag: string; name: string }> = {
   my: { flag: "🇲🇲", name: "မြန်မာ" },
   zh: { flag: "🇨🇳", name: "中文" },
 };
+
+// === Fallback 헬퍼 함수 ===
+// 번역이 없는 언어는 자동으로 영어 → 한국어 순서로 대체
+export function t(textGroup: any, lang: Lang): string {
+  if (!textGroup) return "";
+  
+  // 함수 형태 (예: daysLeft(n))는 그대로 반환
+  if (typeof textGroup[lang] === "function") return textGroup[lang];
+  
+  // 문자열 번역이 있으면 그대로
+  if (typeof textGroup[lang] === "string") return textGroup[lang];
+  
+  // 없으면 영어 → 한국어 순서로 fallback
+  if (typeof textGroup.en === "string") return textGroup.en;
+  if (typeof textGroup.ko === "string") return textGroup.ko;
+  
+  return "";
+}
+
+// 함수 형태 텍스트용 (예: daysLeft(30))
+export function tf(textGroup: any, lang: Lang, ...args: any[]): string {
+  if (!textGroup) return "";
+  const fn = textGroup[lang] || textGroup.en || textGroup.ko;
+  if (typeof fn === "function") return fn(...args);
+  if (typeof fn === "string") return fn;
+  return "";
+}
+
+// === TEXTS 자동 Fallback 적용 ===
+// 각 텍스트 항목에 Proxy를 씌워서 누락된 언어는 자동으로 영어로 대체
+(function applyFallback() {
+  for (const key of Object.keys(TEXTS)) {
+    const item = (TEXTS as any)[key];
+    if (typeof item !== "object" || item === null || Array.isArray(item)) continue;
+    
+    (TEXTS as any)[key] = new Proxy(item, {
+      get(target: any, prop: string) {
+        if (target[prop] !== undefined) return target[prop];
+        if (target.en !== undefined) return target.en;
+        if (target.ko !== undefined) return target.ko;
+        return "";
+      },
+    });
+  }
+})();
