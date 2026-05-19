@@ -219,9 +219,15 @@ if (visa === "E-7") {
   href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(nearestOffice.address)}`}
   target="_blank"
   rel="noopener noreferrer"
-  className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.97]"
+  className="mt-4 w-full bg-gradient-to-r from-blue-600 to-indigo-600 
+             hover:from-blue-700 hover:to-indigo-700
+             text-white font-semibold py-4 px-6 rounded-2xl 
+             flex items-center justify-center gap-3 
+             transition-all duration-200 shadow-lg hover:shadow-xl 
+             active:scale-[0.97]"
 >
-  🗺️ {TEXTS.officeDirections[lang]} 바로가기
+  <span className="text-2xl">🗺️</span>
+  <span className="text-base">{TEXTS.officeDirections[lang]}</span>
 </a>
 
     <p className="text-xs text-gray-400 mt-3">
