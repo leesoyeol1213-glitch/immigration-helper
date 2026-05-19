@@ -3,7 +3,7 @@
 
 export interface Office {
   id: string;
-  name: { ko: string; en: string; vi: string };
+  name: Record<string, string>;  // ← 변경
   region: string; // 관할 지역
   address: string;
   phone: string;

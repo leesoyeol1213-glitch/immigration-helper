@@ -43,7 +43,7 @@ export default function ResultPage() {
   }, []);
 
   // 다국어 서류 이름
-  const docTexts = {
+  const docTexts: Record<string, Record<string, string>> = {
     integratedForm: { ko: "통합신청서", en: "Application Form", vi: "Đơn đăng ký" },
     integratedFormDesc: { ko: "아래에서 PDF 다운로드 가능 ✨", en: "Download below ✨", vi: "Tải xuống bên dưới ✨" },
     passportCopy: { ko: "여권 사본", en: "Passport copy", vi: "Bản sao hộ chiếu" },
