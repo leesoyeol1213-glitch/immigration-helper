@@ -297,6 +297,12 @@ visaE7Label: {
     vi: "Nguồn: Bộ Tư pháp Hàn Quốc" 
   },
 
+  officeDirections: {
+    ko: "길찾기 (구글 지도)",
+    en: "Get Directions (Google Maps)",
+    vi: "Chỉ đường (Google Maps)",
+  },
+
 // OCR
   ocrTitle: { 
     ko: "📷 사진으로 자동 입력", 

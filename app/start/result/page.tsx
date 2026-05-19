@@ -179,32 +179,56 @@ if (visa === "E-7") {
         )}
 
 {nearestOffice && (
-          <div className="bg-white border-2 border-blue-200 rounded-xl p-5 mb-6">
-            <h2 className="text-sm font-medium text-blue-900 mb-3">
-              {TEXTS.officeTitle[lang]}
-            </h2>
-            <p className="text-xs text-gray-500 mb-4">
-              {TEXTS.officeDesc[lang]}
-            </p>
-            <div className="bg-blue-50 rounded-lg p-4 space-y-2">
-              <p className="text-base font-medium text-gray-900">
-                {nearestOffice.name[lang]}
-              </p>
-              <div className="text-xs text-gray-700">
-                <span className="font-medium">📍 {TEXTS.officeAddress[lang]}:</span> {nearestOffice.address}
-              </div>
-              <div className="text-xs text-gray-700">
-                <span className="font-medium">📞 {TEXTS.officePhone[lang]}:</span>{" "}
-                <a href={`tel:${nearestOffice.phone}`} className="text-blue-700 hover:underline">
-                  {nearestOffice.phone}
-                </a>
-              </div>
-            </div>
-            <p className="text-xs text-gray-400 mt-3">
-              ℹ️ {TEXTS.officeDataSource[lang]}
-            </p>
-          </div>
-        )}
+  <div className="bg-white border-2 border-blue-200 rounded-xl p-5 mb-6">
+    <h2 className="text-sm font-medium text-blue-900 mb-3">
+      {TEXTS.officeTitle[lang]}
+    </h2>
+    <p className="text-xs text-gray-500 mb-4">
+      {TEXTS.officeDesc[lang]}
+    </p>
+
+    <div className="bg-blue-50 rounded-lg p-4 space-y-2">
+      <p className="text-base font-medium text-gray-900">
+        {nearestOffice.name[lang]}
+      </p>
+      <div className="text-xs text-gray-700">
+        <span className="font-medium">📍 {TEXTS.officeAddress[lang]}:</span> {nearestOffice.address}
+      </div>
+      <div className="text-xs text-gray-700">
+        <span className="font-medium">📞 {TEXTS.officePhone[lang]}:</span>{" "}
+        <a href={`tel:${nearestOffice.phone}`} className="text-blue-700 hover:underline">
+          {nearestOffice.phone}
+        </a>
+      </div>
+    </div>
+
+    {/* 🗺️ 구글 맵 */}
+    <div className="mt-4 rounded-lg overflow-hidden border border-gray-200">
+      <iframe
+        src={`https://www.google.com/maps?q=${encodeURIComponent(nearestOffice.address)}&output=embed`}
+        width="100%"
+        height="200"
+        style={{ border: 0 }}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
+
+    {/* 길찾기 버튼 */}
+    <a
+      href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(nearestOffice.address)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-3 inline-flex items-center gap-2 text-xs font-medium text-blue-700 hover:text-blue-800"
+    >
+      🗺️ {TEXTS.officeDirections[lang]} →
+    </a>
+
+    <p className="text-xs text-gray-400 mt-3">
+      ℹ️ {TEXTS.officeDataSource[lang]}
+    </p>
+  </div>
+)}
         <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
           <h2 className="text-sm font-medium text-gray-900 mb-4">{TEXTS.docsTitle[lang]} ({docs.length})</h2>
           <ul className="space-y-3">
