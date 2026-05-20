@@ -30,6 +30,26 @@ visaE7Label: {
     en: "Professional, requires degree/experience",
     vi: "Chuyên gia, cần bằng cấp/kinh nghiệm",
   },
+  visaF2RLabel: {
+    ko: "F-2-R 비자 (지역특화)",
+    en: "F-2-R (Regional Talent)",
+    vi: "F-2-R (Vùng đặc thù)",
+  },
+  visaF2RDesc: {
+    ko: "충북 등 인구감소지역 우수 인재",
+    en: "Regional talent in declining areas",
+    vi: "Nhân tài vùng giảm dân số",
+  },
+  visaD2Label: {
+    ko: "D-2 비자 (유학)",
+    en: "D-2 (Student)",
+    vi: "D-2 (Du học)",
+  },
+  visaD2Desc: {
+    ko: "대학교, 대학원 재학",
+    en: "University students",
+    vi: "Sinh viên đại học",
+  },
   reissueLabel: {
     ko: "외국인등록증 재발급",
     en: "Alien Card Reissuance",
