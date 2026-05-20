@@ -12,8 +12,8 @@ export default function StartPage() {
   const visaOptions = [
     { value: "E-9", label: TEXTS.visaE9Label[lang], desc: TEXTS.visaE9Desc[lang] },
     { value: "E-7", label: TEXTS.visaE7Label[lang], desc: TEXTS.visaE7Desc[lang] },
-    { value: "other", label: TEXTS.visaOtherLabel[lang], desc: TEXTS.visaOtherDesc[lang] },
-  ];
+    { value: "reissue", label: TEXTS.reissueLabel[lang], desc: TEXTS.reissueDesc[lang] },
+];
 
   return (
     <main className="min-h-screen bg-white">
@@ -44,15 +44,19 @@ export default function StartPage() {
         </div>
 
         <div className="mt-8">
-          {(visa === "E-9" || visa === "E-7") ? (
-            <Link href="/start/step2" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
-              {TEXTS.next[lang]}
-            </Link>
-          ) : (
-            <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
-              {TEXTS.next[lang]}
-            </button>
-          )}
+     {(visa === "E-9" || visa === "E-7") ? (
+  <Link href="/start/step2" className="...">
+    {TEXTS.next[lang]}
+  </Link>
+) : visa === "reissue" ? (
+  <Link href="/start/reissue" className="...">
+    {TEXTS.next[lang]}
+  </Link>
+) : (
+  <button disabled className="...">
+    {TEXTS.visaOtherWarn[lang]}
+  </button>
+)}
         </div>
 
         {visa === "other" && (

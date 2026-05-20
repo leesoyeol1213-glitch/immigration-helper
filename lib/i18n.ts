@@ -30,6 +30,76 @@ visaE7Label: {
     en: "Professional, requires degree/experience",
     vi: "Chuyên gia, cần bằng cấp/kinh nghiệm",
   },
+  reissueLabel: {
+    ko: "외국인등록증 재발급",
+    en: "Alien Card Reissuance",
+    vi: "Cấp lại thẻ ngoại kiều",
+  },
+  reissueDesc: {
+    ko: "분실, 훼손, 정보변경 등",
+    en: "Lost, damaged, info changed",
+    vi: "Mất, hỏng, đổi thông tin",
+  },
+  reissueTitle: {
+    ko: "재발급 사유를 선택해주세요",
+    en: "Select reissuance reason",
+    vi: "Chọn lý do cấp lại",
+  },
+  reissueSub: {
+    ko: "사유에 따라 필요한 서류가 달라집니다",
+    en: "Required documents vary by reason",
+    vi: "Giấy tờ cần thiết khác nhau theo lý do",
+  },
+  reissueStep: {
+    ko: "재발급 사유 선택",
+    en: "Choose reason",
+    vi: "Chọn lý do",
+  },
+  reasonLost: {
+    ko: "분실 (잃어버림)",
+    en: "Lost",
+    vi: "Bị mất",
+  },
+  reasonLostDesc: {
+    ko: "경찰서 분실신고서 추가 필요",
+    en: "Need police report",
+    vi: "Cần báo cáo công an",
+  },
+  reasonDamaged: {
+    ko: "훼손 (찢어짐, 못 읽음)",
+    en: "Damaged",
+    vi: "Bị hỏng",
+  },
+  reasonDamagedDesc: {
+    ko: "훼손된 카드 반납",
+    en: "Return damaged card",
+    vi: "Nộp thẻ bị hỏng",
+  },
+  reasonInfo: {
+    ko: "정보 변경",
+    en: "Info Change",
+    vi: "Đổi thông tin",
+  },
+  reasonInfoDesc: {
+    ko: "이름, 국적 등 변경 시",
+    en: "Name, nationality change",
+    vi: "Đổi tên, quốc tịch",
+  },
+  lostWarnTitle: {
+    ko: "⚠️ 분실 시 필수 절차",
+    en: "⚠️ Required for Lost",
+    vi: "⚠️ Bắt buộc khi mất",
+  },
+  lostWarnDesc: {
+    ko: "1️⃣ 가까운 경찰서에서 '분실신고확인서' 발급\n2️⃣ 그 서류와 함께 출입국 방문\n순서 바꾸면 처리 안 됩니다.",
+    en: "1️⃣ Get 'Lost Report' from police\n2️⃣ Bring it to immigration\nMust be in this order.",
+    vi: "1️⃣ Lấy 'Báo cáo mất' từ công an\n2️⃣ Đến XNC với báo cáo đó\nPhải theo thứ tự này.",
+  },
+  selectReason: {
+    ko: "사유를 선택해주세요",
+    en: "Please select a reason",
+    vi: "Vui lòng chọn lý do",
+  },
   visaOtherLabel: {
     ko: "다른 비자입니다",
     en: "Other visa",
