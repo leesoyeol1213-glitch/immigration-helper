@@ -166,15 +166,6 @@ if (visa === "E-7") {
                 {isGenerating === "official" ? TEXTS.pdfGenerating[lang] : TEXTS.pdfDownload[lang]}
               </button>
             </div>
-
-            <div className="bg-gray-100 border border-gray-200 rounded-xl p-4">
-              <h2 className="text-sm font-medium text-gray-900 mb-1">{TEXTS.pdfSummary[lang]}</h2>
-              <p className="text-xs text-gray-600 mb-3">{TEXTS.pdfSummaryDesc[lang]}</p>
-              <button onClick={() => handleDownload("summary")} disabled={isGenerating !== ""}
-                className="w-full px-4 py-2 bg-white text-gray-700 rounded-lg font-medium text-sm border border-gray-200 hover:bg-gray-50 transition-colors disabled:opacity-50">
-                {isGenerating === "summary" ? TEXTS.pdfGenerating[lang] : TEXTS.pdfSummaryDownload[lang]}
-              </button>
-            </div>
           </div>
         )}
 

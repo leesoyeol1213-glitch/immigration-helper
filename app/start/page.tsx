@@ -45,15 +45,15 @@ export default function StartPage() {
 
         <div className="mt-8">
      {(visa === "E-9" || visa === "E-7") ? (
-  <Link href="/start/step2" className="...">
+  <Link href="/start/step2" className="w-full inline-block text-center px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors">
     {TEXTS.next[lang]}
   </Link>
 ) : visa === "reissue" ? (
-  <Link href="/start/reissue" className="...">
+  <Link href="/start/reissue" className="w-full inline-block text-center px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors">
     {TEXTS.next[lang]}
   </Link>
 ) : (
-  <button disabled className="...">
+  <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
     {TEXTS.visaOtherWarn[lang]}
   </button>
 )}
