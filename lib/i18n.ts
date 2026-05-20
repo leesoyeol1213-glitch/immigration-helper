@@ -60,6 +60,81 @@ visaE7Label: {
     en: "Lost, damaged, info changed",
     vi: "Mất, hỏng, đổi thông tin",
   },
+  passportLabel: {
+    ko: "여권 갱신 가이드",
+    en: "Passport Renewal Guide",
+    vi: "Hướng dẫn gia hạn hộ chiếu",
+  },
+  passportDesc: {
+    ko: "대사관 정보 + 필요 서류 안내",
+    en: "Embassy info + required documents",
+    vi: "Thông tin đại sứ quán + giấy tờ cần",
+  },
+  passportTitle: {
+    ko: "여권 갱신 안내",
+    en: "Passport Renewal Guide",
+    vi: "Hướng dẫn gia hạn hộ chiếu",
+  },
+  passportSub: {
+    ko: "본국 대사관 정보와 필요 서류를 안내합니다",
+    en: "Embassy info and required documents",
+    vi: "Thông tin đại sứ quán và giấy tờ cần thiết",
+  },
+  passportStep: {
+    ko: "여권 갱신 안내",
+    en: "Passport Renewal",
+    vi: "Gia hạn hộ chiếu",
+  },
+  passportNoticeTitle: {
+    ko: "⚠️ 중요 안내",
+    en: "⚠️ Important Notice",
+    vi: "⚠️ Lưu ý quan trọng",
+  },
+  passportNoticeDesc: {
+    ko: "여권 갱신은 본국 대사관에서 직접 처리합니다. 갱신 후 반드시 하이코리아에 신고하세요.",
+    en: "Passport renewal is handled directly by your country's embassy. After renewal, must report to HiKorea.",
+    vi: "Gia hạn hộ chiếu được xử lý trực tiếp tại đại sứ quán nước bạn. Sau khi gia hạn, phải báo cáo cho HiKorea.",
+  },
+  passportSelectCountry: {
+    ko: "🌍 본국을 선택해주세요",
+    en: "🌍 Select your country",
+    vi: "🌍 Chọn quốc gia của bạn",
+  },
+  embassyHours: {
+    ko: "운영시간",
+    en: "Hours",
+    vi: "Giờ làm việc",
+  },
+  embassyWebsite: {
+    ko: "공식 사이트",
+    en: "Website",
+    vi: "Trang web",
+  },
+  requiredDocs: {
+    ko: "필요 서류",
+    en: "Required Documents",
+    vi: "Giấy tờ cần thiết",
+  },
+  hikoreaTitle: {
+    ko: "📌 여권 갱신 후 필수 절차",
+    en: "📌 After Renewal: Mandatory Step",
+    vi: "📌 Sau khi gia hạn: Bước bắt buộc",
+  },
+  hikoreaDesc: {
+    ko: "새 여권을 받으면 14일 이내에 하이코리아에서 '여권정보 변경 신고'를 해야 합니다. (미신고 시 과태료 부과 가능)",
+    en: "After receiving new passport, you must report to HiKorea within 14 days. (Penalty may apply if not reported)",
+    vi: "Sau khi nhận hộ chiếu mới, phải báo cáo cho HiKorea trong vòng 14 ngày. (Có thể bị phạt nếu không báo cáo)",
+  },
+  hikoreaVisit: {
+    ko: "하이코리아 바로가기",
+    en: "Visit HiKorea",
+    vi: "Truy cập HiKorea",
+  },
+  embassyDataSource: {
+    ko: "🏛️ 데이터 출처: 외교부 + 각 대사관 공식 사이트 (2025.10 기준)",
+    en: "🏛️ Source: MOFA + Embassy websites (Updated 2025.10)",
+    vi: "🏛️ Nguồn: MOFA + Đại sứ quán (Cập nhật 2025.10)",
+  },
   reissueTitle: {
     ko: "재발급 사유를 선택해주세요",
     en: "Select reissuance reason",

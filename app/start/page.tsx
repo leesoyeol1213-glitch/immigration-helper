@@ -15,6 +15,7 @@ export default function StartPage() {
   { value: "F-2-R", label: TEXTS.visaF2RLabel[lang], desc: TEXTS.visaF2RDesc[lang] },
   { value: "D-2", label: TEXTS.visaD2Label[lang], desc: TEXTS.visaD2Desc[lang] },
   { value: "reissue", label: TEXTS.reissueLabel[lang], desc: TEXTS.reissueDesc[lang] },
+  { value: "passport", label: TEXTS.passportLabel[lang], desc: TEXTS.passportDesc[lang] },
 ];
 
   return (
@@ -52,6 +53,10 @@ export default function StartPage() {
   </Link>
 ) : visa === "reissue" ? (
   <Link href="/start/reissue" className="w-full inline-block text-center px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors">
+    {TEXTS.next[lang]}
+  </Link>
+) : visa === "passport" ? (
+  <Link href="/start/passport" className="w-full inline-block text-center px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors">
     {TEXTS.next[lang]}
   </Link>
 ) : (
