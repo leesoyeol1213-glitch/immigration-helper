@@ -14,16 +14,23 @@ interface Doc {
 }
 
 interface PersonalInfo {
-  name: string;
+  name?: string;          // ← 옵셔널로 (구버전 호환)
+  surname?: string;       // ← 추가
+  givenName?: string;     // ← 추가
   nameKr: string;
   nationality?: string;
   passport: string;
+  passportIssue?: string;    // ← 추가
+  passportExpiry?: string;   // ← 추가
   alienNo: string;
   phone: string;
   addressKr?: string;
   addressHome?: string;
   email?: string;
   companyName?: string;
+  expiry: string;
+  company: string;
+  address: string;
 }
 
 export default function ResultPage() {
@@ -65,18 +72,7 @@ export default function ResultPage() {
   degreeDesc: { ko: "본국 또는 한국 대학 학위", en: "From home country or Korea", vi: "Từ quê hương hoặc Hàn Quốc" },
   career: { ko: "경력증명서", en: "Career Certificate", vi: "Giấy chứng nhận kinh nghiệm" },
   careerDesc: { ko: "이전 회사 경력 증명", en: "Previous work experience", vi: "Kinh nghiệm làm việc trước" },
-  // ↓ 추가 (career 다음에)
-  topik: { ko: "TOPIK 점수 증명서", en: "TOPIK Certificate", vi: "Chứng chỉ TOPIK" },
-  topikDesc: { ko: "한국어능력시험 (3급 이상)", en: "Korean Language Test (Level 3+)", vi: "Bằng tiếng Hàn (Cấp 3+)" },
-  incomeProof: { ko: "소득 증빙서류", en: "Income Proof", vi: "Chứng nhận thu nhập" },
-  incomeProofDesc: { ko: "연 2,700만원 이상 소득증명", en: "Annual income 27M+ KRW", vi: "Thu nhập năm 27 triệu KRW+" },
-  regionProof: { ko: "거주지역 증명", en: "Residence Proof", vi: "Chứng nhận cư trú" },
-  regionProofDesc: { ko: "인구감소지역 거주 증명 (충북 등)", en: "Living in declining area (Chungbuk etc)", vi: "Sống ở vùng giảm dân số" },
-  enrollment: { ko: "재학증명서", en: "Enrollment Certificate", vi: "Giấy chứng nhận đang học" },
-  enrollmentDesc: { ko: "현재 학교에서 발급", en: "Issued by your school", vi: "Do trường cấp" },
-  transcript: { ko: "성적증명서", en: "Transcript", vi: "Bảng điểm" },
-  transcriptDesc: { ko: "최근 학기 성적", en: "Recent semester grades", vi: "Điểm học kỳ gần nhất" },
-};
+  };
 
     // 가까운 출입국 사무소 찾기
   const nearestOffice = personalInfo?.addressKr 
@@ -120,33 +116,38 @@ if (visa === "D-2") {
     : null;
 
   const handleDownload = async (type: "official" | "summary") => {
-    if (!personalInfo) {
-      alert("step5부터 다시 시작해주세요.");
-      return;
-    }
-    setIsGenerating(type);
-    try {
-      const data = { ...personalInfo, expiry, company, address };
-      const pdfBytes = type === "official"
-        ? await fillOfficialForm(data)
-        : await generatePdf(data);
+  if (!personalInfo) {
+    alert("step5부터 다시 시작해주세요.");
+    return;
+  }
+  setIsGenerating(type);
+  try {
+    const data = { ...personalInfo, expiry, company, address };
+    const pdfBytes = type === "official"
+      ? await fillOfficialForm(data)
+      : await generatePdf(data);
 
-      const blob = new Blob([pdfBytes as BlobPart], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = type === "official"
-        ? `통합신청서_${personalInfo.name}.pdf`
-        : `요약지_${personalInfo.name}.pdf`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      alert("PDF 생성 중 오류 발생");
-      console.error(err);
-    } finally {
-      setIsGenerating("");
-    }
-  };
+    const blob = new Blob([pdfBytes as BlobPart], { type: "application/pdf" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+
+    const fileName = personalInfo.surname && personalInfo.givenName
+      ? `${personalInfo.surname}_${personalInfo.givenName}`
+      : personalInfo.name || "신청서";
+
+    a.download = type === "official"
+      ? `통합신청서_${fileName}.pdf`
+      : `요약지_${fileName}.pdf`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    alert("PDF 생성 중 오류 발생");
+    console.error(err);
+  } finally {
+    setIsGenerating("");
+  }
+};
 
   const handleReset = () => {
     localStorage.removeItem("answer_expiry");

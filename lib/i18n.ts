@@ -354,6 +354,26 @@ visaE7Label: {
   contactInfo: { ko: "연락처", en: "Contact", vi: "Liên hệ" },
   addressInfo: { ko: "주소", en: "Address", vi: "Địa chỉ" },
   workplaceInfo: { ko: "근무처", en: "Workplace", vi: "Nơi làm việc" },
+  fSurname: {
+    ko: "영문 성 (Surname) *",
+    en: "Surname *",
+    vi: "Họ (Surname) *",
+  },
+  fGivenName: {
+    ko: "영문 이름 (Given names) *",
+    en: "Given Names *",
+    vi: "Tên (Given names) *",
+  },
+  fPassportIssue: {
+    ko: "여권 발급일자 (yyyy.mm.dd)",
+    en: "Passport Issue Date",
+    vi: "Ngày cấp hộ chiếu",
+  },
+  fPassportExpiry: {
+    ko: "여권 유효기간 (yyyy.mm.dd)",
+    en: "Passport Expiry Date",
+    vi: "Ngày hết hạn hộ chiếu",
+  },
   fName: { ko: "영문 이름 (여권 기준) *", en: "Name in English *", vi: "Tên tiếng Anh *" },
   fNameKr: { ko: "한글 이름 (있다면)", en: "Korean Name", vi: "Tên tiếng Hàn" },
   fNationality: { ko: "국적 *", en: "Nationality *", vi: "Quốc tịch *" },

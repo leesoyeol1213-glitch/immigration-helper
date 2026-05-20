@@ -7,10 +7,13 @@ import { recognizeAlienCard } from "@/lib/ocr";
 
 export default function Step5Page() {
   const lang = useLang();
-  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [givenName, setGivenName] = useState("");
   const [nameKr, setNameKr] = useState("");
   const [nationality, setNationality] = useState("");
   const [passport, setPassport] = useState("");
+  const [passportIssue, setPassportIssue] = useState("");
+  const [passportExpiry, setPassportExpiry] = useState("");
   const [alienNo, setAlienNo] = useState("");
   const [phone, setPhone] = useState("");
   const [addressKr, setAddressKr] = useState("");
@@ -24,31 +27,35 @@ export default function Step5Page() {
   const [ocrSuccess, setOcrSuccess] = useState(false);
 
   useEffect(() => {
-    const saved = sessionStorage.getItem("personal_info");
-    if (saved) {
-      const data = JSON.parse(saved);
-      setName(data.name || "");
-      setNameKr(data.nameKr || "");
-      setNationality(data.nationality || "");
-      setPassport(data.passport || "");
-      setAlienNo(data.alienNo || "");
-      setPhone(data.phone || "");
-      setAddressKr(data.addressKr || "");
-      setAddressHome(data.addressHome || "");
-      setEmail(data.email || "");
-      setCompanyName(data.companyName || "");
-    }
-  }, []);
+  const saved = sessionStorage.getItem("personal_info");
+  if (saved) {
+    const data = JSON.parse(saved);
+    setSurname(data.surname || "");
+    setGivenName(data.givenName || "");
+    setNameKr(data.nameKr || "");
+    setNationality(data.nationality || "");
+    setPassport(data.passport || "");
+    setPassportIssue(data.passportIssue || "");
+    setPassportExpiry(data.passportExpiry || "");
+    setAlienNo(data.alienNo || "");
+    setPhone(data.phone || "");
+    setAddressKr(data.addressKr || "");
+    setAddressHome(data.addressHome || "");
+    setEmail(data.email || "");
+    setCompanyName(data.companyName || "");
+  }
+}, []);
 
-  const isValid = name && passport && alienNo && phone && nationality && addressKr;
+  const isValid = surname && givenName && passport && alienNo && phone && nationality && addressKr;
 
   const handleNext = () => {
-    sessionStorage.setItem("personal_info", JSON.stringify({
-      name, nameKr, nationality, passport, alienNo,
-      phone, addressKr, addressHome, email, companyName,
-    }));
-    window.location.href = "/start/result";
-  };
+  sessionStorage.setItem("personal_info", JSON.stringify({
+    surname, givenName, nameKr, nationality, 
+    passport, passportIssue, passportExpiry, alienNo,
+    phone, addressKr, addressHome, email, companyName,
+  }));
+  window.location.href = "/start/result";
+};
 
   // OCR 핸들러
   const handleOcrUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +70,15 @@ export default function Step5Page() {
       const result = await recognizeAlienCard(file, (p) => setOcrProgress(p));
 
       // 인식된 정보 자동 입력 (기존 값 안 덮어씀)
-      if (result.name && !name) setName(result.name);
+      if (result.name) {
+  const parts = result.name.trim().split(/\s+/);
+  if (parts.length >= 2 && !surname) {
+    setSurname(parts[0]);
+    setGivenName(parts.slice(1).join(" "));
+  } else if (!givenName) {
+    setGivenName(result.name);
+  }
+}
       if (result.alienNo && !alienNo) setAlienNo(result.alienNo);
       if (result.passport && !passport) setPassport(result.passport);
       if (result.nationality && !nationality) setNationality(result.nationality);
@@ -147,10 +162,15 @@ export default function Step5Page() {
         <h3 className="text-sm font-medium text-gray-900 mb-3 mt-4">{TEXTS.basicInfo[lang]}</h3>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fName[lang]}</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value.toUpperCase())} placeholder="HONG GIL DONG"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fSurname[lang]}</label>
+  <input type="text" value={surname} onChange={(e) => setSurname(e.target.value.toUpperCase())} placeholder="KAEWRIT"
+    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
+</div>
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fGivenName[lang]}</label>
+  <input type="text" value={givenName} onChange={(e) => setGivenName(e.target.value.toUpperCase())} placeholder="SOMCHIT"
+    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
+</div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fNameKr[lang]}</label>
             <input type="text" value={nameKr} onChange={(e) => setNameKr(e.target.value)} placeholder="홍길동"
@@ -170,6 +190,16 @@ export default function Step5Page() {
             <input type="text" value={passport} onChange={(e) => setPassport(e.target.value.toUpperCase())} placeholder="M12345678"
               className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
           </div>
+          <div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPassportIssue[lang]}</label>
+  <input type="text" value={passportIssue} onChange={(e) => setPassportIssue(e.target.value)} placeholder="2020.01.15"
+    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
+</div>
+<div>
+  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPassportExpiry[lang]}</label>
+  <input type="text" value={passportExpiry} onChange={(e) => setPassportExpiry(e.target.value)} placeholder="2030.01.14"
+    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
+</div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fAlienNo[lang]}</label>
             <input type="text" value={alienNo} onChange={(e) => setAlienNo(e.target.value)} placeholder="000000-0000000"
