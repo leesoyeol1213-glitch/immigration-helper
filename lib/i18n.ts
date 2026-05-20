@@ -381,10 +381,10 @@ visaE7Label: {
     en: "Enter your address to find the nearest office", 
     vi: "Nhập địa chỉ để tìm văn phòng gần nhất" 
   },
-  officeDataSource: { 
-    ko: "데이터 출처: 법무부 출입국·외국인정책본부", 
-    en: "Source: Ministry of Justice Immigration Service", 
-    vi: "Nguồn: Bộ Tư pháp Hàn Quốc" 
+  officeDataSource: {
+  ko: "🏛️ 공공데이터 출처: 법무부 출입국·외국인정책본부 (2025.10 기준)",
+  en: "🏛️ Public Data: Korea Immigration Service (Updated 2025.10)",
+  vi: "🏛️ Dữ liệu công: Bộ Tư pháp Hàn Quốc (Cập nhật 2025.10)",
   },
 
   officeDirections: {
