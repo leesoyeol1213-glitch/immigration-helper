@@ -349,6 +349,11 @@ visaE7Label: {
     en: "Information entered here is not saved on our server. It disappears when you close the window.",
     vi: "Thông tin nhập ở đây không lưu trên máy chủ. Sẽ biến mất khi bạn đóng cửa sổ.",
   },
+  privacyMore: {
+    ko: "개인정보 처리방침 자세히 보기 →",
+    en: "View Privacy Policy →",
+    vi: "Xem chính sách bảo mật →",
+  },
   basicInfo: { ko: "기본 정보", en: "Basic Info", vi: "Thông tin cơ bản" },
   idInfo: { ko: "신분 정보", en: "Identity", vi: "Thông tin nhận dạng" },
   contactInfo: { ko: "연락처", en: "Contact", vi: "Liên hệ" },
@@ -554,6 +559,86 @@ visaE7Label: {
     ko: "📸 밝은 곳에서 · 흔들림 없이 · 전체가 보이게",
     en: "📸 Good lighting · Steady · Full document visible",
     vi: "📸 Đủ sáng · Không rung · Thấy toàn bộ",
+  },
+  ocrSafeNote: {
+    ko: "🔒 사진은 기기에서만 처리되며 서버에 저장되지 않습니다",
+    en: "🔒 Photos are processed on your device, never stored on our server",
+    vi: "🔒 Ảnh chỉ xử lý trên thiết bị, không lưu trên máy chủ",
+  },
+  privacyPageTitle: {
+    ko: "개인정보 처리방침",
+    en: "Privacy Policy",
+    vi: "Chính sách bảo mật",
+  },
+  privacyPageSub: {
+    ko: "서류도우미는 당신의 개인정보를 저장하지 않습니다.",
+    en: "Document Helper does not store your personal information.",
+    vi: "Document Helper không lưu trữ thông tin cá nhân của bạn.",
+  },
+  privacyHero: {
+    ko: "✅ 수집하는 개인정보: 없음",
+    en: "✅ Personal data collected: None",
+    vi: "✅ Dữ liệu cá nhân thu thập: Không có",
+  },
+  privacyHeroDesc: {
+    ko: "입력하신 정보와 업로드한 사진은 우리 서버로 전송되지 않습니다.",
+    en: "Your input and uploaded photos are never sent to our server.",
+    vi: "Thông tin và ảnh tải lên không bao giờ được gửi đến máy chủ.",
+  },
+  privacyCollect: {
+    ko: "수집하지 않습니다",
+    en: "We don't collect",
+    vi: "Chúng tôi không thu thập",
+  },
+  privacyCollectDesc: {
+    ko: "이름, 여권번호, 외국인등록번호 등 어떤 개인정보도 서버에 수집·저장하지 않습니다.",
+    en: "We do not collect or store any personal data (name, passport, alien number) on our server.",
+    vi: "Chúng tôi không thu thập hoặc lưu trữ bất kỳ thông tin cá nhân nào trên máy chủ.",
+  },
+  privacyProcess: {
+    ko: "기기에서만 처리됩니다",
+    en: "Processed on your device only",
+    vi: "Chỉ xử lý trên thiết bị của bạn",
+  },
+  privacyProcessDesc: {
+    ko: "OCR 이미지 인식과 PDF 생성은 모두 당신의 브라우저(기기) 안에서만 이루어집니다.",
+    en: "OCR and PDF generation happen entirely within your browser (device).",
+    vi: "OCR và tạo PDF diễn ra hoàn toàn trong trình duyệt của bạn.",
+  },
+  privacyRetention: {
+    ko: "창을 닫으면 사라집니다",
+    en: "Deleted when you close the window",
+    vi: "Xóa khi bạn đóng cửa sổ",
+  },
+  privacyRetentionDesc: {
+    ko: "입력 정보는 브라우저 임시 저장소에만 있으며, 창을 닫으면 자동으로 삭제됩니다.",
+    en: "Your data exists only in temporary browser storage and is deleted when you close the window.",
+    vi: "Dữ liệu chỉ tồn tại tạm thời trong trình duyệt và bị xóa khi đóng cửa sổ.",
+  },
+  privacyThird: {
+    ko: "제3자에게 제공하지 않습니다",
+    en: "Never shared with third parties",
+    vi: "Không chia sẻ với bên thứ ba",
+  },
+  privacyThirdDesc: {
+    ko: "수집하는 정보가 없으므로, 제3자에게 제공하거나 판매할 정보 자체가 없습니다.",
+    en: "Since we collect nothing, there is no data to share or sell to anyone.",
+    vi: "Vì không thu thập gì, không có dữ liệu để chia sẻ hoặc bán.",
+  },
+  privacyDisclaimerTitle: {
+    ko: "⚠️ 참고하세요",
+    en: "⚠️ Please note",
+    vi: "⚠️ Xin lưu ý",
+  },
+  privacyDisclaimerDesc: {
+    ko: "서류도우미는 행정 절차를 돕는 안내 도구이며, 공식 기관이 아닙니다. 최종 제출 전 출입국·외국인청 등 공식 기관에서 다시 확인하세요.",
+    en: "Document Helper is a guidance tool, not an official agency. Always reconfirm with official authorities before final submission.",
+    vi: "Document Helper là công cụ hướng dẫn, không phải cơ quan chính thức. Hãy xác nhận lại với cơ quan chính thức trước khi nộp.",
+  },
+  privacyUpdated: {
+    ko: "최종 업데이트: 2026년 5월",
+    en: "Last updated: May 2026",
+    vi: "Cập nhật lần cuối: Tháng 5/2026",
   },
 };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import LanguageHeader, { useLang } from "@/components/LanguageHeader";
 import { TEXTS } from "@/lib/i18n";
 import { recognizeAlienCard, recognizePassport } from "@/lib/ocr";
@@ -166,6 +167,7 @@ export default function Step5Page() {
             <span className="ml-auto text-xs bg-white text-blue-700 px-2 py-0.5 rounded-full font-medium">AI</span>
           </div>
           <p className="text-xs text-blue-100 mb-4">{TEXTS.ocrDesc[lang]}</p>
+          <p className="text-[11px] text-blue-200 mb-3 flex items-center gap-1">{TEXTS.ocrSafeNote[lang]}</p>
 
           <label className="block">
             <input
@@ -217,6 +219,7 @@ export default function Step5Page() {
             <span className="ml-auto text-xs bg-white text-purple-700 px-2 py-0.5 rounded-full font-medium">AI</span>
           </div>
           <p className="text-xs text-purple-100 mb-4">{TEXTS.ppOcrDesc[lang]}</p>
+          <p className="text-[11px] text-purple-200 mb-3 flex items-center gap-1">{TEXTS.ocrSafeNote[lang]}</p>
 
           <label className="block">
             <input
@@ -265,6 +268,9 @@ export default function Step5Page() {
           <div>
             <p className="text-sm font-medium text-green-900 mb-1">{TEXTS.privacyTitle[lang]}</p>
             <p className="text-xs text-green-700 leading-relaxed">{TEXTS.privacyDesc[lang]}</p>
+            <Link href="/privacy" className="text-xs text-green-800 underline mt-2 inline-block hover:text-green-900">
+              {TEXTS.privacyMore[lang]}
+            </Link>
           </div>
         </div>
 
