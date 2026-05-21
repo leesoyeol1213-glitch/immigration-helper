@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import LanguageHeader, { useLang } from "@/components/LanguageHeader";
 import { TEXTS } from "@/lib/i18n";
-import { recognizeAlienCard } from "@/lib/ocr";
+import { recognizeAlienCard, recognizePassport } from "@/lib/ocr";
 
 export default function Step5Page() {
-  const lang = useLang();
+  const lang = useLang() || "ko";
   const [surname, setSurname] = useState("");
   const [givenName, setGivenName] = useState("");
   const [nameKr, setNameKr] = useState("");
@@ -25,6 +25,11 @@ export default function Step5Page() {
   const [ocrProcessing, setOcrProcessing] = useState(false);
   const [ocrProgress, setOcrProgress] = useState(0);
   const [ocrSuccess, setOcrSuccess] = useState(false);
+
+  // 여권 OCR 상태
+  const [ppProcessing, setPpProcessing] = useState(false);
+  const [ppProgress, setPpProgress] = useState(0);
+  const [ppSuccess, setPpSuccess] = useState(false);
 
   useEffect(() => {
   const saved = sessionStorage.getItem("personal_info");
@@ -92,6 +97,35 @@ export default function Step5Page() {
     }
   };
 
+  // 여권 OCR 핸들러
+  const handlePassportUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setPpProcessing(true);
+    setPpSuccess(false);
+    setPpProgress(0);
+
+    try {
+      const result = await recognizePassport(file, (p) => setPpProgress(p));
+
+      if (result.surname && !surname) setSurname(result.surname.toUpperCase());
+      if (result.givenName && !givenName) setGivenName(result.givenName.toUpperCase());
+      if (result.passport && !passport) setPassport(result.passport.toUpperCase());
+      if (result.nationality && !nationality) setNationality(result.nationality);
+      if (result.expiryDate && !passportExpiry) setPassportExpiry(result.expiryDate);
+      if (result.expiryDate && !passportExpiry) setPassportExpiry(result.expiryDate);
+      if (result.issueDate && !passportIssue) setPassportIssue(result.issueDate);
+
+      setPpSuccess(true);
+    } catch (err) {
+      console.error("여권 OCR 오류:", err);
+      alert("여권 인식에 실패했습니다. MRZ(아래 두 줄)가 선명한 사진으로 다시 시도해주세요.");
+    } finally {
+      setPpProcessing(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/start/step4" backLabel={TEXTS.prev[lang]} />
@@ -151,6 +185,48 @@ export default function Step5Page() {
           )}
         </div>
 
+        {/* 여권 OCR 박스 */}
+        <div className="bg-gradient-to-br from-purple-700 to-purple-800 rounded-xl p-5 mb-6 text-white">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-2xl">📷</span>
+            <h2 className="text-base font-medium">{TEXTS.ppOcrTitle[lang]}</h2>
+            <span className="ml-auto text-xs bg-white text-purple-700 px-2 py-0.5 rounded-full font-medium">AI</span>
+          </div>
+          <p className="text-xs text-purple-100 mb-4">{TEXTS.ppOcrDesc[lang]}</p>
+
+          <label className="block">
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handlePassportUpload}
+              disabled={ppProcessing}
+              className="hidden"
+            />
+            <div className={`w-full px-4 py-3 bg-white text-purple-700 rounded-lg font-medium text-sm text-center cursor-pointer hover:bg-purple-50 transition-colors ${ppProcessing ? "opacity-50 cursor-not-allowed" : ""}`}>
+              {ppProcessing 
+                ? `${TEXTS.ocrProcessing[lang]} ${ppProgress}%` 
+                : `📁 ${TEXTS.ppOcrUpload[lang]}`
+              }
+            </div>
+          </label>
+
+          {ppProcessing && (
+            <div className="mt-3 h-1 bg-purple-900 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-white rounded-full transition-all" 
+                style={{ width: `${ppProgress}%` }}
+              ></div>
+            </div>
+          )}
+
+          {ppSuccess && (
+            <div className="mt-3 p-3 bg-purple-900 rounded-lg">
+              <p className="text-xs text-purple-100">{TEXTS.ppOcrSuccess[lang]}</p>
+              <p className="text-xs text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
+            </div>
+          )}
+        </div>
+
         <div className="bg-green-50 border border-green-100 rounded-xl p-4 mb-6 flex items-start gap-2">
           <span className="text-base">🔒</span>
           <div>
@@ -163,12 +239,12 @@ export default function Step5Page() {
         <div className="space-y-4">
           <div>
   <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fSurname[lang]}</label>
-  <input type="text" value={surname} onChange={(e) => setSurname(e.target.value.toUpperCase())} placeholder="KAEWRIT"
+  <input type="text" value={surname} onChange={(e) => setSurname(e.target.value.toUpperCase())} placeholder="Hong"
     className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
 </div>
 <div>
   <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fGivenName[lang]}</label>
-  <input type="text" value={givenName} onChange={(e) => setGivenName(e.target.value.toUpperCase())} placeholder="SOMCHIT"
+  <input type="text" value={givenName} onChange={(e) => setGivenName(e.target.value.toUpperCase())} placeholder="Gildong"
     className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
 </div>
           <div>
@@ -178,7 +254,7 @@ export default function Step5Page() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fNationality[lang]}</label>
-            <input type="text" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="베트남 / Vietnam"
+            <input type="text" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="대한민국 / South Korea"
               className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
           </div>
         </div>
@@ -192,12 +268,12 @@ export default function Step5Page() {
           </div>
           <div>
   <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPassportIssue[lang]}</label>
-  <input type="text" value={passportIssue} onChange={(e) => setPassportIssue(e.target.value)} placeholder="2020.01.15"
+  <input type="text" value={passportIssue} onChange={(e) => setPassportIssue(e.target.value)} placeholder="yyyy.mm.dd"
     className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
 </div>
 <div>
   <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPassportExpiry[lang]}</label>
-  <input type="text" value={passportExpiry} onChange={(e) => setPassportExpiry(e.target.value)} placeholder="2030.01.14"
+  <input type="text" value={passportExpiry} onChange={(e) => setPassportExpiry(e.target.value)} placeholder="yyyy.mm.dd"
     className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
 </div>
           <div>
@@ -225,7 +301,7 @@ export default function Step5Page() {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fAddressKr[lang]}</label>
-            <input type="text" value={addressKr} onChange={(e) => setAddressKr(e.target.value)} placeholder="경기도 화성시 ..."
+            <input type="text" value={addressKr} onChange={(e) => setAddressKr(e.target.value)} placeholder="충청북도 청주시 ..."
               className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
           </div>
           <div>
@@ -238,7 +314,7 @@ export default function Step5Page() {
         <h3 className="text-sm font-medium text-gray-900 mb-3 mt-6">{TEXTS.workplaceInfo[lang]}</h3>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fCompany[lang]}</label>
-          <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="㈜○○제조"
+          <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="㈜○○○○○"
             className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
         </div>
 

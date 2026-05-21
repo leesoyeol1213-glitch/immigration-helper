@@ -2,7 +2,6 @@ import Tesseract from "tesseract.js";
 
 export interface OcrResult {
   rawText: string;
-  // 추출된 필드들
   name?: string;
   alienNo?: string;
   nationality?: string;
@@ -82,6 +81,159 @@ export async function recognizeAlienCard(
     const year = seventh >= 5 ? "20" + yy : "19" + yy;
     extracted.birthDate = `${year}.${mm}.${dd}`;
   }
+
+  return extracted;
+}
+// === 여권 OCR (MRZ 기반) ===
+export interface PassportResult {
+  rawText: string;
+  surname?: string;
+  givenName?: string;
+  passport?: string;
+  nationality?: string;
+  birthDate?: string;
+  expiryDate?: string;
+  issueDate?: string;
+}
+
+// 국적코드(ISO 3자리) → 한글/영문
+const NATION_MAP: Record<string, string> = {
+  KHM: "캄보디아 / Cambodia",
+  THA: "태국 / Thailand",
+  NPL: "네팔 / Nepal",
+  MMR: "미얀마 / Myanmar",
+  LKA: "스리랑카 / Sri Lanka",
+  VNM: "베트남 / Vietnam",
+  PHL: "필리핀 / Philippines",
+  IDN: "인도네시아 / Indonesia",
+  CHN: "중국 / China",
+  BGD: "방글라데시 / Bangladesh",
+  UZB: "우즈베키스탄 / Uzbekistan",
+};
+
+// YYMMDD → yyyy.mm.dd (만료일은 미래라 2000년대로 가정)
+function parseMrzDate(yymmdd: string, isExpiry = false): string {
+  if (yymmdd.length !== 6) return "";
+  const yy = yymmdd.substring(0, 2);
+  const mm = yymmdd.substring(2, 4);
+  const dd = yymmdd.substring(4, 6);
+  let century: string;
+  if (isExpiry) {
+    century = "20"; // 만료일은 미래
+  } else {
+    // 생년월일: 현재 연도 두자리보다 크면 1900년대
+    const nowYY = new Date().getFullYear() % 100;
+    century = parseInt(yy) > nowYY ? "19" : "20";
+  }
+  return `${century}${yy}.${mm}.${dd}`;
+}
+
+// visual zone 텍스트에서 발급일 추출
+// 모든 날짜를 찾아서 생년월일/만료일과 다른 것 = 발급일 후보
+function extractIssueDate(
+  rawText: string,
+  birthDate?: string,
+  expiryDate?: string
+): string {
+  const months: Record<string, string> = {
+    JAN: "01", FEB: "02", MAR: "03", APR: "04", MAY: "05", JUN: "06",
+    JUL: "07", AUG: "08", SEP: "09", OCT: "10", NOV: "11", DEC: "12",
+  };
+
+  const found: string[] = [];
+
+  // 형식 A: "19 Dec 2022" / "14 MAR 2022"
+  const reA = /\b(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})\b/g;
+  let m;
+  while ((m = reA.exec(rawText)) !== null) {
+    const dd = m[1].padStart(2, "0");
+    const mon = months[m[2].toUpperCase()];
+    const yyyy = m[3];
+    if (mon) found.push(`${yyyy}.${mon}.${dd}`);
+  }
+
+  // 형식 B: "20/04/2020"
+  const reB = /\b(\d{1,2})\/(\d{1,2})\/(\d{4})\b/g;
+  while ((m = reB.exec(rawText)) !== null) {
+    const dd = m[1].padStart(2, "0");
+    const mm = m[2].padStart(2, "0");
+    const yyyy = m[3];
+    found.push(`${yyyy}.${mm}.${dd}`);
+  }
+
+  // 생년월일/만료일과 겹치지 않는 날짜 = 발급일 후보
+  const candidates = found.filter(
+    (d) => d !== birthDate && d !== expiryDate
+  );
+
+  // 발급일은 만료일보다 과거여야 함
+  if (expiryDate) {
+    const valid = candidates.filter((d) => d < expiryDate);
+    if (valid.length > 0) return valid[valid.length - 1];
+  }
+
+  return candidates[0] || "";
+}
+
+export async function recognizePassport(
+  imageFile: File,
+  onProgress?: (progress: number) => void
+): Promise<PassportResult> {
+  const result = await Tesseract.recognize(imageFile, "eng", {
+    logger: (m) => {
+      if (m.status === "recognizing text" && onProgress) {
+        onProgress(Math.round(m.progress * 100));
+      }
+    },
+  });
+
+  const rawText = result.data.text;
+  const extracted: PassportResult = { rawText };
+
+  // MRZ 줄 찾기: < 기호가 많은 줄들
+  const lines = rawText
+    .split("\n")
+    .map((l) => l.replace(/\s/g, "").toUpperCase())
+    .filter((l) => l.length > 20 && (l.match(/</g) || []).length >= 2);
+
+  // 줄2 찾기: 여권번호+국적+생년월일 패턴 (영숫자, < 포함, 첫부분 영숫자)
+  let line1 = "";
+  let line2 = "";
+
+  for (const l of lines) {
+    // 줄1: P로 시작 (P< 또는 P+종류)
+    if (!line1 && /^P[A-Z<]/.test(l)) {
+      line1 = l;
+    }
+    // 줄2: 9자리 영숫자 + 국적코드 패턴
+    else if (!line2 && /[A-Z0-9<]{9}[0-9<][A-Z]{3}[0-9]{6}/.test(l)) {
+      line2 = l;
+    }
+  }
+
+  // 줄1 파싱: 성/이름 (P[종류][국적3] 다음부터 << 기준)
+  if (line1) {
+    // P 다음 종류(1) + 국적(3) 건너뛰기 → 보통 위치 5부터 이름
+    // 단 P< 형태도 있어서 유연하게: 첫 3~5자 건너뛰고 << 기준 분리
+    const body = line1.replace(/^P[A-Z<]?[A-Z]{3}/, "");
+    const parts = body.split("<<");
+    if (parts.length >= 2) {
+      extracted.surname = parts[0].replace(/</g, " ").trim();
+      extracted.givenName = parts[1].replace(/</g, " ").trim();
+    }
+  }
+
+  // 줄2 파싱: 위치 기반
+  if (line2) {
+    extracted.passport = line2.substring(0, 9).replace(/</g, "").trim();
+    const natCode = line2.substring(10, 13);
+    extracted.nationality = NATION_MAP[natCode] || natCode;
+    extracted.birthDate = parseMrzDate(line2.substring(13, 19), false);
+    extracted.expiryDate = parseMrzDate(line2.substring(21, 27), true);
+  }
+
+  // 발급일자 추출 (visual zone에서) — 완벽하지 않으니 수동 검증 전제
+    extracted.issueDate = extractIssueDate(rawText, extracted.birthDate, extracted.expiryDate);
 
   return extracted;
 }

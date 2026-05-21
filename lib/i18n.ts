@@ -365,9 +365,9 @@ visaE7Label: {
     vi: "Tên (Given names) *",
   },
   fPassportIssue: {
-    ko: "여권 발급일자 (yyyy.mm.dd)",
-    en: "Passport Issue Date",
-    vi: "Ngày cấp hộ chiếu",
+    ko: "여권 발급일자 (여권에서 직접 확인)",
+    en: "Passport Issue Date (check your passport)",
+    vi: "Ngày cấp hộ chiếu (xem trên hộ chiếu)",
   },
   fPassportExpiry: {
     ko: "여권 유효기간 (yyyy.mm.dd)",
@@ -493,6 +493,26 @@ visaE7Label: {
     ko: "📷 사진으로 자동 입력", 
     en: "📷 Auto-fill from photo", 
     vi: "📷 Tự động điền từ ảnh" 
+  },
+  ppOcrTitle: {
+    ko: "여권으로 자동 입력",
+    en: "Auto-fill with Passport",
+    vi: "Tự động điền bằng hộ chiếu",
+  },
+  ppOcrDesc: {
+    ko: "여권 사진을 올리면 MRZ(하단 두 줄)에서 성/이름/여권번호/국적/유효기간을 자동 인식합니다",
+    en: "Upload passport photo to auto-detect name, number, nationality, expiry from MRZ",
+    vi: "Tải ảnh hộ chiếu để tự động nhận diện từ MRZ",
+  },
+  ppOcrUpload: {
+    ko: "여권 사진 업로드",
+    en: "Upload Passport Photo",
+    vi: "Tải ảnh hộ chiếu",
+  },
+  ppOcrSuccess: {
+    ko: "✅ 여권 인식 완료! 정보를 확인해주세요.",
+    en: "✅ Passport recognized! Please verify.",
+    vi: "✅ Đã nhận diện hộ chiếu! Vui lòng kiểm tra.",
   },
   ocrDesc: { 
     ko: "외국인등록증 사진을 업로드하면 자동으로 정보가 채워집니다", 
