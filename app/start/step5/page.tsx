@@ -30,6 +30,10 @@ export default function Step5Page() {
   const [ppProcessing, setPpProcessing] = useState(false);
   const [ppProgress, setPpProgress] = useState(0);
   const [ppSuccess, setPpSuccess] = useState(false);
+    
+  // OCR 실패/부분인식 안내
+  const [ocrError, setOcrError] = useState(false);
+  const [ppError, setPpError] = useState(false);
 
   useEffect(() => {
   const saved = sessionStorage.getItem("personal_info");
@@ -69,29 +73,35 @@ export default function Step5Page() {
 
     setOcrProcessing(true);
     setOcrSuccess(false);
+    setOcrError(false);
     setOcrProgress(0);
 
     try {
       const result = await recognizeAlienCard(file, (p) => setOcrProgress(p));
 
-      // 인식된 정보 자동 입력 (기존 값 안 덮어씀)
+      let gotSomething = false;
       if (result.name) {
-  const parts = result.name.trim().split(/\s+/);
-  if (parts.length >= 2 && !surname) {
-    setSurname(parts[0]);
-    setGivenName(parts.slice(1).join(" "));
-  } else if (!givenName) {
-    setGivenName(result.name);
-  }
-}
-      if (result.alienNo && !alienNo) setAlienNo(result.alienNo);
-      if (result.passport && !passport) setPassport(result.passport);
-      if (result.nationality && !nationality) setNationality(result.nationality);
+        const parts = result.name.trim().split(/\s+/);
+        if (parts.length >= 2 && !surname) {
+          setSurname(parts[0]);
+          setGivenName(parts.slice(1).join(" "));
+        } else if (!givenName) {
+          setGivenName(result.name);
+        }
+        gotSomething = true;
+      }
+      if (result.alienNo && !alienNo) { setAlienNo(result.alienNo); gotSomething = true; }
+      if (result.passport && !passport) { setPassport(result.passport); gotSomething = true; }
+      if (result.nationality && !nationality) { setNationality(result.nationality); gotSomething = true; }
 
-      setOcrSuccess(true);
+      if (gotSomething) {
+        setOcrSuccess(true);
+      } else {
+        setOcrError(true);
+      }
     } catch (err) {
       console.error("OCR 오류:", err);
-      alert("이미지 인식에 실패했습니다. 다시 시도해주세요.");
+      setOcrError(true);
     } finally {
       setOcrProcessing(false);
     }
@@ -104,23 +114,28 @@ export default function Step5Page() {
 
     setPpProcessing(true);
     setPpSuccess(false);
+    setPpError(false);
     setPpProgress(0);
 
     try {
       const result = await recognizePassport(file, (p) => setPpProgress(p));
 
-      if (result.surname && !surname) setSurname(result.surname.toUpperCase());
-      if (result.givenName && !givenName) setGivenName(result.givenName.toUpperCase());
-      if (result.passport && !passport) setPassport(result.passport.toUpperCase());
-      if (result.nationality && !nationality) setNationality(result.nationality);
-      if (result.expiryDate && !passportExpiry) setPassportExpiry(result.expiryDate);
-      if (result.expiryDate && !passportExpiry) setPassportExpiry(result.expiryDate);
-      if (result.issueDate && !passportIssue) setPassportIssue(result.issueDate);
+      let gotSomething = false;
+      if (result.surname && !surname) { setSurname(result.surname.toUpperCase()); gotSomething = true; }
+      if (result.givenName && !givenName) { setGivenName(result.givenName.toUpperCase()); gotSomething = true; }
+      if (result.passport && !passport) { setPassport(result.passport.toUpperCase()); gotSomething = true; }
+      if (result.nationality && !nationality) { setNationality(result.nationality); gotSomething = true; }
+      if (result.expiryDate && !passportExpiry) { setPassportExpiry(result.expiryDate); gotSomething = true; }
+      if (result.issueDate && !passportIssue) { setPassportIssue(result.issueDate); }
 
-      setPpSuccess(true);
+      if (gotSomething) {
+        setPpSuccess(true);
+      } else {
+        setPpError(true);
+      }
     } catch (err) {
       console.error("여권 OCR 오류:", err);
-      alert("여권 인식에 실패했습니다. MRZ(아래 두 줄)가 선명한 사진으로 다시 시도해주세요.");
+      setPpError(true);
     } finally {
       setPpProcessing(false);
     }
@@ -183,6 +198,15 @@ export default function Step5Page() {
               <p className="text-xs text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
             </div>
           )}
+
+          {ocrError && (
+            <div className="mt-3 p-3 bg-white rounded-lg">
+              <p className="text-xs text-blue-800 font-medium">{TEXTS.ocrFail[lang]}</p>
+              <p className="text-xs text-blue-600 mt-1">{TEXTS.ocrFailHint[lang]}</p>
+            </div>
+          )}
+
+          <p className="text-[11px] text-blue-200 mt-3">{TEXTS.ocrPhotoTip[lang]}</p>
         </div>
 
         {/* 여권 OCR 박스 */}
@@ -225,6 +249,15 @@ export default function Step5Page() {
               <p className="text-xs text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
             </div>
           )}
+
+          {ppError && (
+            <div className="mt-3 p-3 bg-white rounded-lg">
+              <p className="text-xs text-purple-800 font-medium">{TEXTS.ocrFail[lang]}</p>
+              <p className="text-xs text-purple-600 mt-1">{TEXTS.ppOcrFailHint[lang]}</p>
+            </div>
+          )}
+
+          <p className="text-[11px] text-purple-200 mt-3">{TEXTS.ocrPhotoTip[lang]}</p>
         </div>
 
         <div className="bg-green-50 border border-green-100 rounded-xl p-4 mb-6 flex items-start gap-2">

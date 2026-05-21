@@ -535,6 +535,26 @@ visaE7Label: {
     en: "⚠️ AI recognition may not be 100% accurate. Please verify.", 
     vi: "⚠️ Nhận diện AI có thể không chính xác 100%. Vui lòng xác minh." 
   },
+  ocrFail: {
+    ko: "사진 인식이 어려웠어요 😢",
+    en: "Couldn't read the photo 😢",
+    vi: "Không đọc được ảnh 😢",
+  },
+  ocrFailHint: {
+    ko: "괜찮아요! 아래 칸에 직접 입력하시면 됩니다 ↓",
+    en: "It's okay! Just type below ↓",
+    vi: "Không sao! Hãy nhập trực tiếp bên dưới ↓",
+  },
+  ppOcrFailHint: {
+    ko: "여권 아래쪽 기호(<<) 두 줄이 잘 보이게 다시 찍거나, 아래에 직접 입력하세요 ↓",
+    en: "Retake with the bottom 2 lines (<<) clearly visible, or type below ↓",
+    vi: "Chụp lại rõ 2 dòng dưới (<<), hoặc nhập bên dưới ↓",
+  },
+  ocrPhotoTip: {
+    ko: "📸 밝은 곳에서 · 흔들림 없이 · 전체가 보이게",
+    en: "📸 Good lighting · Steady · Full document visible",
+    vi: "📸 Đủ sáng · Không rung · Thấy toàn bộ",
+  },
 };
 
 export type Lang = "ko" | "en" | "vi" | "th" | "km" | "ne" | "si" | "my" | "zh";
