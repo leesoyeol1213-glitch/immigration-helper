@@ -1,5 +1,63 @@
 import Tesseract from "tesseract.js";
 
+// 이미지 전처리: 확대 + 흑백 + 대비 강화 → OCR 정확도 향상
+async function preprocessImage(file: File): Promise<File> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+
+      // 너무 작으면 2배 확대 (최대 2000px 제한)
+      const scale = img.width < 1000 ? 2 : 1;
+      const w = Math.min(img.width * scale, 2000);
+      const h = Math.round(img.height * (w / img.width));
+
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        resolve(file);
+        return;
+      }
+
+      ctx.drawImage(img, 0, 0, w, h);
+
+      // 흑백 + 대비 강화
+      const imageData = ctx.getImageData(0, 0, w, h);
+      const d = imageData.data;
+      const contrast = 1.4; // 대비 강도 (1.0 = 변화 없음)
+      const intercept = 128 * (1 - contrast);
+
+      for (let i = 0; i < d.length; i += 4) {
+        // 흑백 변환 (가중 평균)
+        const gray = d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114;
+        // 대비 강화
+        const v = Math.max(0, Math.min(255, gray * contrast + intercept));
+        d[i] = d[i + 1] = d[i + 2] = v;
+      }
+      ctx.putImageData(imageData, 0, 0);
+
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          resolve(file);
+          return;
+        }
+        resolve(new File([blob], file.name, { type: "image/png" }));
+      }, "image/png");
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      resolve(file); // 실패 시 원본 그대로
+    };
+
+    img.src = url;
+  });
+}
+
 export interface OcrResult {
   rawText: string;
   name?: string;
@@ -15,7 +73,10 @@ export async function recognizeAlienCard(
   onProgress?: (progress: number) => void
 ): Promise<OcrResult> {
   // 한글 + 영문 동시 인식
-  const result = await Tesseract.recognize(imageFile, "kor+eng", {
+    // 이미지 전처리 후 인식
+  const processed = await preprocessImage(imageFile);
+  // 한글 + 영문 동시 인식
+  const result = await Tesseract.recognize(processed, "kor+eng", {
     logger: (m) => {
       if (m.status === "recognizing text" && onProgress) {
         onProgress(Math.round(m.progress * 100));
@@ -179,7 +240,8 @@ export async function recognizePassport(
   imageFile: File,
   onProgress?: (progress: number) => void
 ): Promise<PassportResult> {
-  const result = await Tesseract.recognize(imageFile, "eng", {
+  const processed = await preprocessImage(imageFile);
+  const result = await Tesseract.recognize(processed, "eng", {
     logger: (m) => {
       if (m.status === "recognizing text" && onProgress) {
         onProgress(Math.round(m.progress * 100));
