@@ -21,9 +21,9 @@ export const TEXTS: Record<string, any> = {
     vi: "Sản xuất, nông nghiệp, đánh bắt",
   },
 visaE7Label: {
-    ko: "E-7 비자 (특정 활동)",
-    en: "E-7 (Specialized Worker)",
-    vi: "E-7 (Chuyên gia)",
+    ko: "E-7-4 비자 (숙련기능인력 점수제)",
+    en: "E-7-4 (Specialized Worker)",
+    vi: "E-7-4 (Chuyên gia)",
   },
   visaE7Desc: {
     ko: "전문직, 학위/경력 필요",

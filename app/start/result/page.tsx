@@ -98,7 +98,7 @@ export default function ResultPage() {
     docs.push({ name: docTexts.workplaceChange[lang], desc: docTexts.workplaceChangeDesc[lang], isExtra: true });
   }
   // ↓ E-7 전용 서류 추가
-if (visa === "E-7") {
+if (visa === "E-7-4") {
   docs.push({ name: docTexts.degree[lang], desc: docTexts.degreeDesc[lang], isExtra: true });
   docs.push({ name: docTexts.career[lang], desc: docTexts.careerDesc[lang], isExtra: true });
 }
