@@ -13,7 +13,6 @@ export default function StartPage() {
   { value: "E-9", label: TEXTS.visaE9Label[lang], desc: TEXTS.visaE9Desc[lang] },
   { value: "E-7-4", label: TEXTS.visaE7Label[lang], desc: TEXTS.visaE7Desc[lang] },
   { value: "F-2-R", label: TEXTS.visaF2RLabel[lang], desc: TEXTS.visaF2RDesc[lang] },
-  { value: "D-2", label: TEXTS.visaD2Label[lang], desc: TEXTS.visaD2Desc[lang] },
   { value: "reissue", label: TEXTS.reissueLabel[lang], desc: TEXTS.reissueDesc[lang] },
   { value: "passport", label: TEXTS.passportLabel[lang], desc: TEXTS.passportDesc[lang] },
 ];
@@ -47,7 +46,7 @@ export default function StartPage() {
         </div>
 
         <div className="mt-8">
-     {(visa === "E-9" || visa === "E-7-4" || visa === "F-2-R" || visa === "D-2") ? (
+     {(visa === "E-9" || visa === "E-7-4" || visa === "F-2-R") ? (
   <Link href="/start/step2" className="w-full inline-block text-center px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors">
     {TEXTS.next[lang]}
   </Link>
