@@ -505,9 +505,9 @@ visaE7Label: {
 
 // OCR
   ocrTitle: { 
-    ko: "📷 사진으로 자동 입력", 
-    en: "📷 Auto-fill from photo", 
-    vi: "📷 Tự động điền từ ảnh" 
+    ko: " 사진으로 자동 입력", 
+    en: " Auto-fill from photo", 
+    vi: " Tự động điền từ ảnh" 
   },
   ppOcrTitle: {
     ko: "여권으로 자동 입력",
