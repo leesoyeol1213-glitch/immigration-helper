@@ -453,6 +453,16 @@ visaE7Label: {
     en: "ready",
     vi: "đã chuẩn bị",
   },
+  docGroupSelf: {
+    ko: "본인이 준비",
+    en: "You prepare",
+    vi: "Bạn chuẩn bị",
+  },
+  docGroupCompany: {
+    ko: "회사가 준비",
+    en: "Company prepares",
+    vi: "Công ty chuẩn bị",
+  },
   docAllDone: {
     ko: "모든 서류 준비 완료!",
     en: "All documents ready!",
