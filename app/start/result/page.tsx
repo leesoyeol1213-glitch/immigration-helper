@@ -41,6 +41,11 @@ export default function ResultPage() {
   const [visa, setVisa] = useState("E-9");
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo | null>(null);
   const [isGenerating, setIsGenerating] = useState<string>("");
+  const [checked, setChecked] = useState<Record<number, boolean>>({});
+
+  const toggleCheck = (i: number) => {
+    setChecked((prev) => ({ ...prev, [i]: !prev[i] }));
+  };
 
   useEffect(() => {
     setExpiry(localStorage.getItem("answer_expiry") || "");
@@ -250,21 +255,46 @@ if (visa === "D-2") {
   </div>
 )}
         <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
-          <h2 className="text-sm font-medium text-gray-900 mb-4">{TEXTS.docsTitle[lang]} ({docs.length})</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-medium text-gray-900">{TEXTS.docsTitle[lang]} ({docs.length})</h2>
+            <span className="text-xs font-medium text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
+              {Object.values(checked).filter(Boolean).length} / {docs.length} {TEXTS.docDone[lang]}
+            </span>
+          </div>
           <ul className="space-y-3">
-            {docs.map((item, i) => (
-              <li key={i} className={`flex items-start gap-3 p-3 rounded-lg ${item.isExtra ? "bg-blue-50" : ""}`}>
-                <span className="text-blue-700 mt-0.5">☐</span>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">
-                    {item.name}
-                    {item.isExtra && <span className="ml-2 text-xs text-blue-600">{TEXTS.docExtra[lang]}</span>}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-0.5">{item.desc}</p>
-                </div>
-              </li>
-            ))}
+            {docs.map((item, i) => {
+              const isChecked = !!checked[i];
+              return (
+                <li
+                  key={i}
+                  onClick={() => toggleCheck(i)}
+                  className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-colors select-none ${
+                    isChecked ? "bg-green-50" : item.isExtra ? "bg-blue-50" : "hover:bg-gray-50"
+                  }`}
+                >
+                  <span
+                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 border-2 transition-colors ${
+                      isChecked
+                        ? "bg-green-600 border-green-600 text-white"
+                        : "bg-white border-gray-300 text-transparent"
+                    }`}
+                  >
+                    ✓
+                  </span>
+                  <div className="flex-1">
+                    <p className={`text-sm font-medium transition-colors ${isChecked ? "text-gray-400 line-through" : "text-gray-900"}`}>
+                      {item.name}
+                      {item.isExtra && <span className="ml-2 text-xs text-blue-600 no-underline">{TEXTS.docExtra[lang]}</span>}
+                    </p>
+                    <p className={`text-xs mt-0.5 ${isChecked ? "text-gray-300" : "text-gray-500"}`}>{item.desc}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
+          {docs.length > 0 && Object.values(checked).filter(Boolean).length === docs.length && (
+            <p className="text-xs text-green-700 font-medium mt-4 text-center">{TEXTS.docAllDone[lang]} 🎉</p>
+          )}
         </div>
 
         <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 mb-6">

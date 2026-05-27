@@ -423,6 +423,16 @@ visaE7Label: {
   pdfSummaryDownload: { ko: "요약지 PDF ↓", en: "Download Summary ↓", vi: "Tải tóm tắt ↓" },
   docsTitle: { ko: "📋 필요한 서류", en: "📋 Required Documents", vi: "📋 Giấy tờ cần thiết" },
   docExtra: { ko: "상황별 추가", en: "Additional", vi: "Bổ sung" },
+  docDone: {
+    ko: "준비완료",
+    en: "ready",
+    vi: "đã chuẩn bị",
+  },
+  docAllDone: {
+    ko: "모든 서류 준비 완료!",
+    en: "All documents ready!",
+    vi: "Đã chuẩn bị tất cả giấy tờ!",
+  },
   warnTitle: { ko: "⚠️ 안내:", en: "⚠️ Notice:", vi: "⚠️ Lưu ý:" },
   warnDesc: {
     ko: "이 체크리스트는 일반적인 경우 기준입니다. 사례별로 다를 수 있으니 출입국 사무소의 안내를 우선하세요.",
