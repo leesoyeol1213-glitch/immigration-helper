@@ -10,7 +10,6 @@ export default function Step5Page() {
   const lang = useLang() || "ko";
   const [surname, setSurname] = useState("");
   const [givenName, setGivenName] = useState("");
-  const [nameKr, setNameKr] = useState("");
   const [nationality, setNationality] = useState("");
   const [passport, setPassport] = useState("");
   const [passportIssue, setPassportIssue] = useState("");
@@ -42,7 +41,6 @@ export default function Step5Page() {
     const data = JSON.parse(saved);
     setSurname(data.surname || "");
     setGivenName(data.givenName || "");
-    setNameKr(data.nameKr || "");
     setNationality(data.nationality || "");
     setPassport(data.passport || "");
     setPassportIssue(data.passportIssue || "");
@@ -60,7 +58,7 @@ export default function Step5Page() {
 
   const handleNext = () => {
   sessionStorage.setItem("personal_info", JSON.stringify({
-    surname, givenName, nameKr, nationality, 
+    surname, givenName, nationality, 
     passport, passportIssue, passportExpiry, alienNo,
     phone, addressKr, addressHome, email, companyName,
   }));
@@ -286,11 +284,6 @@ export default function Step5Page() {
   <input type="text" value={givenName} onChange={(e) => setGivenName(e.target.value.toUpperCase())} placeholder="Gildong"
     className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
 </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fNameKr[lang]}</label>
-            <input type="text" value={nameKr} onChange={(e) => setNameKr(e.target.value)} placeholder="홍길동"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fNationality[lang]}</label>
             <input type="text" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="대한민국 / South Korea"
