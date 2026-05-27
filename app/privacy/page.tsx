@@ -1,11 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LanguageHeader, { useLang } from "@/components/LanguageHeader";
 import { TEXTS } from "@/lib/i18n";
 
 export default function PrivacyPage() {
   const lang = useLang() || "ko";
+  const router = useRouter();
 
   const items = [
     { icon: "🚫", title: TEXTS.privacyCollect[lang], desc: TEXTS.privacyCollectDesc[lang] },
@@ -16,7 +18,7 @@ export default function PrivacyPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <LanguageHeader backHref="/" backLabel={TEXTS.back[lang]} />
+      <LanguageHeader onBack={() => router.back()} backLabel={TEXTS.prev[lang]} />
 
       <section className="max-w-2xl mx-auto px-6 py-10">
         <h1 className="text-2xl font-medium text-gray-900 mb-2">{TEXTS.privacyPageTitle[lang]}</h1>

@@ -7,9 +7,10 @@ import { Lang, LANG_INFO } from "@/lib/i18n";
 interface Props {
   backHref?: string;
   backLabel?: string;
+  onBack?: () => void;
 }
 
-export default function LanguageHeader({ backHref, backLabel = "이전" }: Props) {
+export default function LanguageHeader({ backHref, backLabel = "이전", onBack }: Props) {
   const [lang, setLang] = useState<Lang>("ko");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -27,7 +28,11 @@ export default function LanguageHeader({ backHref, backLabel = "이전" }: Props
 
   return (
     <header className="px-6 py-4 border-b border-gray-100 max-w-2xl mx-auto flex items-center justify-between">
-      {backHref ? (
+      {onBack ? (
+        <button onClick={onBack} className="text-sm text-gray-500 hover:text-blue-700">
+          ← {backLabel}
+        </button>
+      ) : backHref ? (
         <Link href={backHref} className="text-sm text-gray-500 hover:text-blue-700">
           ← {backLabel}
         </Link>
