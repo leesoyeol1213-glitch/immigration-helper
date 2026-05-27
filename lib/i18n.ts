@@ -281,6 +281,21 @@ visaE7Label: {
     en: "You changed workplace but haven't reported it yet. A workplace change permit is required.",
     vi: "Bạn đã đổi nơi làm việc nhưng chưa báo cáo. Cần giấy phép đổi nơi làm việc.",
   },
+  companyBlocked: {
+    ko: "먼저 사업장 변경 신고가 필요해요",
+    en: "Report workplace change first",
+    vi: "Cần báo cáo đổi nơi làm việc trước",
+  },
+  companyBlockedTitle: {
+    ko: "⚠️ 먼저 사업장 변경 신고를 완료하세요",
+    en: "⚠️ Complete your workplace change report first",
+    vi: "⚠️ Hãy hoàn thành báo cáo đổi nơi làm việc trước",
+  },
+  companyBlockedDesc: {
+    ko: "사업장 변경 신고를 하지 않으면 고용센터의 허가를 받을 수 없고, 연장에 필요한 근로계약서·고용허가서를 준비할 수 없습니다. 먼저 고용센터에 사업장 변경 신고를 완료한 뒤 다시 진행해주세요.",
+    en: "Without reporting the workplace change, you cannot get Employment Center approval or prepare the employment contract/permit required for extension. Please complete the report at the Employment Center first.",
+    vi: "Nếu không báo cáo đổi nơi làm việc, bạn không thể nhận được sự chấp thuận của Trung tâm Việc làm hoặc chuẩn bị hợp đồng/giấy phép lao động cần thiết. Hãy hoàn thành báo cáo trước.",
+  },
   companyWarn: {
     ko: "⚠️ 회사 변경 시 출입국 가기 전에:\n1️⃣ 고용센터에서 사업장 변경 허가 받기\n2️⃣ 그 후 출입국에서 체류 연장 신청\n순서가 바뀌면 출입국에서 돌려보낼 수 있어요.",
     en: "⚠️ When changing companies, before visiting Immigration:\n1️⃣ Get workplace change permit from Employment Center\n2️⃣ Then apply for extension at Immigration\nWrong order may result in rejection.",
@@ -324,6 +339,16 @@ visaE7Label: {
     ko: "📋 추가로 필요한 서류\n임대차계약서 (사본)",
     en: "📋 Additional document\nLease contract (copy)",
     vi: "📋 Giấy tờ bổ sung\nHợp đồng thuê nhà (bản sao)",
+  },
+  addressDeadlineTitle: {
+    ko: "⏰ 전입일부터 15일 이내 신고하세요",
+    en: "⏰ Report within 15 days of moving",
+    vi: "⏰ Báo cáo trong vòng 15 ngày kể từ khi chuyển đến",
+  },
+  addressDeadlineDesc: {
+    ko: "출입국관리법 제36조에 따라, 거주지를 옮긴 날부터 15일 이내에 새 주소지의 시·군·구청 또는 출입국·외국인관서에 전입신고를 해야 합니다. 기간 내에 신고하지 않으면 과태료가 부과될 수 있습니다.",
+    en: "Under Article 36 of the Immigration Act, you must report your new address to the local office or immigration office within 15 days of moving. Late reporting may result in a fine.",
+    vi: "Theo Điều 36 Luật Xuất nhập cảnh, bạn phải báo cáo địa chỉ mới cho cơ quan địa phương hoặc cơ quan xuất nhập cảnh trong vòng 15 ngày. Báo cáo trễ có thể bị phạt.",
   },
   addressStep: { ko: "주소 정보", en: "Address", vi: "Thông tin địa chỉ" },
 

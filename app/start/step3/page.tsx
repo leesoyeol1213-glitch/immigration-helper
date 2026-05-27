@@ -62,19 +62,20 @@ export default function Step3Page() {
         </div>
 
         {companyChanged === "changed" && (
-          <div className="mt-4 p-4 bg-amber-50 border border-amber-100 rounded-xl">
-            <p className="text-xs text-amber-700 leading-relaxed whitespace-pre-line">{TEXTS.companyWarn[lang]}</p>
+          <div className="mt-4 p-4 bg-red-50 border-2 border-red-200 rounded-xl">
+            <p className="text-sm font-medium text-red-900 mb-2">{TEXTS.companyBlockedTitle[lang]}</p>
+            <p className="text-xs text-red-700 leading-relaxed whitespace-pre-line">{TEXTS.companyBlockedDesc[lang]}</p>
           </div>
         )}
 
         <div className="mt-8">
-          {companyChanged ? (
+          {companyChanged === "same" ? (
             <Link href="/start/step4" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
               {TEXTS.next[lang]}
             </Link>
           ) : (
             <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
-              {TEXTS.next[lang]}
+              {companyChanged === "changed" ? TEXTS.companyBlocked[lang] : TEXTS.next[lang]}
             </button>
           )}
         </div>

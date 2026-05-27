@@ -62,9 +62,15 @@ export default function Step4Page() {
         </div>
 
         {addressChanged === "changed" && (
-          <div className="mt-4 p-4 bg-blue-50 border border-blue-100 rounded-xl">
-            <p className="text-xs text-blue-700 leading-relaxed whitespace-pre-line">{TEXTS.addressDoc[lang]}</p>
-          </div>
+          <>
+            <div className="mt-4 p-4 bg-amber-50 border-2 border-amber-200 rounded-xl">
+              <p className="text-sm font-medium text-amber-900 mb-2">{TEXTS.addressDeadlineTitle[lang]}</p>
+              <p className="text-xs text-amber-800 leading-relaxed whitespace-pre-line">{TEXTS.addressDeadlineDesc[lang]}</p>
+            </div>
+            <div className="mt-3 p-4 bg-blue-50 border border-blue-100 rounded-xl">
+              <p className="text-xs text-blue-700 leading-relaxed whitespace-pre-line">{TEXTS.addressDoc[lang]}</p>
+            </div>
+          </>
         )}
 
         <div className="mt-8">
