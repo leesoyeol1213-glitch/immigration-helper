@@ -173,7 +173,7 @@ export default function StatsPage() {
         <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
           <p className="text-xs font-medium text-gray-700 mb-2">📚 {TEXTS.statsSource[lang]}</p>
           <p className="text-xs text-gray-600 leading-relaxed">• {STATS_META.sourceCb}</p>
-          <p className="text-xs text-gray-600 leading-relaxed">• {STATS_META.sourceMoj} (API 실시간)</p>
+          <p className="text-xs text-gray-600 leading-relaxed">• {STATS_META.sourceMoj} · 공공데이터 API 자동 갱신</p>
         </div>
 
         <Link href="/start" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
