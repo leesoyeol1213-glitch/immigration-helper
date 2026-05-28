@@ -473,6 +473,31 @@ visaE7Label: {
     en: "Company prepares",
     vi: "Công ty chuẩn bị",
   },
+  e74rTitle: {
+    ko: "충북 인구감소지역 근무자라면? E-7-4R 전환 가능",
+    en: "Working in Chungbuk depopulation area? Switch to E-7-4R",
+    vi: "Làm việc tại khu giảm dân số? Có thể chuyển E-7-4R",
+  },
+  e74rDesc: {
+    ko: "현재 근무처가 인구감소지역에 있고 동일 근무처에서 계속 일하는 경우, 체류기간 연장 시 광역지자체장 추천서를 받아 E-7-4R(지역특화 숙련기능인력)로 약호를 변경할 수 있어요. 서류는 거의 동일하되 표준근로계약서를 E-7-4R용으로 제출합니다.",
+    en: "If your workplace is in a depopulation area and you continue at the same employer, you may switch to E-7-4R with a provincial recommendation. Documents are almost identical (E-7-4R contract form).",
+    vi: "Nếu nơi làm việc thuộc khu giảm dân số và tiếp tục làm tại cùng nơi đó, có thể chuyển sang E-7-4R với thư giới thiệu của thống đốc. Giấy tờ gần như giống nhau (hợp đồng E-7-4R).",
+  },
+  e74rAreasTitle: {
+    ko: "충북 인구감소지역 (행안부 지정)",
+    en: "Chungbuk Depopulation Areas (MOIS)",
+    vi: "Khu giảm dân số Chungbuk",
+  },
+  e74rAreas: {
+    ko: "괴산군 · 단양군 · 보은군 · 영동군 · 옥천군 · 제천시 (인구감소관심: 음성군)",
+    en: "Goesan, Danyang, Boeun, Yeongdong, Okcheon, Jecheon (Watch: Eumseong)",
+    vi: "Goesan, Danyang, Boeun, Yeongdong, Okcheon, Jecheon",
+  },
+  e74rNote: {
+    ko: "※ E-7-4R 전환은 체류기간 연장 신청 시 진행됩니다. 정확한 절차는 관할 출입국 사무소(1345)에 문의해 주세요.",
+    en: "※ E-7-4R switch happens at extension. Confirm with immigration office (1345).",
+    vi: "※ Chuyển E-7-4R thực hiện khi gia hạn. Xác nhận với XNC (1345).",
+  },
   docAllDone: {
     ko: "모든 서류 준비 완료!",
     en: "All documents ready!",

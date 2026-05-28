@@ -116,6 +116,22 @@ export default function ResultPage() {
     koreanDesc: { ko: "TOPIK 또는 사회통합프로그램", en: "TOPIK or KIIP", vi: "TOPIK hoặc KIIP" },
     recommend: { ko: "고용기업 추천서 + 추천자 신분증", en: "Employer Recommendation + ID", vi: "Thư giới thiệu + CMND người giới thiệu" },
     recommendDesc: { ko: "추천자는 법인 대표 (회사)", en: "Recommender = company rep.", vi: "Người giới thiệu = đại diện công ty" },
+
+    // === F-2-R 지역특화 우수인재 (매뉴얼 기준) ===
+    education: { ko: "학력 입증서류", en: "Education Certificate", vi: "Chứng minh học vấn" },
+    educationDesc: { ko: "학력증명서, 학위증, 졸업증명서 등", en: "Diploma, degree, graduation certificate", vi: "Bằng tốt nghiệp, học vị" },
+    incomeF2: { ko: "소득 입증서류", en: "Income Certificate", vi: "Chứng minh thu nhập" },
+    incomeF2Desc: { ko: "세무서 발급 소득금액증명 등 공적 증명서류", en: "Tax office income certificate", vi: "Giấy chứng nhận thu nhập từ thuế" },
+    residenceProof: { ko: "거주지 입증서류", en: "Residence Proof", vi: "Chứng minh nơi cư trú" },
+    residenceProofDesc: { ko: "부동산임대차계약서, 부동산등기부등본 등", en: "Lease contract or property certificate", vi: "Hợp đồng thuê hoặc giấy tờ nhà" },
+    economicActivity: { ko: "경제활동 입증서류", en: "Economic Activity Proof", vi: "Chứng minh hoạt động kinh tế" },
+    economicActivityDesc: { ko: "취업: 고용계약서·재직증명서·사업자등록증 / 창업: 사업자등록증·납세증명서·법인등기부 등", en: "Employed: contract, certificate / Founder: business reg., tax cert.", vi: "Việc làm: hợp đồng / Khởi nghiệp: ĐKKD, thuế" },
+    employerReq: { ko: "고용기업 요건 서류", en: "Employer Requirements", vi: "Yêu cầu công ty" },
+    employerReqDesc: { ko: "사업자등록증, 납세증명서, 지방세, 4대보험·고용보험 가입자 명부", en: "Biz reg., tax certs., 4 insurances list", vi: "ĐKKD, thuế, bảo hiểm" },
+    govRecommend: { ko: "광역지자체장 추천서", en: "Provincial Governor Recommendation", vi: "Thư giới thiệu thống đốc" },
+    govRecommendDesc: { ko: "근무처가 변경된 경우에 한함 (충북도 등)", en: "Only if workplace changed", vi: "Chỉ khi đổi nơi làm việc" },
+    localReq: { ko: "지자체 개별 요건 서류", en: "Local Govt. Requirements", vi: "Yêu cầu địa phương" },
+    localReqDesc: { ko: "거주 시·군의 개별 요건이 있는 경우", en: "If your city/county has requirements", vi: "Nếu có yêu cầu địa phương" },
   };
 
     // 가까운 출입국 사무소 찾기
@@ -146,6 +162,20 @@ export default function ResultPage() {
     docs.push({ name: docTexts.localTax[lang], desc: docTexts.localTaxDesc[lang], group: "company" });
     docs.push({ name: docTexts.guarantee[lang], desc: docTexts.guaranteeDesc[lang], group: "company" });
     docs.push({ name: docTexts.recommend[lang], desc: docTexts.recommendDesc[lang], group: "company" });
+  } else if (visa === "F-2-R") {
+    // === F-2-R 지역특화 우수인재 (매뉴얼 기준) ===
+    // 본인 준비
+    docs.push({ name: docTexts.integratedForm[lang], desc: docTexts.integratedFormDesc[lang], group: "self" });
+    docs.push({ name: docTexts.passportCopy[lang], desc: docTexts.passportCopyDesc[lang], group: "self" });
+    docs.push({ name: docTexts.alienCardCopy[lang], desc: docTexts.alienCardCopyDesc[lang], group: "self" });
+    docs.push({ name: docTexts.education[lang], desc: docTexts.educationDesc[lang], group: "self" });
+    docs.push({ name: docTexts.incomeF2[lang], desc: docTexts.incomeF2Desc[lang], group: "self" });
+    docs.push({ name: docTexts.residenceProof[lang], desc: docTexts.residenceProofDesc[lang], group: "self" });
+    docs.push({ name: docTexts.economicActivity[lang], desc: docTexts.economicActivityDesc[lang], group: "self" });
+    // 회사/지자체 준비
+    docs.push({ name: docTexts.employerReq[lang], desc: docTexts.employerReqDesc[lang], group: "company" });
+    docs.push({ name: docTexts.govRecommend[lang], desc: docTexts.govRecommendDesc[lang], group: "company", isExtra: true });
+    docs.push({ name: docTexts.localReq[lang], desc: docTexts.localReqDesc[lang], group: "company", isExtra: true });
   } else {
     // === E-9 (기본) ===
     // 본인 준비
@@ -307,6 +337,23 @@ export default function ResultPage() {
     </p>
   </div>
 )}
+{/* E-7-4 → E-7-4R 지역특화 전환 안내 */}
+        {visa === "E-7-4" && (
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-300 rounded-xl p-5 mb-6">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">💡</span>
+              <div className="flex-1">
+                <p className="text-sm font-bold text-amber-900 mb-2">{TEXTS.e74rTitle[lang]}</p>
+                <p className="text-xs text-amber-800 leading-relaxed mb-3">{TEXTS.e74rDesc[lang]}</p>
+                <div className="bg-white rounded-lg p-3 mb-3">
+                  <p className="text-xs font-medium text-amber-900 mb-1">📍 {TEXTS.e74rAreasTitle[lang]}</p>
+                  <p className="text-xs text-amber-700 leading-relaxed">{TEXTS.e74rAreas[lang]}</p>
+                </div>
+                <p className="text-[11px] text-amber-700 leading-relaxed">{TEXTS.e74rNote[lang]}</p>
+              </div>
+            </div>
+          </div>
+        )}        
         <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-medium text-gray-900">{TEXTS.docsTitle[lang]} ({docs.length})</h2>
