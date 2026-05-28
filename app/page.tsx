@@ -28,6 +28,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 개인정보 무저장 (브라우저 메모리 전용)",
     disclaimerTitle: "⚠️ 안내:",
     disclaimerText: "본 서비스는 서류 작성을 돕는 정보 제공 도구입니다. 최종 제출 및 승인 책임은 본인에게 있습니다.",
+    crBannerTitle: "사업장·거주지·여권 변경 신고 안내",
+    crBannerSub: "정해진 기간 안에 신고해야 불이익이 없어요",
     statsBannerTag: "공공데이터로 보는",
     statsBannerTitle: "충북 외국인 56,301명",
     statsBannerSub: "법무부·충청북도 데이터로 본 11개 시군 · TOP10 국적 현황",
@@ -56,6 +58,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 No data storage (browser only)",
     disclaimerTitle: "⚠️ Notice:",
     disclaimerText: "This service helps form preparation. Final responsibility is with the user.",
+    crBannerTitle: "Change Report Guide",
+    crBannerSub: "Report workplace, address, passport changes on time",
     statsBannerTag: "Public Data Insights",
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
@@ -84,6 +88,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 Không lưu thông tin",
     disclaimerTitle: "⚠️ Lưu ý:",
     disclaimerText: "Dịch vụ hỗ trợ chuẩn bị giấy tờ. Trách nhiệm cuối cùng thuộc về người dùng.",
+    crBannerTitle: "Hướng dẫn báo cáo thay đổi",
+    crBannerSub: "Báo cáo đúng hạn để tránh bất lợi",
     statsBannerTag: "Dữ liệu công khai",
     statsBannerTitle: "56.301 người nước ngoài tại Chungbuk",
     statsBannerSub: "11 thành phố · TOP 10 quốc tịch (Dữ liệu Bộ Tư pháp & Chungbuk)",
@@ -112,6 +118,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 ไม่เก็บข้อมูลส่วนตัว",
     disclaimerTitle: "⚠️ หมายเหตุ:",
     disclaimerText: "บริการช่วยเตรียมเอกสาร ความรับผิดชอบสุดท้ายเป็นของผู้ใช้",
+    crBannerTitle: "Change Report Guide",
+    crBannerSub: "Report workplace, address, passport changes on time",
     statsBannerTag: "ข้อมูลสาธารณะ",
     statsBannerTitle: "56,301 คนต่างชาติในเฉิงบุค",
     statsBannerSub: "11 เมือง/เขต · 10 สัญชาติที่มีมากที่สุด, จากข้อมูลของกระทรวงกฎหมายและจังหวัดเฉิงบุค",
@@ -140,6 +148,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 មិនរក្សាទុកទិន្នន័យ",
     disclaimerTitle: "⚠️ ចំណាំ:",
     disclaimerText: "សេវាកម្មនេះជួយរៀបចំឯកសារ ការទទួលខុសត្រូវចុងក្រោយជារបស់អ្នកប្រើ",
+    crBannerTitle: "Change Report Guide",
+    crBannerSub: "Report workplace, address, passport changes on time",
     statsBannerTag: "Public Data Insights",
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
@@ -168,6 +178,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 डेटा भण्डारण छैन",
     disclaimerTitle: "⚠️ सूचना:",
     disclaimerText: "यो सेवा कागजात तयार पार्न मद्दत गर्छ। अन्तिम जिम्मेवारी प्रयोगकर्तासँग छ।",
+    crBannerTitle: "Change Report Guide",
+    crBannerSub: "Report workplace, address, passport changes on time",
     statsBannerTag: "Public Data Insights",
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
@@ -196,6 +208,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 දත්ත ගබඩාවක් නැත",
     disclaimerTitle: "⚠️ දැනුම්දීම:",
     disclaimerText: "මෙය ලේඛන සකස් කිරීමට උපකාරී වේ. අවසන් වගකීම පරිශීලකයාට ඇත.",
+    crBannerTitle: "Change Report Guide",
+    crBannerSub: "Report workplace, address, passport changes on time",
     statsBannerTag: "Public Data Insights",
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
@@ -224,6 +238,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 ဒေတာသိမ်းမှု မရှိ",
     disclaimerTitle: "⚠️ သတိပြုရန်:",
     disclaimerText: "ဤဝန်ဆောင်မှုသည် စာရွက်စာတမ်းပြင်ဆင်ရန် ကူညီသည်။ နောက်ဆုံးတာဝန်သည် အသုံးပြုသူ၏ဖြစ်သည်။",
+    crBannerTitle: "Change Report Guide",
+    crBannerSub: "Report workplace, address, passport changes on time",
     statsBannerTag: "Public Data Insights",
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
@@ -252,6 +268,8 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 不保存数据(仅浏览器)",
     disclaimerTitle: "⚠️ 提示:",
     disclaimerText: "本服务协助文件准备，最终责任由用户承担。",
+    crBannerTitle: "Change Report Guide",
+    crBannerSub: "Report workplace, address, passport changes on time",
     statsBannerTag: "Public Data Insights",
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
@@ -333,6 +351,20 @@ export default function Home() {
             {t.learnMore}
           </Link>
         </div>
+
+        {/* 변경 신고 안내 카드 */}
+        <Link href="/change-report" className="block mt-6 group">
+          <div className="bg-white border-2 border-amber-200 hover:border-amber-400 rounded-xl p-4 text-left transition-all">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">📖</span>
+              <div className="flex-1">
+                <p className="text-sm font-bold text-gray-900 mb-0.5">{t.crBannerTitle}</p>
+                <p className="text-xs text-gray-500">{t.crBannerSub}</p>
+              </div>
+              <span className="text-amber-600 group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </div>
+        </Link>
 
         {/* 충북 통계 배너 (공공데이터) */}
         <Link href="/stats" className="block mt-10 group">

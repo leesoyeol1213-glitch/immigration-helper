@@ -64,7 +64,10 @@ export default function Step3Page() {
         {companyChanged === "changed" && (
           <div className="mt-4 p-4 bg-red-50 border-2 border-red-200 rounded-xl">
             <p className="text-sm font-medium text-red-900 mb-2">{TEXTS.companyBlockedTitle[lang]}</p>
-            <p className="text-xs text-red-700 leading-relaxed whitespace-pre-line">{TEXTS.companyBlockedDesc[lang]}</p>
+            <p className="text-xs text-red-700 leading-relaxed whitespace-pre-line mb-3">{TEXTS.companyBlockedDesc[lang]}</p>
+            <Link href="/change-report" className="inline-block px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-medium rounded-lg transition-colors">
+              {TEXTS.companyBlockedGuide[lang]}
+            </Link>
           </div>
         )}
 

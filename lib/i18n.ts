@@ -296,6 +296,11 @@ visaE7Label: {
     en: "Without reporting the workplace change, you cannot get Employment Center approval or prepare the employment contract/permit required for extension. Please complete the report at the Employment Center first.",
     vi: "Nếu không báo cáo đổi nơi làm việc, bạn không thể nhận được sự chấp thuận của Trung tâm Việc làm hoặc chuẩn bị hợp đồng/giấy phép lao động cần thiết. Hãy hoàn thành báo cáo trước.",
   },
+  companyBlockedGuide: {
+    ko: "📖 사업장 변경 신고 방법 보기 →",
+    en: "📖 How to report workplace change →",
+    vi: "📖 Cách báo cáo đổi nơi làm việc →",
+  },
   companyWarn: {
     ko: "⚠️ 회사 변경 시 출입국 가기 전에:\n1️⃣ 고용센터에서 사업장 변경 허가 받기\n2️⃣ 그 후 출입국에서 체류 연장 신청\n순서가 바뀌면 출입국에서 돌려보낼 수 있어요.",
     en: "⚠️ When changing companies, before visiting Immigration:\n1️⃣ Get workplace change permit from Employment Center\n2️⃣ Then apply for extension at Immigration\nWrong order may result in rejection.",
@@ -349,6 +354,11 @@ visaE7Label: {
     ko: "출입국관리법 제36조에 따라, 거주지를 옮긴 날부터 15일 이내에 새 주소지의 시·군·구청 또는 출입국·외국인관서에 전입신고를 해야 합니다. 기간 내에 신고하지 않으면 과태료가 부과될 수 있습니다.",
     en: "Under Article 36 of the Immigration Act, you must report your new address to the local office or immigration office within 15 days of moving. Late reporting may result in a fine.",
     vi: "Theo Điều 36 Luật Xuất nhập cảnh, bạn phải báo cáo địa chỉ mới cho cơ quan địa phương hoặc cơ quan xuất nhập cảnh trong vòng 15 ngày. Báo cáo trễ có thể bị phạt.",
+  },
+  addressDeadlineGuide: {
+    ko: "📖 거주지 변경 신고 방법 보기 →",
+    en: "📖 How to report address change →",
+    vi: "📖 Cách báo cáo thay đổi địa chỉ →",
   },
   addressStep: { ko: "주소 정보", en: "Address", vi: "Thông tin địa chỉ" },
 
@@ -715,6 +725,101 @@ visaE7Label: {
   statsVisaOther: { ko: "그 외", en: "Others", vi: "Khác" },
   statsSource: { ko: "데이터 출처 (공공데이터)", en: "Data Sources (Public)", vi: "Nguồn dữ liệu" },
   statsCTA: { ko: "내 서류 준비하러 가기 →", en: "Prepare My Documents →", vi: "Chuẩn bị giấy tờ →" },
+  // 변경신고 안내 페이지
+  crTag: { ko: "변경 신고 안내", en: "Change Report Guide", vi: "Hướng dẫn báo cáo thay đổi" },
+  crTitle: { ko: "변경이 생겼다면, 먼저 신고하세요", en: "Report changes first", vi: "Báo cáo thay đổi trước" },
+  crSub: { ko: "사업장·거주지·여권 변경 시 정해진 기간 안에 신고해야 합니다", en: "Workplace, address, passport changes must be reported within deadlines", vi: "Phải báo cáo trong thời hạn" },
+  crTabWorkplace: { ko: "사업장 변경", en: "Workplace", vi: "Nơi làm việc" },
+  crTabAddress: { ko: "거주지 변경", en: "Address", vi: "Địa chỉ" },
+  crTabPassport: { ko: "여권 변경", en: "Passport", vi: "Hộ chiếu" },
+  crWhere: { ko: "어디서", en: "Where", vi: "Ở đâu" },
+  crDeadline: { ko: "기한", en: "Deadline", vi: "Thời hạn" },
+  crDocs: { ko: "필요 서류", en: "Required Documents", vi: "Giấy tờ cần" },
+
+  // 사업장 변경
+  crWpWhere: { 
+    ko: "관할 고용센터 (고용24 온라인 또는 방문)", 
+    en: "Local Employment Center (Work24 online or in person)", 
+    vi: "Trung tâm Việc làm (Work24 hoặc trực tiếp)" 
+  },
+  crWpDeadline: { 
+    ko: "사업장이 바뀐 직후 즉시", 
+    en: "Immediately after workplace change", 
+    vi: "Ngay sau khi đổi nơi làm việc" 
+  },
+  crWpDocs: { 
+    ko: "여권, 외국인등록증, 이전·새 회사 정보, 근로계약서 등 (※ 출입국 또는 고용센터에서 정확히 확인)", 
+    en: "Passport, ARC, info on previous/new employer, employment contract (verify at center)", 
+    vi: "Hộ chiếu, ARC, thông tin công ty cũ/mới (xác minh tại trung tâm)" 
+  },
+  crWpWarn: { 
+    ko: "신고하지 않으면 고용센터의 사업장 변경 허가를 받을 수 없고, 비자 연장에 필요한 근로계약서·고용허가서 등 노동부 발급 서류를 준비할 수 없어 연장이 불가능합니다.", 
+    en: "Without reporting, you cannot obtain Employment Center approval, and labor documents required for visa extension cannot be issued.", 
+    vi: "Không báo cáo thì không được phê duyệt, không thể chuẩn bị giấy tờ lao động cho gia hạn." 
+  },
+  crWpNote: { 
+    ko: "※ 정확한 절차와 필요 서류는 관할 고용센터(국번 없이 1350) 또는 출입국 사무소에 문의해 주세요.", 
+    en: "※ Confirm exact procedure with your Employment Center (1350) or immigration office.", 
+    vi: "※ Hãy xác nhận với Trung tâm Việc làm (1350) hoặc văn phòng XNC." 
+  },
+
+  // 거주지 변경
+  crAdWhere: { 
+    ko: "새 주소지의 시·군·구청 또는 관할 출입국·외국인관서", 
+    en: "City/County office of new address, or local immigration office", 
+    vi: "Văn phòng địa phương mới, hoặc cơ quan xuất nhập cảnh" 
+  },
+  crAdDeadline: { 
+    ko: "전입한 날부터 15일 이내", 
+    en: "Within 15 days of moving", 
+    vi: "Trong vòng 15 ngày kể từ khi chuyển đến" 
+  },
+  crAdDocs: { 
+    ko: "여권, 외국인등록증, 새 주소 증빙(임대차계약서 등)", 
+    en: "Passport, ARC, proof of new address (lease etc.)", 
+    vi: "Hộ chiếu, ARC, chứng minh địa chỉ mới" 
+  },
+  crAdWarn: { 
+    ko: "기간 내에 신고하지 않으면 출입국관리법에 따라 과태료가 부과될 수 있습니다.", 
+    en: "Late reporting may result in a fine under the Immigration Act.", 
+    vi: "Báo cáo trễ có thể bị phạt." 
+  },
+  crAdLaw: { 
+    ko: "근거: 출입국관리법 제36조 (체류지 변경의 신고)", 
+    en: "Source: Article 36, Immigration Act", 
+    vi: "Cơ sở: Điều 36 Luật Xuất nhập cảnh" 
+  },
+
+  // 여권 변경
+  crPpWhere: { 
+    ko: "관할 출입국·외국인관서 (대한민국에서 외국인등록 정보 변경)", 
+    en: "Local immigration office (update ARC info)", 
+    vi: "Cơ quan xuất nhập cảnh (cập nhật thông tin ARC)" 
+  },
+  crPpDeadline: { 
+    ko: "여권을 새로 발급받은 후 빠른 시일 내", 
+    en: "As soon as possible after passport renewal", 
+    vi: "Càng sớm càng tốt sau khi đổi hộ chiếu" 
+  },
+  crPpDocs: { 
+    ko: "신·구 여권, 외국인등록증, 통합신청서", 
+    en: "Old and new passports, ARC, application form", 
+    vi: "Hộ chiếu cũ và mới, ARC, đơn đăng ký" 
+  },
+  crPpNote: { 
+    ko: "※ 여권을 새로 받으면 외국인등록 정보의 여권번호도 함께 변경해야 합니다. 정확한 서류는 출입국 사무소에 문의해 주세요. (서류도우미의 '여권 갱신' 메뉴를 이용할 수 있어요)", 
+    en: "※ When passport is renewed, update the ARC info too. Confirm at immigration office.", 
+    vi: "※ Khi đổi hộ chiếu, cập nhật thông tin ARC. Xác nhận tại văn phòng XNC." 
+  },
+
+  // 공통
+  crCommonTitle: { ko: "📞 정확한 안내가 필요하면", en: "📞 For accurate guidance", vi: "📞 Để được hướng dẫn chính xác" },
+  crCommonDesc: { 
+    ko: "법령과 절차는 변경될 수 있어요. 출입국 콜센터(국번 없이 1345) 또는 관할 출입국 사무소에 문의하면 가장 정확합니다.", 
+    en: "Laws and procedures may change. Call 1345 (Immigration Hotline) or visit your local office for accuracy.", 
+    vi: "Luật có thể thay đổi. Gọi 1345 hoặc đến văn phòng XNC để biết chính xác." 
+  },
+  crCTA: { ko: "내 서류 준비하러 가기 →", en: "Prepare My Documents →", vi: "Chuẩn bị giấy tờ →" },
 };
 
 export type Lang = "ko" | "en" | "vi" | "th" | "km" | "ne" | "si" | "my" | "zh";
