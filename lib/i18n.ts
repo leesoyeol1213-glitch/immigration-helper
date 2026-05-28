@@ -699,6 +699,8 @@ visaE7Label: {
   statsNationTitle: { ko: "국적별 TOP 10", en: "Top 10 Nationalities", vi: "TOP 10 quốc tịch" },
   statsNationDesc: { ko: "베트남·중국·우즈베키스탄·캄보디아·네팔 등", en: "Vietnam, China, Uzbekistan, Cambodia, Nepal etc.", vi: "Việt Nam, Trung Quốc, Uzbekistan..." },
   statsNationInsight: { ko: "서류도우미는 이 TOP10 국가 언어를 우선 지원합니다", en: "Document Helper prioritizes these top languages", vi: "Document Helper hỗ trợ các ngôn ngữ này" },
+  statsLive: { ko: "공공데이터 API 실시간 연동 (기준일)", en: "Live API · Source date", vi: "API trực tiếp · Ngày dữ liệu" },
+  statsNationDescApi: { ko: "법무부 API 기준 전국 TOP10 (베트남·중국·우즈벡 등)", en: "Top 10 nationwide via MOJ API", vi: "TOP 10 toàn quốc qua API Bộ Tư pháp" },
   statsVisaTitle: { ko: "비자별 현황 (전국)", en: "By Visa Type (Nationwide)", vi: "Theo loại visa" },
   statsVisaDesc: { ko: "우리 서비스가 다루는 비자 중심", en: "Focusing on visas we cover", vi: "Tập trung vào visa chúng tôi hỗ trợ" },
   statsVisaOurs: { ko: "우리 서비스 지원", en: "We cover", vi: "Chúng tôi hỗ trợ" },
