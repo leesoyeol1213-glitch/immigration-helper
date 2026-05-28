@@ -28,6 +28,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 개인정보 무저장 (브라우저 메모리 전용)",
     disclaimerTitle: "⚠️ 안내:",
     disclaimerText: "본 서비스는 서류 작성을 돕는 정보 제공 도구입니다. 최종 제출 및 승인 책임은 본인에게 있습니다.",
+    statsBannerTag: "공공데이터로 보는",
+    statsBannerTitle: "충북 외국인 56,301명",
+    statsBannerSub: "법무부·충청북도 데이터로 본 11개 시군 · TOP10 국적 현황",
+    statsBannerCTA: "현황 자세히 보기",
   },
   en: {
     badge: "🏆 AI + Public Data Service",
@@ -52,6 +56,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 No data storage (browser only)",
     disclaimerTitle: "⚠️ Notice:",
     disclaimerText: "This service helps form preparation. Final responsibility is with the user.",
+    statsBannerTag: "Public Data Insights",
+    statsBannerTitle: "56,301 Foreigners in Chungbuk",
+    statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
+    statsBannerCTA: "View Statistics",
   },
   vi: {
     badge: "🏆 Dịch vụ AI + Dữ liệu công",
@@ -76,6 +84,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 Không lưu thông tin",
     disclaimerTitle: "⚠️ Lưu ý:",
     disclaimerText: "Dịch vụ hỗ trợ chuẩn bị giấy tờ. Trách nhiệm cuối cùng thuộc về người dùng.",
+    statsBannerTag: "Dữ liệu công khai",
+    statsBannerTitle: "56.301 người nước ngoài tại Chungbuk",
+    statsBannerSub: "11 thành phố · TOP 10 quốc tịch (Dữ liệu Bộ Tư pháp & Chungbuk)",
+    statsBannerCTA: "Xem thống kê",
   },
   th: {
     badge: "🏆 บริการ AI + ข้อมูลสาธารณะ",
@@ -100,6 +112,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 ไม่เก็บข้อมูลส่วนตัว",
     disclaimerTitle: "⚠️ หมายเหตุ:",
     disclaimerText: "บริการช่วยเตรียมเอกสาร ความรับผิดชอบสุดท้ายเป็นของผู้ใช้",
+    statsBannerTag: "ข้อมูลสาธารณะ",
+    statsBannerTitle: "56,301 คนต่างชาติในเฉิงบุค",
+    statsBannerSub: "11 เมือง/เขต · 10 สัญชาติที่มีมากที่สุด, จากข้อมูลของกระทรวงกฎหมายและจังหวัดเฉิงบุค",
+    statsBannerCTA: "ดูสถิติ",
   },
   km: {
     badge: "🏆 សេវាកម្ម AI + ទិន្នន័យសាធារណៈ",
@@ -124,6 +140,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 មិនរក្សាទុកទិន្នន័យ",
     disclaimerTitle: "⚠️ ចំណាំ:",
     disclaimerText: "សេវាកម្មនេះជួយរៀបចំឯកសារ ការទទួលខុសត្រូវចុងក្រោយជារបស់អ្នកប្រើ",
+    statsBannerTag: "Public Data Insights",
+    statsBannerTitle: "56,301 Foreigners in Chungbuk",
+    statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
+    statsBannerCTA: "View Statistics",
   },
   ne: {
     badge: "🏆 AI + सार्वजनिक डेटा सेवा",
@@ -148,6 +168,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 डेटा भण्डारण छैन",
     disclaimerTitle: "⚠️ सूचना:",
     disclaimerText: "यो सेवा कागजात तयार पार्न मद्दत गर्छ। अन्तिम जिम्मेवारी प्रयोगकर्तासँग छ।",
+    statsBannerTag: "Public Data Insights",
+    statsBannerTitle: "56,301 Foreigners in Chungbuk",
+    statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
+    statsBannerCTA: "View Statistics",
   },
   si: {
     badge: "🏆 AI + පොදු දත්ත සේවාව",
@@ -172,6 +196,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 දත්ත ගබඩාවක් නැත",
     disclaimerTitle: "⚠️ දැනුම්දීම:",
     disclaimerText: "මෙය ලේඛන සකස් කිරීමට උපකාරී වේ. අවසන් වගකීම පරිශීලකයාට ඇත.",
+    statsBannerTag: "Public Data Insights",
+    statsBannerTitle: "56,301 Foreigners in Chungbuk",
+    statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
+    statsBannerCTA: "View Statistics",
   },
   my: {
     badge: "🏆 AI + အများသုံးဒေတာ ဝန်ဆောင်မှု",
@@ -196,6 +224,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 ဒေတာသိမ်းမှု မရှိ",
     disclaimerTitle: "⚠️ သတိပြုရန်:",
     disclaimerText: "ဤဝန်ဆောင်မှုသည် စာရွက်စာတမ်းပြင်ဆင်ရန် ကူညီသည်။ နောက်ဆုံးတာဝန်သည် အသုံးပြုသူ၏ဖြစ်သည်။",
+    statsBannerTag: "Public Data Insights",
+    statsBannerTitle: "56,301 Foreigners in Chungbuk",
+    statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
+    statsBannerCTA: "View Statistics",
   },
   zh: {
     badge: "🏆 AI + 公共数据服务",
@@ -220,6 +252,10 @@ const TEXTS: Record<Lang, any> = {
     techSec: "🔒 不保存数据(仅浏览器)",
     disclaimerTitle: "⚠️ 提示:",
     disclaimerText: "本服务协助文件准备，最终责任由用户承担。",
+    statsBannerTag: "Public Data Insights",
+    statsBannerTitle: "56,301 Foreigners in Chungbuk",
+    statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
+    statsBannerCTA: "View Statistics",
   },
 };
 
@@ -297,6 +333,21 @@ export default function Home() {
             {t.learnMore}
           </Link>
         </div>
+
+        {/* 충북 통계 배너 (공공데이터) */}
+        <Link href="/stats" className="block mt-10 group">
+          <div className="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-2xl p-6 text-white text-left shadow-lg hover:shadow-xl transition-all hover:scale-[1.01]">
+            <p className="text-xs font-medium text-blue-200 mb-2">📊 {t.statsBannerTag}</p>
+            <p className="text-2xl md:text-3xl font-bold mb-2">
+              {t.statsBannerTitle}
+            </p>
+            <p className="text-sm text-blue-100 mb-4">{t.statsBannerSub}</p>
+            <div className="flex items-center gap-2 text-sm font-medium text-white">
+              <span>{t.statsBannerCTA}</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </div>
+        </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 text-left">
           <div className="bg-white border-2 border-blue-100 rounded-xl p-5 hover:border-blue-300 transition-all">
