@@ -666,175 +666,177 @@ export default function AboutPage() {
   const t = TEXTS[lang];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-white">
+    <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/" backLabel={t.backHome} />
 
-      <section className="max-w-3xl mx-auto px-6 py-10">
-        <div className="text-center mb-12">
-          <div className="inline-block px-3 py-1 bg-blue-100 rounded-full mb-4">
-            <p className="text-xs font-medium text-blue-800">{t.badge}</p>
+      <section className="max-w-md md:max-w-3xl mx-auto px-5 pt-6 pb-16">
+        {/* 헤더 */}
+        <div className="text-center mb-10">
+          <div className="inline-block px-3.5 py-1.5 bg-blue-50 rounded-full mb-4">
+            <p className="text-[13px] font-bold text-blue-700">{t.badge}</p>
           </div>
-          <h1 className="text-3xl md:text-4xl font-medium text-gray-900 mb-3">
-            {t.title}
-          </h1>
-          <p className="text-base text-gray-600 leading-relaxed">
-            {t.subtitle}
-          </p>
+          <h1 className="text-[26px] font-extrabold text-gray-900 tracking-tight mb-3">{t.title}</h1>
+          <p className="text-[15px] text-gray-500 font-medium leading-relaxed">{t.subtitle}</p>
         </div>
 
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.problemTitle}</h2>
+        {/* 문제 */}
+        <div className="mb-10">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.problemTitle}</h2>
           <div className="space-y-2">
             {t.problems.map((p: string, i: number) => (
-              <div key={i} className="bg-red-50 border-l-4 border-red-300 p-3 rounded-r-lg">
-                <p className="text-sm text-red-900">{p}</p>
+              <div key={i} className="bg-red-50 border-l-4 border-red-300 p-4 rounded-r-2xl">
+                <p className="text-[14px] text-red-900 font-medium">{p}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.solutionTitle}</h2>
+        {/* 해결책 */}
+        <div className="mb-10">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.solutionTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {t.solutions.map((s: any, i: number) => (
-              <div key={i} className="bg-white border border-blue-100 rounded-xl p-4 hover:border-blue-300 transition-all">
-                <div className="text-2xl mb-2">{s.icon}</div>
-                <p className="text-sm font-medium text-gray-900 mb-1">{s.title}</p>
-                <p className="text-xs text-gray-500 leading-relaxed">{s.desc}</p>
+              <div key={i} className="bg-gray-50 rounded-2xl p-5">
+                <div className="text-3xl mb-2">{s.icon}</div>
+                <p className="text-[16px] font-extrabold text-gray-900 mb-1">{s.title}</p>
+                <p className="text-[13px] text-gray-500 leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.flowTitle}</h2>
+        {/* 사용 흐름 */}
+        <div className="mb-10">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.flowTitle}</h2>
           <div className="space-y-2">
             {t.flowSteps.map((step: string, i: number) => (
-              <div key={i} className="flex items-start gap-3 bg-white border border-gray-100 rounded-lg p-3">
-                <div className="flex-shrink-0 w-7 h-7 bg-blue-700 text-white rounded-full flex items-center justify-center text-xs font-medium">
+              <div key={i} className="flex items-start gap-3 bg-gray-50 rounded-2xl p-4">
+                <div className="flex-shrink-0 w-7 h-7 bg-blue-700 text-white rounded-full flex items-center justify-center text-[13px] font-extrabold">
                   {i + 1}
                 </div>
-                <p className="text-sm text-gray-700 pt-1">{step}</p>
+                <p className="text-[14px] text-gray-700 font-medium pt-0.5">{step}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.techTitle}</h2>
-          <div className="bg-gray-50 border border-gray-100 rounded-xl p-5 space-y-3">
+        {/* 기술 스택 */}
+        <div className="mb-10">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.techTitle}</h2>
+          <div className="bg-gray-50 rounded-2xl p-5 space-y-3">
             {t.techs.map((tech: any, i: number) => (
               <div key={i} className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 pb-3 border-b border-gray-200 last:border-0 last:pb-0">
-                <p className="text-xs font-medium text-blue-700 md:w-32">{tech.label}</p>
-                <p className="text-xs text-gray-700 flex-1">{tech.value}</p>
+                <p className="text-[13px] font-bold text-blue-700 md:w-32">{tech.label}</p>
+                <p className="text-[13px] text-gray-700 flex-1">{tech.value}</p>
               </div>
             ))}
           </div>
         </div>
 
-{/* 충북 통계 (충북 특화!) */}
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.chungbukTitle}</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
-            {t.chungbukStats?.map((stat: any, i: number) => (
-              <div key={i} className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 rounded-xl p-4">
-                <p className="text-lg font-bold text-blue-700 mb-1">{stat.value}</p>
-                <p className="text-xs font-medium text-gray-800 mb-0.5">{stat.label}</p>
-                <p className="text-xs text-gray-500">{stat.subLabel}</p>
-              </div>
-            ))}
+        {/* 충북 통계 */}
+        {t.chungbukStats && (
+          <div className="mb-10">
+            <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.chungbukTitle}</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
+              {t.chungbukStats.map((stat: any, i: number) => (
+                <div key={i} className="bg-blue-50 rounded-2xl p-4">
+                  <p className="text-[18px] font-extrabold text-blue-700 mb-1">{stat.value}</p>
+                  <p className="text-[13px] font-bold text-gray-800 mb-0.5">{stat.label}</p>
+                  <p className="text-[12px] text-gray-500">{stat.subLabel}</p>
+                </div>
+              ))}
+            </div>
+            <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-2xl">
+              <p className="text-[14px] text-amber-900 font-bold">{t.chungbukInsight}</p>
+            </div>
           </div>
-          <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
-            <p className="text-sm text-amber-900 font-medium">{t.chungbukInsight}</p>
-          </div>
-        </div>
+        )}
 
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.targetTitle}</h2>
+        {/* 타겟 */}
+        <div className="mb-10">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.targetTitle}</h2>
           <div className="space-y-3">
             {t.targetItems.map((item: any, i: number) => (
-              <div key={i} className="bg-white border border-purple-100 rounded-xl p-4">
-                <p className="text-sm font-medium text-purple-900 mb-1">{item.title}</p>
-                <p className="text-xs text-gray-600">{item.desc}</p>
+              <div key={i} className="bg-purple-50 rounded-2xl p-4">
+                <p className="text-[15px] font-extrabold text-purple-900 mb-1">{item.title}</p>
+                <p className="text-[13px] text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.betaTitle}</h2>
-          <div className="bg-amber-50 border border-amber-100 rounded-xl p-5 mb-3">
-            <p className="text-sm text-amber-900">{t.betaDesc}</p>
+        {/* 베타 */}
+        <div className="mb-10">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.betaTitle}</h2>
+          <div className="bg-amber-50 rounded-2xl p-5 mb-3">
+            <p className="text-[14px] text-amber-900 font-medium">{t.betaDesc}</p>
           </div>
           <div className="grid grid-cols-3 gap-3">
             {t.betaStats.map((stat: any, i: number) => (
-              <div key={i} className="bg-white border border-gray-100 rounded-xl p-3 text-center">
-                <p className="text-sm font-medium text-blue-700">{stat.value}</p>
-                <p className="text-xs text-gray-500 mt-1">{stat.label}</p>
+              <div key={i} className="bg-gray-50 rounded-2xl p-4 text-center">
+                <p className="text-[14px] font-extrabold text-blue-700">{stat.value}</p>
+                <p className="text-[12px] text-gray-500 mt-1">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
 
-{/* 비즈니스 모델 */}
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-2">{t.businessTitle}</h2>
-          <p className="text-sm text-gray-500 mb-4">{t.businessSub}</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {t.businessTiers?.map((tier: any, i: number) => (
-              <div key={i} className={`rounded-xl p-5 border-2 ${
-                tier.highlight 
-                  ? "bg-gradient-to-br from-blue-700 to-blue-800 text-white border-blue-700" 
-                  : "bg-white border-gray-200"
-              }`}>
-                <p className={`text-xs font-semibold mb-1 ${tier.highlight ? "text-blue-200" : "text-gray-400"}`}>
-                  {tier.tier}
-                </p>
-                <p className={`text-sm font-medium mb-1 ${tier.highlight ? "text-white" : "text-gray-900"}`}>
-                  {tier.target}
-                </p>
-                <p className={`text-lg font-bold mb-4 ${tier.highlight ? "text-white" : "text-blue-700"}`}>
-                  {tier.price}
-                </p>
-                <ul className="space-y-1.5">
-                  {tier.features.map((f: string, j: number) => (
-                    <li key={j} className={`text-xs flex items-start gap-1.5 ${tier.highlight ? "text-blue-100" : "text-gray-600"}`}>
-                      <span className={tier.highlight ? "text-blue-300" : "text-blue-500"}>✓</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+        {/* 비즈니스 모델 */}
+        {t.businessTiers && (
+          <div className="mb-10">
+            <h2 className="text-[18px] font-extrabold text-gray-900 mb-2">{t.businessTitle}</h2>
+            <p className="text-[14px] text-gray-500 font-medium mb-4">{t.businessSub}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {t.businessTiers.map((tier: any, i: number) => (
+                <div key={i} className={`rounded-3xl p-5 ${
+                  tier.highlight
+                    ? "bg-gradient-to-br from-blue-600 to-blue-800 text-white"
+                    : "bg-gray-50"
+                }`}>
+                  <p className={`text-[13px] font-bold mb-1 ${tier.highlight ? "text-blue-200" : "text-gray-400"}`}>{tier.tier}</p>
+                  <p className={`text-[15px] font-extrabold mb-1 ${tier.highlight ? "text-white" : "text-gray-900"}`}>{tier.target}</p>
+                  <p className={`text-[18px] font-extrabold mb-4 ${tier.highlight ? "text-white" : "text-blue-700"}`}>{tier.price}</p>
+                  <ul className="space-y-1.5">
+                    {tier.features.map((f: string, j: number) => (
+                      <li key={j} className={`text-[13px] flex items-start gap-1.5 ${tier.highlight ? "text-blue-100" : "text-gray-600"}`}>
+                        <span className={tier.highlight ? "text-blue-300" : "text-blue-500"}>✓</span>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="mb-12">
-          <h2 className="text-lg font-medium text-gray-900 mb-4">{t.impactTitle}</h2>
-          <div className="bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-100 rounded-xl p-5">
+        {/* 기대 효과 */}
+        <div className="mb-10">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-4">{t.impactTitle}</h2>
+          <div className="bg-blue-50 rounded-2xl p-5">
             <ul className="space-y-2">
               {t.impacts.map((impact: string, i: number) => (
                 <li key={i} className="flex items-start gap-2">
-                  <span className="text-blue-700 mt-0.5">✓</span>
-                  <span className="text-sm text-gray-800">{impact}</span>
+                  <span className="text-blue-700 mt-0.5 font-bold">✓</span>
+                  <span className="text-[14px] text-gray-800 font-medium">{impact}</span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="text-center bg-blue-700 rounded-xl p-8 mb-8">
-          <h2 className="text-xl text-white font-medium mb-4">{t.ctaTitle}</h2>
+        {/* CTA */}
+        <div className="text-center bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-8 mb-6">
+          <h2 className="text-[20px] text-white font-extrabold mb-4">{t.ctaTitle}</h2>
           <Link href="/start"
-            className="inline-block px-6 py-3 bg-white text-blue-700 rounded-xl font-medium text-sm hover:bg-blue-50 transition-all shadow-md">
+            className="inline-block px-8 py-4 bg-white text-blue-700 rounded-2xl font-extrabold text-[16px] hover:bg-blue-50 transition-all">
             {t.ctaBtn}
           </Link>
         </div>
 
-        <div className="p-4 bg-amber-50 border border-amber-100 rounded-xl">
-          <p className="text-xs text-amber-800 leading-relaxed">
-            ⚠️ {t.disclaimer}
-          </p>
+        {/* 면책 */}
+        <div className="p-4 bg-amber-50 border border-amber-100 rounded-2xl">
+          <p className="text-[13px] text-amber-800 leading-relaxed">⚠️ {t.disclaimer}</p>
         </div>
       </section>
     </main>

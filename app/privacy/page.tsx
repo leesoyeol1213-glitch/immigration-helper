@@ -20,41 +20,39 @@ export default function PrivacyPage() {
     <main className="min-h-screen bg-white">
       <LanguageHeader onBack={() => router.back()} backLabel={TEXTS.prev[lang]} />
 
-      <section className="max-w-2xl mx-auto px-6 py-10">
-        <h1 className="text-2xl font-medium text-gray-900 mb-2">{TEXTS.privacyPageTitle[lang]}</h1>
-        <p className="text-sm text-gray-500 mb-8">{TEXTS.privacyPageSub[lang]}</p>
+      <section className="max-w-md md:max-w-2xl mx-auto px-5 pt-6 pb-16">
+        <h1 className="text-[24px] font-extrabold text-gray-900 tracking-tight mb-2">{TEXTS.privacyPageTitle[lang]}</h1>
+        <p className="text-[14px] text-gray-500 font-medium mb-7">{TEXTS.privacyPageSub[lang]}</p>
 
         {/* 핵심 안심 박스 */}
-        <div className="bg-green-50 border-2 border-green-200 rounded-xl p-5 mb-8">
-          <p className="text-base font-medium text-green-900 mb-1">{TEXTS.privacyHero[lang]}</p>
-          <p className="text-sm text-green-700">{TEXTS.privacyHeroDesc[lang]}</p>
+        <div className="bg-green-50 border-2 border-green-200 rounded-3xl p-6 mb-7">
+          <p className="text-[18px] font-extrabold text-green-900 mb-1.5">🔒 {TEXTS.privacyHero[lang]}</p>
+          <p className="text-[14px] text-green-700 leading-relaxed">{TEXTS.privacyHeroDesc[lang]}</p>
         </div>
 
-        <div className="space-y-4 mb-8">
+        <div className="space-y-3 mb-7">
           {items.map((item, i) => (
-            <div key={i} className="flex items-start gap-3 p-4 rounded-xl border border-gray-100">
+            <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-gray-50">
               <span className="text-2xl">{item.icon}</span>
               <div>
-                <p className="text-sm font-medium text-gray-900 mb-1">{item.title}</p>
-                <p className="text-xs text-gray-600 leading-relaxed">{item.desc}</p>
+                <p className="text-[15px] font-extrabold text-gray-900 mb-1">{item.title}</p>
+                <p className="text-[13px] text-gray-600 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* 면책 */}
-        <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg mb-8">
-          <p className="text-sm font-medium text-amber-900 mb-1">{TEXTS.privacyDisclaimerTitle[lang]}</p>
-          <p className="text-xs text-amber-800 leading-relaxed">{TEXTS.privacyDisclaimerDesc[lang]}</p>
+        <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-2xl mb-7">
+          <p className="text-[15px] font-extrabold text-amber-900 mb-1">{TEXTS.privacyDisclaimerTitle[lang]}</p>
+          <p className="text-[13px] text-amber-800 leading-relaxed">{TEXTS.privacyDisclaimerDesc[lang]}</p>
         </div>
 
-        <p className="text-xs text-gray-400">{TEXTS.privacyUpdated[lang]}</p>
+        <p className="text-[12px] text-gray-400 mb-7">{TEXTS.privacyUpdated[lang]}</p>
 
-        <div className="mt-8">
-          <Link href="/" className="inline-block px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors">
-            {TEXTS.homeBtn[lang]}
-          </Link>
-        </div>
+        <Link href="/" className="block w-full text-center py-4 rounded-2xl font-extrabold text-[16px] bg-blue-700 text-white hover:bg-blue-800 transition-colors">
+          {TEXTS.homeBtn[lang]}
+        </Link>
       </section>
     </main>
   );

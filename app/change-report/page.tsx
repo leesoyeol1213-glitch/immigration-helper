@@ -21,22 +21,22 @@ export default function ChangeReportPage() {
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/" backLabel={TEXTS.prev[lang]} />
 
-      <section className="max-w-2xl mx-auto px-6 py-10">
+      <section className="max-w-md md:max-w-2xl mx-auto px-5 pt-6 pb-16">
         {/* 헤더 */}
-        <p className="text-xs font-medium text-blue-700 mb-2">{TEXTS.crTag[lang]}</p>
-        <h1 className="text-3xl font-bold text-gray-900 mb-3">{TEXTS.crTitle[lang]}</h1>
-        <p className="text-sm text-gray-500 mb-8">{TEXTS.crSub[lang]}</p>
+        <p className="text-[13px] font-bold text-blue-700 mb-2">{TEXTS.crTag[lang]}</p>
+        <h1 className="text-[26px] font-extrabold text-gray-900 tracking-tight mb-2">{TEXTS.crTitle[lang]}</h1>
+        <p className="text-[14px] text-gray-500 font-medium mb-7">{TEXTS.crSub[lang]}</p>
 
         {/* 탭 */}
-        <div className="flex gap-2 mb-6 border-b border-gray-200">
+        <div className="flex gap-2 mb-6 bg-gray-100 p-1.5 rounded-2xl">
           {tabs.map((t) => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`flex-1 px-3 py-3 text-sm font-medium border-b-2 transition-colors ${
+              className={`flex-1 px-2 py-3 text-[14px] font-extrabold rounded-xl transition-colors ${
                 tab === t.key
-                  ? "border-blue-700 text-blue-700"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  ? "bg-white text-blue-700 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               <span className="mr-1">{t.icon}</span>
@@ -47,44 +47,44 @@ export default function ChangeReportPage() {
 
         {/* 사업장 변경 */}
         {tab === "workplace" && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             <InfoRow label={TEXTS.crWhere[lang]} value={TEXTS.crWpWhere[lang]} icon="📍" />
             <InfoRow label={TEXTS.crDeadline[lang]} value={TEXTS.crWpDeadline[lang]} icon="⏰" />
             <InfoRow label={TEXTS.crDocs[lang]} value={TEXTS.crWpDocs[lang]} icon="📋" />
             <WarnBox text={TEXTS.crWpWarn[lang]} />
-            <p className="text-xs text-gray-500 leading-relaxed">{TEXTS.crWpNote[lang]}</p>
+            <p className="text-[13px] text-gray-500 leading-relaxed">{TEXTS.crWpNote[lang]}</p>
           </div>
         )}
 
         {/* 거주지 변경 */}
         {tab === "address" && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             <InfoRow label={TEXTS.crWhere[lang]} value={TEXTS.crAdWhere[lang]} icon="📍" />
             <InfoRow label={TEXTS.crDeadline[lang]} value={TEXTS.crAdDeadline[lang]} icon="⏰" />
             <InfoRow label={TEXTS.crDocs[lang]} value={TEXTS.crAdDocs[lang]} icon="📋" />
             <WarnBox text={TEXTS.crAdWarn[lang]} />
-            <p className="text-xs text-gray-500 leading-relaxed">{TEXTS.crAdLaw[lang]}</p>
+            <p className="text-[13px] text-gray-500 leading-relaxed">{TEXTS.crAdLaw[lang]}</p>
           </div>
         )}
 
         {/* 여권 변경 */}
         {tab === "passport" && (
-          <div className="space-y-4">
+          <div className="space-y-3">
             <InfoRow label={TEXTS.crWhere[lang]} value={TEXTS.crPpWhere[lang]} icon="📍" />
             <InfoRow label={TEXTS.crDeadline[lang]} value={TEXTS.crPpDeadline[lang]} icon="⏰" />
             <InfoRow label={TEXTS.crDocs[lang]} value={TEXTS.crPpDocs[lang]} icon="📋" />
-            <p className="text-xs text-gray-500 leading-relaxed">{TEXTS.crPpNote[lang]}</p>
+            <p className="text-[13px] text-gray-500 leading-relaxed">{TEXTS.crPpNote[lang]}</p>
           </div>
         )}
 
         {/* 공통 안내 */}
-        <div className="mt-8 p-4 bg-amber-50 border border-amber-100 rounded-xl">
-          <p className="text-xs text-amber-800 leading-relaxed">
+        <div className="mt-7 p-4 bg-amber-50 border border-amber-100 rounded-2xl">
+          <p className="text-[13px] text-amber-800 leading-relaxed">
             <strong>{TEXTS.crCommonTitle[lang]}</strong> {TEXTS.crCommonDesc[lang]}
           </p>
         </div>
 
-        <Link href="/start" className="block mt-6 w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
+        <Link href="/start" className="block mt-6 w-full text-center py-4 rounded-2xl font-extrabold text-[16px] bg-blue-700 text-white hover:bg-blue-800 transition-colors">
           {TEXTS.crCTA[lang]}
         </Link>
       </section>
@@ -94,11 +94,11 @@ export default function ChangeReportPage() {
 
 function InfoRow({ label, value, icon }: { label: string; value: string; icon: string }) {
   return (
-    <div className="flex items-start gap-3 p-4 bg-blue-50 border border-blue-100 rounded-xl">
+    <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-2xl">
       <span className="text-2xl">{icon}</span>
       <div className="flex-1">
-        <p className="text-xs font-medium text-blue-700 mb-1">{label}</p>
-        <p className="text-sm text-gray-900 leading-relaxed whitespace-pre-line">{value}</p>
+        <p className="text-[13px] font-bold text-blue-700 mb-1">{label}</p>
+        <p className="text-[15px] text-gray-900 leading-relaxed whitespace-pre-line">{value}</p>
       </div>
     </div>
   );
@@ -106,8 +106,8 @@ function InfoRow({ label, value, icon }: { label: string; value: string; icon: s
 
 function WarnBox({ text }: { text: string }) {
   return (
-    <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-      <p className="text-sm text-red-800 leading-relaxed">⚠️ {text}</p>
+    <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-2xl">
+      <p className="text-[14px] text-red-800 leading-relaxed font-medium">⚠️ {text}</p>
     </div>
   );
 }
