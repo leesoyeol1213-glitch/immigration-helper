@@ -6,6 +6,7 @@ import LanguageHeader, { useLang } from "@/components/LanguageHeader";
 import { TEXTS } from "@/lib/i18n";
 import { REGION_DATA, STATS_META, INDUSTRY_DATA, INDUSTRY_META } from "@/lib/stats";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import ChungbukMap from "@/components/ChungbukMap";
 
 interface ApiData {
   updatedAt: string;
@@ -76,6 +77,18 @@ export default function StatsPage() {
           <div className="bg-blue-50 rounded-2xl p-4 text-center">
             <p className="text-[24px] font-extrabold text-blue-700">{STATS_META.cityCount}</p>
             <p className="text-[12px] font-medium text-blue-600 mt-1">{TEXTS.statsCities[lang]}</p>
+          </div>
+        </div>
+
+        {/* 0. 충북 지도 */}
+        <div className="mb-9">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-1">🗺️ {TEXTS.statsMapTitle[lang]}</h2>
+          <p className="text-[13px] text-gray-500 font-medium mb-4">{TEXTS.statsMapDesc[lang]}</p>
+          <div className="bg-white border-2 border-gray-100 rounded-3xl p-4">
+            <ChungbukMap />
+            <p className="text-[13px] text-blue-600 mt-2 bg-blue-50 p-3 rounded-2xl font-medium">
+              💡 {TEXTS.statsMapInsight[lang]}
+            </p>
           </div>
         </div>
 
