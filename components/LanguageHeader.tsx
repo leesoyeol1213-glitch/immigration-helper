@@ -27,23 +27,25 @@ export default function LanguageHeader({ backHref, backLabel = "이전", onBack 
   };
 
   return (
-    <header className="px-6 py-4 border-b border-gray-100 max-w-2xl mx-auto flex items-center justify-between">
+    <header className="px-5 py-4 border-b border-gray-100 max-w-md md:max-w-2xl mx-auto flex items-center justify-between">
       {onBack ? (
-        <button onClick={onBack} className="text-sm text-gray-500 hover:text-blue-700">
-          ← {backLabel}
+        <button onClick={onBack} className="text-[14px] font-bold text-gray-600 hover:text-blue-700 transition-colors flex items-center gap-1">
+          <span className="text-lg">←</span> {backLabel}
         </button>
       ) : backHref ? (
-        <Link href={backHref} className="text-sm text-gray-500 hover:text-blue-700">
-          ← {backLabel}
+        <Link href={backHref} className="text-[14px] font-bold text-gray-600 hover:text-blue-700 transition-colors flex items-center gap-1">
+          <span className="text-lg">←</span> {backLabel}
         </Link>
       ) : (
-        <span></span>
+        <Link href="/" className="text-[18px] font-extrabold tracking-tight">
+          <span className="text-blue-700">서류</span>도우미
+        </Link>
       )}
 
       <div className="relative">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-xs px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100 hover:bg-blue-100 transition-colors flex items-center gap-1.5"
+          className="text-[13px] font-bold px-3.5 py-2 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors flex items-center gap-1.5"
         >
           <span>{LANG_INFO[lang].flag}</span>
           <span>{LANG_INFO[lang].name}</span>
@@ -51,12 +53,12 @@ export default function LanguageHeader({ backHref, backLabel = "이전", onBack 
         </button>
 
         {menuOpen && (
-          <div className="absolute right-0 mt-2 w-44 bg-white border border-gray-100 rounded-xl shadow-lg overflow-hidden z-50 max-h-96 overflow-y-auto">
+          <div className="absolute right-0 mt-2 w-44 bg-white border border-gray-100 rounded-2xl shadow-lg overflow-hidden z-50 max-h-96 overflow-y-auto">
             {(Object.keys(LANG_INFO) as Lang[]).map((code) => (
               <button
                 key={code}
                 onClick={() => handleSelect(code)}
-                className={`w-full px-4 py-2.5 text-left text-xs hover:bg-blue-50 flex items-center gap-2 ${
+                className={`w-full px-4 py-3 text-left text-[13px] font-medium hover:bg-blue-50 flex items-center gap-2 ${
                   lang === code ? "bg-blue-50 text-blue-700" : "text-gray-700"
                 }`}
               >
