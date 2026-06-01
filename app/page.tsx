@@ -34,6 +34,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "충북 외국인 56,301명",
     statsBannerSub: "법무부·충청북도 데이터로 본 11개 시군 · TOP10 국적 현황",
     statsBannerCTA: "현황 자세히 보기",
+    qStart: "서류 시작", qChange: "변경 신고", qStats: "통계 보기", qAbout: "서비스 소개",
+    heroTag: "사진 한 장이면 끝",
+    heroBig: "등록증 찍으면\n서류가 완성돼요",
+    heroDesc: "외국인등록증·여권을 촬영하면 AI가 자동으로 입력하고 공식 서류를 만들어드려요.",
+    visaQ: "어떤 비자를 연장하세요?",
+    visaE9: "비전문취업", visaE74: "숙련기능인력", visaF2R: "지역특화 우수인재",
+    visaPassport: "여권 갱신", visaPassportSub: "재발급·정보변경",
   },
   en: {
     badge: "🏆 AI + Public Data Service",
@@ -64,6 +71,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
     statsBannerCTA: "View Statistics",
+    qStart: "Start", qChange: "Report", qStats: "Statistics", qAbout: "About",
+    heroTag: "Just one photo",
+    heroBig: "Snap your ID,\nget your documents",
+    heroDesc: "Take a photo of your ID or passport — AI auto-fills and creates official forms.",
+    visaQ: "Which visa to extend?",
+    visaE9: "Non-professional", visaE74: "Skilled worker", visaF2R: "Regional talent",
+    visaPassport: "Passport", visaPassportSub: "Renewal · Update",
   },
   vi: {
     badge: "🏆 Dịch vụ AI + Dữ liệu công",
@@ -94,6 +108,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56.301 người nước ngoài tại Chungbuk",
     statsBannerSub: "11 thành phố · TOP 10 quốc tịch (Dữ liệu Bộ Tư pháp & Chungbuk)",
     statsBannerCTA: "Xem thống kê",
+    qStart: "Bắt đầu", qChange: "Báo cáo", qStats: "Thống kê", qAbout: "Giới thiệu",
+    heroTag: "Chỉ một bức ảnh",
+    heroBig: "Chụp thẻ,\nhoàn thành giấy tờ",
+    heroDesc: "Chụp ảnh thẻ hoặc hộ chiếu — AI tự điền và tạo mẫu chính thức.",
+    visaQ: "Gia hạn visa nào?",
+    visaE9: "Lao động phổ thông", visaE74: "Lao động lành nghề", visaF2R: "Nhân tài khu vực",
+    visaPassport: "Hộ chiếu", visaPassportSub: "Cấp lại · Cập nhật",
   },
   th: {
     badge: "🏆 บริการ AI + ข้อมูลสาธารณะ",
@@ -124,6 +145,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56,301 คนต่างชาติในเฉิงบุค",
     statsBannerSub: "11 เมือง/เขต · 10 สัญชาติที่มีมากที่สุด, จากข้อมูลของกระทรวงกฎหมายและจังหวัดเฉิงบุค",
     statsBannerCTA: "ดูสถิติ",
+    qStart: "Start", qChange: "Report", qStats: "Statistics", qAbout: "About",
+    heroTag: "Just one photo",
+    heroBig: "Snap your ID,\nget your documents",
+    heroDesc: "Take a photo of your ID or passport — AI auto-fills and creates official forms.",
+    visaQ: "Which visa to extend?",
+    visaE9: "Non-professional", visaE74: "Skilled worker", visaF2R: "Regional talent",
+    visaPassport: "Passport", visaPassportSub: "Renewal · Update",
   },
   km: {
     badge: "🏆 សេវាកម្ម AI + ទិន្នន័យសាធារណៈ",
@@ -154,6 +182,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
     statsBannerCTA: "View Statistics",
+    qStart: "Start", qChange: "Report", qStats: "Statistics", qAbout: "About",
+    heroTag: "Just one photo",
+    heroBig: "Snap your ID,\nget your documents",
+    heroDesc: "Take a photo of your ID or passport — AI auto-fills and creates official forms.",
+    visaQ: "Which visa to extend?",
+    visaE9: "Non-professional", visaE74: "Skilled worker", visaF2R: "Regional talent",
+    visaPassport: "Passport", visaPassportSub: "Renewal · Update",
   },
   ne: {
     badge: "🏆 AI + सार्वजनिक डेटा सेवा",
@@ -184,6 +219,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
     statsBannerCTA: "View Statistics",
+    qStart: "Start", qChange: "Report", qStats: "Statistics", qAbout: "About",
+    heroTag: "Just one photo",
+    heroBig: "Snap your ID,\nget your documents",
+    heroDesc: "Take a photo of your ID or passport — AI auto-fills and creates official forms.",
+    visaQ: "Which visa to extend?",
+    visaE9: "Non-professional", visaE74: "Skilled worker", visaF2R: "Regional talent",
+    visaPassport: "Passport", visaPassportSub: "Renewal · Update",
   },
   si: {
     badge: "🏆 AI + පොදු දත්ත සේවාව",
@@ -214,6 +256,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
     statsBannerCTA: "View Statistics",
+    qStart: "Start", qChange: "Report", qStats: "Statistics", qAbout: "About",
+    heroTag: "Just one photo",
+    heroBig: "Snap your ID,\nget your documents",
+    heroDesc: "Take a photo of your ID or passport — AI auto-fills and creates official forms.",
+    visaQ: "Which visa to extend?",
+    visaE9: "Non-professional", visaE74: "Skilled worker", visaF2R: "Regional talent",
+    visaPassport: "Passport", visaPassportSub: "Renewal · Update",
   },
   my: {
     badge: "🏆 AI + အများသုံးဒေတာ ဝန်ဆောင်မှု",
@@ -244,6 +293,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
     statsBannerCTA: "View Statistics",
+    qStart: "Start", qChange: "Report", qStats: "Statistics", qAbout: "About",
+    heroTag: "Just one photo",
+    heroBig: "Snap your ID,\nget your documents",
+    heroDesc: "Take a photo of your ID or passport — AI auto-fills and creates official forms.",
+    visaQ: "Which visa to extend?",
+    visaE9: "Non-professional", visaE74: "Skilled worker", visaF2R: "Regional talent",
+    visaPassport: "Passport", visaPassportSub: "Renewal · Update",
   },
   zh: {
     badge: "🏆 AI + 公共数据服务",
@@ -274,6 +330,13 @@ const TEXTS: Record<Lang, any> = {
     statsBannerTitle: "56,301 Foreigners in Chungbuk",
     statsBannerSub: "11 cities/counties · Top 10 nationalities, from MOJ & Chungbuk data",
     statsBannerCTA: "View Statistics",
+    qStart: "Start", qChange: "Report", qStats: "Statistics", qAbout: "About",
+    heroTag: "Just one photo",
+    heroBig: "Snap your ID,\nget your documents",
+    heroDesc: "Take a photo of your ID or passport — AI auto-fills and creates official forms.",
+    visaQ: "Which visa to extend?",
+    visaE9: "Non-professional", visaE74: "Skilled worker", visaF2R: "Regional talent",
+    visaPassport: "Passport", visaPassportSub: "Renewal · Update",
   },
 };
 
@@ -327,115 +390,90 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="max-w-3xl mx-auto px-6 py-12 text-center">
-        <div className="inline-block px-4 py-1.5 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full mb-6 border border-blue-200">
-          <p className="text-xs font-semibold text-blue-900">{t.badge}</p>
+      <section className="max-w-md mx-auto px-5 pt-6 pb-16">
+        {/* 큰 인사 헤드라인 */}
+        <div className="mb-6">
+          <h1 className="text-[26px] font-extrabold text-gray-900 leading-snug tracking-tight mb-1.5">
+            {t.heroLine1}<br />
+            <span className="text-blue-700">{t.heroLine2}</span>
+          </h1>
+          <p className="text-[15px] text-gray-500 font-medium">{t.subLine1} · {t.subLine2}</p>
         </div>
 
-        <h1 className="text-3xl md:text-5xl font-medium text-gray-900 leading-tight mb-4">
-          {t.heroLine1}<br />
-          <span className="text-blue-700">{t.heroLine2}</span>
-        </h1>
-
-        <p className="text-base md:text-lg text-gray-600 leading-relaxed mb-8 mt-6">
-          {t.subLine1}<br />{t.subLine2}
-        </p>
-
-        <Link href="/start"
-          className="inline-block px-8 py-4 bg-blue-700 text-white rounded-xl font-medium text-base hover:bg-blue-800 transition-all shadow-md hover:shadow-lg hover:scale-105">
-          {t.cta}
-        </Link>
-
-        <div className="mt-4">
-          <Link href="/about" className="text-sm text-gray-500 hover:text-blue-700 underline">
-            {t.learnMore}
+        {/* 퀵 아이콘 4개 */}
+        <div className="grid grid-cols-4 gap-2 mb-7">
+          <Link href="/start" className="text-center group">
+            <div className="w-[60px] h-[60px] mx-auto mb-2 rounded-[18px] bg-orange-50 flex items-center justify-center text-[26px] group-hover:scale-105 transition-transform">📷</div>
+            <p className="text-[12px] font-bold text-gray-700">{t.qStart}</p>
+          </Link>
+          <Link href="/change-report" className="text-center group">
+            <div className="w-[60px] h-[60px] mx-auto mb-2 rounded-[18px] bg-green-50 flex items-center justify-center text-[26px] group-hover:scale-105 transition-transform">📋</div>
+            <p className="text-[12px] font-bold text-gray-700">{t.qChange}</p>
+          </Link>
+          <Link href="/stats" className="text-center group">
+            <div className="w-[60px] h-[60px] mx-auto mb-2 rounded-[18px] bg-pink-50 flex items-center justify-center text-[26px] group-hover:scale-105 transition-transform">📊</div>
+            <p className="text-[12px] font-bold text-gray-700">{t.qStats}</p>
+          </Link>
+          <Link href="/about" className="text-center group">
+            <div className="w-[60px] h-[60px] mx-auto mb-2 rounded-[18px] bg-purple-50 flex items-center justify-center text-[26px] group-hover:scale-105 transition-transform">💬</div>
+            <p className="text-[12px] font-bold text-gray-700">{t.qAbout}</p>
           </Link>
         </div>
 
-        {/* 변경 신고 안내 카드 */}
-        <Link href="/change-report" className="block mt-6 group">
-          <div className="bg-white border-2 border-amber-200 hover:border-amber-400 rounded-xl p-4 text-left transition-all">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">📖</span>
-              <div className="flex-1">
-                <p className="text-sm font-bold text-gray-900 mb-0.5">{t.crBannerTitle}</p>
-                <p className="text-xs text-gray-500">{t.crBannerSub}</p>
-              </div>
-              <span className="text-amber-600 group-hover:translate-x-1 transition-transform">→</span>
-            </div>
+        {/* 큰 히어로 배너 */}
+        <Link href="/start" className="block mb-7">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-7 text-white text-left shadow-lg hover:shadow-xl transition-all">
+            <span className="inline-block bg-white/20 text-[13px] font-bold px-3.5 py-1.5 rounded-full mb-3.5">📷 {t.heroTag}</span>
+            <p className="text-[25px] font-extrabold leading-snug tracking-tight mb-2.5 whitespace-pre-line">{t.heroBig}</p>
+            <p className="text-[14px] text-blue-100 leading-relaxed mb-5">{t.heroDesc}</p>
+            <div className="bg-white text-blue-700 text-center py-4 rounded-2xl text-[16px] font-extrabold">{t.cta}</div>
           </div>
         </Link>
 
-        {/* 충북 통계 배너 (공공데이터) */}
-        <Link href="/stats" className="block mt-10 group">
-          <div className="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 rounded-2xl p-6 text-white text-left shadow-lg hover:shadow-xl transition-all hover:scale-[1.01]">
-            <p className="text-xs font-medium text-blue-200 mb-2">📊 {t.statsBannerTag}</p>
-            <p className="text-2xl md:text-3xl font-bold mb-2">
-              {t.statsBannerTitle}
-            </p>
-            <p className="text-sm text-blue-100 mb-4">{t.statsBannerSub}</p>
-            <div className="flex items-center gap-2 text-sm font-medium text-white">
-              <span>{t.statsBannerCTA}</span>
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </div>
+        {/* 비자 큰 카드 2열 */}
+        <p className="text-[17px] font-extrabold text-gray-900 mb-3.5 tracking-tight">{t.visaQ}</p>
+        <div className="grid grid-cols-2 gap-3 mb-7">
+          <Link href="/start" className="bg-pink-50 rounded-[18px] p-5 min-h-[118px] flex flex-col justify-between hover:scale-[1.02] transition-transform">
+            <div className="text-[28px]">🏭</div>
+            <div><p className="text-[18px] font-extrabold text-gray-900 tracking-tight">E-9</p><p className="text-[13px] text-gray-500 font-medium">{t.visaE9}</p></div>
+          </Link>
+          <Link href="/start" className="bg-amber-50 rounded-[18px] p-5 min-h-[118px] flex flex-col justify-between hover:scale-[1.02] transition-transform">
+            <div className="text-[28px]">🔧</div>
+            <div><p className="text-[18px] font-extrabold text-gray-900 tracking-tight">E-7-4</p><p className="text-[13px] text-gray-500 font-medium">{t.visaE74}</p></div>
+          </Link>
+          <Link href="/start" className="bg-teal-50 rounded-[18px] p-5 min-h-[118px] flex flex-col justify-between hover:scale-[1.02] transition-transform">
+            <div className="text-[28px]">🏡</div>
+            <div><p className="text-[18px] font-extrabold text-gray-900 tracking-tight">F-2-R</p><p className="text-[13px] text-gray-500 font-medium">{t.visaF2R}</p></div>
+          </Link>
+          <Link href="/start" className="bg-purple-50 rounded-[18px] p-5 min-h-[118px] flex flex-col justify-between hover:scale-[1.02] transition-transform">
+            <div className="text-[28px]">📘</div>
+            <div><p className="text-[18px] font-extrabold text-gray-900 tracking-tight">{t.visaPassport}</p><p className="text-[13px] text-gray-500 font-medium">{t.visaPassportSub}</p></div>
+          </Link>
+        </div>
+
+        {/* 통계 배너 */}
+        <Link href="/stats" className="block mb-7">
+          <div className="bg-blue-50 border-2 border-blue-100 rounded-3xl p-6 text-left hover:border-blue-300 transition-all">
+            <p className="text-[13px] font-bold text-blue-700 mb-2">📊 {t.statsBannerTag}</p>
+            <p className="text-[23px] font-extrabold text-gray-900 mb-1.5 tracking-tight">{t.statsBannerTitle}</p>
+            <p className="text-[13px] text-gray-500 font-medium mb-3.5">{t.statsBannerSub}</p>
+            <p className="text-[15px] font-extrabold text-blue-700">{t.statsBannerCTA} →</p>
           </div>
         </Link>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 text-left">
-          <div className="bg-white border-2 border-blue-100 rounded-xl p-5 hover:border-blue-300 transition-all">
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-3">
-              <span className="text-2xl">📷</span>
-            </div>
-            <p className="text-xs font-semibold text-blue-700 mb-1">AI</p>
-            <p className="text-sm font-medium text-gray-900 mb-1">{t.feature1Title}</p>
-            <p className="text-xs text-gray-500 leading-relaxed">{t.feature1Desc}</p>
-          </div>
-
-          <div className="bg-white border-2 border-blue-100 rounded-xl p-5 hover:border-blue-300 transition-all">
-            <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-3">
-              <span className="text-2xl">📍</span>
-            </div>
-            <p className="text-xs font-semibold text-green-700 mb-1">PUBLIC DATA</p>
-            <p className="text-sm font-medium text-gray-900 mb-1">{t.feature2Title}</p>
-            <p className="text-xs text-gray-500 leading-relaxed">{t.feature2Desc}</p>
-          </div>
-
-          <div className="bg-white border-2 border-blue-100 rounded-xl p-5 hover:border-blue-300 transition-all">
-            <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-3">
-              <span className="text-2xl">🌍</span>
-            </div>
-            <p className="text-xs font-semibold text-purple-700 mb-1">MULTILINGUAL</p>
-            <p className="text-sm font-medium text-gray-900 mb-1">{t.feature3Title}</p>
-            <p className="text-xs text-gray-500 leading-relaxed">{t.feature3Desc}</p>
+        {/* 신뢰 요소 (작게) */}
+        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-5 text-left mb-4">
+          <p className="text-[13px] font-bold text-gray-700 mb-2.5">⚙️ {t.techTitle}</p>
+          <div className="space-y-1.5">
+            <p className="text-[12px] text-gray-600">{t.techData}</p>
+            <p className="text-[12px] text-gray-600">{t.techAi}</p>
+            <p className="text-[12px] text-gray-600">{t.techSec}</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 mt-8">
-          <div className="bg-white border border-gray-100 rounded-xl p-4">
-            <p className="text-xl font-semibold text-blue-700">{t.stat1Value}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{t.stat1Label}</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4">
-            <p className="text-xl font-semibold text-blue-700">{t.stat2Value}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{t.stat2Label}</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-4">
-            <p className="text-xl font-semibold text-blue-700">{t.stat3Value}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{t.stat3Label}</p>
-          </div>
-        </div>
-
-        <div className="mt-10 p-5 bg-gray-50 border border-gray-100 rounded-xl text-left">
-          <p className="text-xs font-semibold text-gray-700 mb-3">⚙️ {t.techTitle}</p>
-          <div className="space-y-2">
-            <p className="text-xs text-gray-600">{t.techData}</p>
-            <p className="text-xs text-gray-600">{t.techAi}</p>
-            <p className="text-xs text-gray-600">{t.techSec}</p>
-          </div>
-        </div>
-
-        <div className="mt-6 p-4 bg-amber-50 border border-amber-100 rounded-xl text-left">
-          <p className="text-xs text-amber-800 leading-relaxed">
+        {/* 안내 */}
+        <div className="p-4 bg-amber-50 border border-amber-100 rounded-2xl text-left">
+          <p className="text-[12px] text-amber-800 leading-relaxed">
             <strong>{t.disclaimerTitle}</strong> {t.disclaimerText}
           </p>
         </div>
