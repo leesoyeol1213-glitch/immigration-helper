@@ -89,6 +89,9 @@ export default function StatsPage() {
             <p className="text-[13px] text-blue-600 mt-2 bg-blue-50 p-3 rounded-2xl font-medium">
               💡 {TEXTS.statsMapInsight[lang]}
             </p>
+            <p className="text-[13px] text-gray-600 mt-2 bg-gray-50 p-3 rounded-2xl font-medium">
+              🏭 {TEXTS.statsMapIndustry[lang]}
+            </p>
           </div>
         </div>
 

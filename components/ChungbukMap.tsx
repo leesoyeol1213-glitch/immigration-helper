@@ -89,12 +89,6 @@ export default function ChungbukMap() {
               <p className={`text-[12px] font-bold ${zone.color}`}>{zone.label}</p>
               {zone.sub && <p className="text-[11px] text-gray-400 mt-0.5">{zone.sub}</p>}
             </div>
-            <div className="mt-2 pt-2 border-t border-gray-100">
-              <p className="text-[11px] text-gray-500 leading-snug">
-                💼 충북 외국인 근로자<br /><span className="font-bold text-gray-700">87% 제조업</span> 종사
-              </p>
-              <p className="text-[9px] text-gray-300 mt-0.5">* 충북 전체 기준</p>
-            </div>
           </div>
         );
       })()}

@@ -750,6 +750,7 @@ visaE7Label: {
   statsMapTitle: { ko: "충북 지도로 보기", en: "Chungbuk Map", vi: "Bản đồ Chungbuk" },
   statsMapDesc: { ko: "색이 진할수록 외국인이 많이 거주하는 지역이에요", en: "Darker = more foreign residents", vi: "Màu đậm = nhiều người nước ngoài" },
   statsMapInsight: { ko: "청주·음성·진천에 외국인이 집중되어 있어요", en: "Foreigners concentrated in Cheongju, Eumseong, Jincheon", vi: "Tập trung ở Cheongju, Eumseong, Jincheon" },
+  statsMapIndustry: { ko: "충북 외국인 근로자의 약 87%가 제조업에 종사합니다 (한국고용정보원 2026년 1분기)", en: "About 87% of foreign workers in Chungbuk are in manufacturing (2026 Q1)", vi: "Khoảng 87% lao động nước ngoài tại Chungbuk làm trong ngành sản xuất (Q1 2026)" },
   statsVisaTitle: { ko: "비자별 현황 (전국)", en: "By Visa Type (Nationwide)", vi: "Theo loại visa" },
   statsVisaDesc: { ko: "우리 서비스가 다루는 비자 중심", en: "Focusing on visas we cover", vi: "Tập trung vào visa chúng tôi hỗ trợ" },
   statsVisaOurs: { ko: "우리 서비스 지원", en: "We cover", vi: "Chúng tôi hỗ trợ" },
