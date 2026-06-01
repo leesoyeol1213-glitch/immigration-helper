@@ -48,3 +48,20 @@ export const VISA_DATA = [
   { name: "H-2 방문취업", code: "H-2", count: 93302, ours: false, desc: "동포 방문" },
   { name: "F-6 결혼이민", code: "F-6", count: 148376, ours: false, desc: "결혼" },
 ];
+
+// 4. 충북 외국인 근로자 업종별 (한국고용정보원 고용행정통계, 2026년 1분기, E-9 일반외국인)
+export const INDUSTRY_DATA = [
+  { name: "제조업", count: 16490, pct: 87.0 },
+  { name: "농축산업", count: 2171, pct: 11.5 },
+  { name: "서비스업", count: 150, pct: 0.8 },
+  { name: "건설업", count: 100, pct: 0.5 },
+  { name: "임업", count: 20, pct: 0.1 },
+  { name: "어업", count: 19, pct: 0.1 },
+  { name: "광업", count: 9, pct: 0.0 },
+];
+
+export const INDUSTRY_META = {
+  total: 18959,
+  source: "한국고용정보원 고용행정통계 (2026년 1분기, E-9 고용허가제)",
+  topShare: 87, // 제조업 비율
+};

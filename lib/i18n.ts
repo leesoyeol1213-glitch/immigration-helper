@@ -744,6 +744,9 @@ visaE7Label: {
     en: "Top 10 nationwide via MOJ API (as of 2024.12.31)", 
     vi: "TOP 10 toàn quốc qua API Bộ Tư pháp (31/12/2024)" 
   },
+  statsIndTitle: { ko: "업종별 분포 (충북)", en: "By Industry (Chungbuk)", vi: "Theo ngành (Chungbuk)" },
+  statsIndDesc: { ko: "충북 외국인 근로자(E-9)가 일하는 업종 — 한국고용정보원 2026년 1분기", en: "Industries where E-9 workers work in Chungbuk (2026 Q1)", vi: "Ngành nghề lao động E-9 tại Chungbuk (Q1 2026)" },
+  statsIndInsight: { ko: "충북 외국인 근로자의 약 87%가 제조업에 종사합니다", en: "About 87% of foreign workers in Chungbuk are in manufacturing", vi: "Khoảng 87% lao động nước ngoài tại Chungbuk làm trong ngành sản xuất" },
   statsVisaTitle: { ko: "비자별 현황 (전국)", en: "By Visa Type (Nationwide)", vi: "Theo loại visa" },
   statsVisaDesc: { ko: "우리 서비스가 다루는 비자 중심", en: "Focusing on visas we cover", vi: "Tập trung vào visa chúng tôi hỗ trợ" },
   statsVisaOurs: { ko: "우리 서비스 지원", en: "We cover", vi: "Chúng tôi hỗ trợ" },

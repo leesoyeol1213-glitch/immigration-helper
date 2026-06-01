@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import LanguageHeader, { useLang } from "@/components/LanguageHeader";
 import { TEXTS } from "@/lib/i18n";
-import { REGION_DATA, STATS_META } from "@/lib/stats";
+import { REGION_DATA, STATS_META, INDUSTRY_DATA, INDUSTRY_META } from "@/lib/stats";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 interface ApiData {
@@ -52,42 +52,38 @@ export default function StatsPage() {
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/" backLabel={TEXTS.prev[lang]} />
 
-      <section className="max-w-3xl mx-auto px-6 py-10">
+      <section className="max-w-md md:max-w-3xl mx-auto px-5 pt-6 pb-16">
         {/* 헤더 */}
-        <div className="mb-8">
-          <p className="text-xs font-medium text-blue-700 mb-2">{TEXTS.statsTag[lang]}</p>
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">
-            {TEXTS.statsTitle[lang]}
-          </h1>
-          <p className="text-sm text-gray-500">{TEXTS.statsSub[lang]}</p>
+        <div className="mb-7">
+          <p className="text-[13px] font-bold text-blue-700 mb-2">{TEXTS.statsTag[lang]}</p>
+          <h1 className="text-[26px] font-extrabold text-gray-900 tracking-tight mb-2">{TEXTS.statsTitle[lang]}</h1>
+          <p className="text-[14px] text-gray-500 font-medium">{TEXTS.statsSub[lang]}</p>
           {apiData && (
-            <p className="text-xs text-green-600 mt-2">
-              🟢 {TEXTS.statsLive[lang]} · {apiData.sourceDate}
-            </p>
+            <p className="text-[12px] font-bold text-green-600 mt-2">🟢 {TEXTS.statsLive[lang]} · {apiData.sourceDate}</p>
           )}
         </div>
 
         {/* 하이라이트 숫자 */}
-        <div className="grid grid-cols-3 gap-3 mb-10">
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-blue-700">{STATS_META.totalForeigners.toLocaleString()}</p>
-            <p className="text-xs text-blue-600 mt-1">{TEXTS.statsTotal[lang]}</p>
+        <div className="grid grid-cols-3 gap-3 mb-9">
+          <div className="bg-blue-50 rounded-2xl p-4 text-center">
+            <p className="text-[24px] font-extrabold text-blue-700">{STATS_META.totalForeigners.toLocaleString()}</p>
+            <p className="text-[12px] font-medium text-blue-600 mt-1">{TEXTS.statsTotal[lang]}</p>
           </div>
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-blue-700">{STATS_META.foreignerRatio}%</p>
-            <p className="text-xs text-blue-600 mt-1">{TEXTS.statsRatio[lang]}</p>
+          <div className="bg-blue-50 rounded-2xl p-4 text-center">
+            <p className="text-[24px] font-extrabold text-blue-700">{STATS_META.foreignerRatio}%</p>
+            <p className="text-[12px] font-medium text-blue-600 mt-1">{TEXTS.statsRatio[lang]}</p>
           </div>
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-blue-700">{STATS_META.cityCount}</p>
-            <p className="text-xs text-blue-600 mt-1">{TEXTS.statsCities[lang]}</p>
+          <div className="bg-blue-50 rounded-2xl p-4 text-center">
+            <p className="text-[24px] font-extrabold text-blue-700">{STATS_META.cityCount}</p>
+            <p className="text-[12px] font-medium text-blue-600 mt-1">{TEXTS.statsCities[lang]}</p>
           </div>
         </div>
 
-        {/* 1. 시군별 분포 (정적, 충북) */}
-        <div className="mb-10">
-          <h2 className="text-lg font-bold text-gray-900 mb-1">📍 {TEXTS.statsRegionTitle[lang]}</h2>
-          <p className="text-xs text-gray-500 mb-4">{TEXTS.statsRegionDesc[lang]}</p>
-          <div className="bg-white border border-gray-100 rounded-xl p-4">
+        {/* 1. 시군별 분포 */}
+        <div className="mb-9">
+          <h2 className="text-[18px] font-extrabold text-gray-900 mb-1">📍 {TEXTS.statsRegionTitle[lang]}</h2>
+          <p className="text-[13px] text-gray-500 font-medium mb-4">{TEXTS.statsRegionDesc[lang]}</p>
+          <div className="bg-white border-2 border-gray-100 rounded-3xl p-4">
             <ResponsiveContainer width="100%" height={350}>
               <BarChart data={REGION_DATA} layout="vertical" margin={{ left: 10, right: 30 }}>
                 <XAxis type="number" tick={{ fontSize: 11 }} />
@@ -100,7 +96,7 @@ export default function StatsPage() {
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
-            <div className="flex gap-4 mt-2 text-xs">
+            <div className="flex gap-4 mt-2 text-[12px] font-medium">
               <span className="flex items-center gap-1"><span className="w-3 h-3 bg-blue-700 inline-block rounded"></span>{TEXTS.statsNormal[lang]}</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 bg-orange-400 inline-block rounded"></span>{TEXTS.statsInterest[lang]}</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 bg-amber-500 inline-block rounded"></span>{TEXTS.statsReduction[lang]}</span>
@@ -108,16 +104,16 @@ export default function StatsPage() {
           </div>
         </div>
 
-        {/* 2. 국적별 분포 (API 실시간, 전국) */}
-        <div className="mb-10">
+        {/* 2. 국적별 분포 */}
+        <div className="mb-9">
           <div className="flex items-center justify-between mb-1">
-            <h2 className="text-lg font-bold text-gray-900">🌏 {TEXTS.statsNationTitle[lang]}</h2>
-            {apiData && <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">API</span>}
+            <h2 className="text-[18px] font-extrabold text-gray-900">🌏 {TEXTS.statsNationTitle[lang]}</h2>
+            {apiData && <span className="text-[12px] font-bold bg-green-100 text-green-700 px-2.5 py-1 rounded-full">API</span>}
           </div>
-          <p className="text-xs text-gray-500 mb-4">{TEXTS.statsNationDescApi[lang]}</p>
-          <div className="bg-white border border-gray-100 rounded-xl p-4">
-            {loading && <p className="text-xs text-gray-500 text-center py-12">불러오는 중...</p>}
-            {error && <p className="text-xs text-red-500 text-center py-12">데이터를 불러올 수 없어요</p>}
+          <p className="text-[13px] text-gray-500 font-medium mb-4">{TEXTS.statsNationDescApi[lang]}</p>
+          <div className="bg-white border-2 border-gray-100 rounded-3xl p-4">
+            {loading && <p className="text-[13px] text-gray-500 text-center py-12">불러오는 중...</p>}
+            {error && <p className="text-[13px] text-red-500 text-center py-12">데이터를 불러올 수 없어요</p>}
             {apiData && (
               <>
                 <ResponsiveContainer width="100%" height={350}>
@@ -128,7 +124,7 @@ export default function StatsPage() {
                     <Bar dataKey="count" fill="#1d4ed8" radius={[0, 6, 6, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
-                <p className="text-xs text-blue-600 mt-3 bg-blue-50 p-2 rounded">
+                <p className="text-[13px] text-blue-600 mt-3 bg-blue-50 p-3 rounded-2xl font-medium">
                   💡 {TEXTS.statsNationInsight[lang]}
                 </p>
               </>
@@ -136,16 +132,16 @@ export default function StatsPage() {
           </div>
         </div>
 
-        {/* 3. 비자별 (API 실시간, 전국) */}
-        <div className="mb-10">
+        {/* 3. 비자별 */}
+        <div className="mb-9">
           <div className="flex items-center justify-between mb-1">
-            <h2 className="text-lg font-bold text-gray-900">📋 {TEXTS.statsVisaTitle[lang]}</h2>
-            {apiData && <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">API</span>}
+            <h2 className="text-[18px] font-extrabold text-gray-900">📋 {TEXTS.statsVisaTitle[lang]}</h2>
+            {apiData && <span className="text-[12px] font-bold bg-green-100 text-green-700 px-2.5 py-1 rounded-full">API</span>}
           </div>
-          <p className="text-xs text-gray-500 mb-4">{TEXTS.statsVisaDesc[lang]}</p>
-          <div className="bg-white border border-gray-100 rounded-xl p-4">
-            {loading && <p className="text-xs text-gray-500 text-center py-12">불러오는 중...</p>}
-            {error && <p className="text-xs text-red-500 text-center py-12">데이터를 불러올 수 없어요</p>}
+          <p className="text-[13px] text-gray-500 font-medium mb-4">{TEXTS.statsVisaDesc[lang]}</p>
+          <div className="bg-white border-2 border-gray-100 rounded-3xl p-4">
+            {loading && <p className="text-[13px] text-gray-500 text-center py-12">불러오는 중...</p>}
+            {error && <p className="text-[13px] text-red-500 text-center py-12">데이터를 불러올 수 없어요</p>}
             {apiData && (
               <>
                 <ResponsiveContainer width="100%" height={300}>
@@ -160,7 +156,7 @@ export default function StatsPage() {
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
-                <div className="flex gap-4 mt-2 text-xs">
+                <div className="flex gap-4 mt-2 text-[12px] font-medium">
                   <span className="flex items-center gap-1"><span className="w-3 h-3 bg-blue-700 inline-block rounded"></span>{TEXTS.statsVisaOurs[lang]}</span>
                   <span className="flex items-center gap-1"><span className="w-3 h-3 bg-slate-300 inline-block rounded"></span>{TEXTS.statsVisaOther[lang]}</span>
                 </div>
@@ -169,14 +165,40 @@ export default function StatsPage() {
           </div>
         </div>
 
-        {/* 출처 */}
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
-          <p className="text-xs font-medium text-gray-700 mb-2">📚 {TEXTS.statsSource[lang]}</p>
-          <p className="text-xs text-gray-600 leading-relaxed">• {STATS_META.sourceCb}</p>
-          <p className="text-xs text-gray-600 leading-relaxed">• {STATS_META.sourceMoj} · 공공데이터 API 자동 갱신</p>
+        {/* 4. 업종별 (충북, 한국고용정보원) */}
+        <div className="mb-9">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="text-[18px] font-extrabold text-gray-900">🏭 {TEXTS.statsIndTitle[lang]}</h2>
+          </div>
+          <p className="text-[13px] text-gray-500 font-medium mb-4">{TEXTS.statsIndDesc[lang]}</p>
+          <div className="bg-white border-2 border-gray-100 rounded-3xl p-4">
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={INDUSTRY_DATA} layout="vertical" margin={{ left: 10, right: 40 }}>
+                <XAxis type="number" tick={{ fontSize: 11 }} />
+                <YAxis type="category" dataKey="name" tick={{ fontSize: 12 }} width={70} />
+                <Tooltip formatter={(v) => `${Number(v).toLocaleString()}명`} />
+                <Bar dataKey="count" radius={[0, 6, 6, 0]}>
+                  {INDUSTRY_DATA.map((entry, i) => (
+                    <Cell key={i} fill={i === 0 ? "#1d4ed8" : "#93c5fd"} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+            <p className="text-[13px] text-blue-600 mt-3 bg-blue-50 p-3 rounded-2xl font-medium">
+              💡 {TEXTS.statsIndInsight[lang]}
+            </p>
+          </div>
         </div>
 
-        <Link href="/start" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
+        {/* 출처 */}
+        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 mb-6">
+          <p className="text-[13px] font-bold text-gray-700 mb-2">📚 {TEXTS.statsSource[lang]}</p>
+          <p className="text-[12px] text-gray-600 leading-relaxed">• {STATS_META.sourceCb}</p>
+          <p className="text-[12px] text-gray-600 leading-relaxed">• {STATS_META.sourceMoj} · 공공데이터 API 자동 갱신</p>
+          <p className="text-[12px] text-gray-600 leading-relaxed">• {INDUSTRY_META.source}</p>
+        </div>
+
+        <Link href="/start" className="block w-full text-center py-4 rounded-2xl font-extrabold text-[16px] bg-blue-700 text-white hover:bg-blue-800 transition-colors">
           {TEXTS.statsCTA[lang]}
         </Link>
       </section>
