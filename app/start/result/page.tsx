@@ -249,7 +249,7 @@ export default function ResultPage() {
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/start/step5" backLabel={TEXTS.prev[lang]} />
 
-      <section className="max-w-md mx-auto px-5 pt-6 pb-16">
+      <section className="max-w-md md:max-w-2xl mx-auto px-5 pt-6 pb-16">
         {/* 완료 헤더 */}
         <div className="text-center mb-7">
           <div className="inline-flex w-16 h-16 bg-green-100 rounded-full items-center justify-center mb-3">

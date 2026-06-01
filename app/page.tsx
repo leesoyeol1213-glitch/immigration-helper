@@ -390,7 +390,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="max-w-md mx-auto px-5 pt-6 pb-16">
+      <section className="max-w-md md:max-w-3xl mx-auto px-5 pt-6 pb-16">
         {/* 큰 인사 헤드라인 */}
         <div className="mb-6">
           <h1 className="text-[26px] font-extrabold text-gray-900 leading-snug tracking-tight mb-1.5">

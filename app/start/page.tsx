@@ -29,7 +29,7 @@ export default function StartPage() {
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/" backLabel={TEXTS.back[lang]} />
 
-      <section className="max-w-md mx-auto px-5 pt-6 pb-28">
+      <section className="max-w-md md:max-w-3xl mx-auto px-5 pt-6 pb-28">
         <h1 className="text-[24px] font-extrabold text-gray-900 tracking-tight mb-1.5">{TEXTS.visaTitle[lang]}</h1>
         <p className="text-[15px] text-gray-500 font-medium mb-7">{TEXTS.visaSub[lang]}</p>
 
@@ -63,7 +63,7 @@ export default function StartPage() {
 
       {/* 하단 고정 다음 버튼 */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-5 py-4">
-        <div className="max-w-md mx-auto">
+        <div className="max-w-md md:max-w-2xl mx-auto">
           {nextHref ? (
             <Link
               href={nextHref}
