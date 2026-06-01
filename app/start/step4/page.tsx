@@ -28,66 +28,73 @@ export default function Step4Page() {
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/start/step3" backLabel={TEXTS.prev[lang]} />
 
-      <div className="max-w-2xl mx-auto px-6 pt-6">
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-          <span>4 / 5</span><span>·</span><span>{TEXTS.addressStep[lang]}</span>
+      {/* 진행바 */}
+      <div className="max-w-md md:max-w-2xl mx-auto px-5 pt-5">
+        <div className="flex items-center gap-2 text-[13px] font-bold text-gray-500 mb-2">
+          <span className="text-blue-700">4 / 5</span><span>·</span><span>{TEXTS.addressStep[lang]}</span>
         </div>
-        <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
           <div className="h-full bg-blue-700 rounded-full" style={{ width: "80%" }}></div>
         </div>
       </div>
 
-      <section className="max-w-2xl mx-auto px-6 py-10">
-        <h1 className="text-2xl font-medium text-gray-900 mb-2 whitespace-pre-line">{TEXTS.addressTitle[lang]}</h1>
-        <p className="text-sm text-gray-500 mb-2">{TEXTS.addressSub[lang]}</p>
-        <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-6">
-          <p className="text-xs text-blue-700">{TEXTS.why[lang]} {TEXTS.addressWhy[lang]}</p>
+      <section className="max-w-md md:max-w-2xl mx-auto px-5 pt-7 pb-28">
+        <h1 className="text-[24px] font-extrabold text-gray-900 tracking-tight mb-1.5 whitespace-pre-line">{TEXTS.addressTitle[lang]}</h1>
+        <p className="text-[15px] text-gray-500 font-medium mb-3">{TEXTS.addressSub[lang]}</p>
+        <div className="inline-block px-3.5 py-1.5 bg-blue-50 rounded-full mb-7">
+          <p className="text-[12px] font-bold text-blue-700">{TEXTS.why[lang]} {TEXTS.addressWhy[lang]}</p>
         </div>
 
         <div className="space-y-3">
-          {options.map((option) => (
-            <button key={option.value} onClick={() => handleSelect(option.value)}
-              className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
-                addressChanged === option.value ? "border-blue-700 bg-blue-50" : "border-gray-200 hover:border-blue-300"
-              }`}>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium text-gray-900">{option.label}</p>
-                  <p className="text-xs text-gray-500 mt-1">{option.desc}</p>
+          {options.map((option) => {
+            const selected = addressChanged === option.value;
+            return (
+              <button key={option.value} onClick={() => handleSelect(option.value)}
+                className={`w-full rounded-[20px] p-5 text-left transition-all flex items-center gap-3 ${
+                  selected ? "bg-blue-50 ring-2 ring-blue-300 scale-[1.01]" : "bg-gray-50 hover:bg-gray-100"
+                }`}>
+                <div className="flex-1">
+                  <p className="text-[17px] font-extrabold text-gray-900 tracking-tight">{option.label}</p>
+                  <p className="text-[13px] text-gray-500 font-medium mt-0.5">{option.desc}</p>
                 </div>
-                {addressChanged === option.value && <span className="text-blue-700 text-lg">✓</span>}
-              </div>
-            </button>
-          ))}
+                {selected && (
+                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-700 text-white flex items-center justify-center text-base font-bold">✓</span>
+                )}
+              </button>
+            );
+          })}
         </div>
 
         {addressChanged === "changed" && (
           <>
-            <div className="mt-4 p-4 bg-amber-50 border-2 border-amber-200 rounded-xl">
-              <p className="text-sm font-medium text-amber-900 mb-2">{TEXTS.addressDeadlineTitle[lang]}</p>
-              <p className="text-xs text-amber-800 leading-relaxed whitespace-pre-line mb-3">{TEXTS.addressDeadlineDesc[lang]}</p>
-              <Link href="/change-report" className="inline-block px-3 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium rounded-lg transition-colors">
+            <div className="mt-5 p-5 bg-amber-50 border-2 border-amber-200 rounded-3xl">
+              <p className="text-[15px] font-extrabold text-amber-900 mb-2">{TEXTS.addressDeadlineTitle[lang]}</p>
+              <p className="text-[13px] text-amber-800 leading-relaxed whitespace-pre-line mb-4">{TEXTS.addressDeadlineDesc[lang]}</p>
+              <Link href="/change-report" className="inline-block px-4 py-3 bg-amber-600 hover:bg-amber-700 text-white text-[14px] font-extrabold rounded-2xl transition-colors">
                 {TEXTS.addressDeadlineGuide[lang]}
               </Link>
             </div>
-            <div className="mt-3 p-4 bg-blue-50 border border-blue-100 rounded-xl">
-              <p className="text-xs text-blue-700 leading-relaxed whitespace-pre-line">{TEXTS.addressDoc[lang]}</p>
+            <div className="mt-3 p-4 bg-blue-50 border border-blue-100 rounded-2xl">
+              <p className="text-[13px] text-blue-700 leading-relaxed whitespace-pre-line">{TEXTS.addressDoc[lang]}</p>
             </div>
           </>
         )}
+      </section>
 
-        <div className="mt-8">
+      {/* 하단 고정 다음 버튼 */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-5 py-4">
+        <div className="max-w-md md:max-w-2xl mx-auto">
           {addressChanged ? (
-            <Link href="/start/step5" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
+            <Link href="/start/step5" className="block w-full text-center py-4 rounded-2xl text-[17px] font-extrabold bg-blue-700 text-white hover:bg-blue-800 transition-colors">
               {TEXTS.next[lang]}
             </Link>
           ) : (
-            <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
+            <button disabled className="w-full py-4 rounded-2xl text-[17px] font-extrabold bg-gray-100 text-gray-400 cursor-not-allowed">
               {TEXTS.next[lang]}
             </button>
           )}
         </div>
-      </section>
+      </div>
     </main>
   );
 }

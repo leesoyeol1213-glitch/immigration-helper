@@ -37,39 +37,40 @@ export default function Step2Page() {
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/start" backLabel={TEXTS.prev[lang]} />
 
-      <div className="max-w-2xl mx-auto px-6 pt-6">
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-          <span>2 / 5</span><span>·</span><span>{TEXTS.expiryStep[lang]}</span>
+      {/* 진행바 */}
+      <div className="max-w-md md:max-w-2xl mx-auto px-5 pt-5">
+        <div className="flex items-center gap-2 text-[13px] font-bold text-gray-500 mb-2">
+          <span className="text-blue-700">2 / 5</span><span>·</span><span>{TEXTS.expiryStep[lang]}</span>
         </div>
-        <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
           <div className="h-full bg-blue-700 rounded-full" style={{ width: "40%" }}></div>
         </div>
       </div>
 
-      <section className="max-w-2xl mx-auto px-6 py-10">
-        <h1 className="text-2xl font-medium text-gray-900 mb-2">{TEXTS.expiryTitle[lang]}</h1>
-        <p className="text-sm text-gray-500 mb-2">{TEXTS.expirySub[lang]}</p>
-        <div className="inline-block px-3 py-1 bg-blue-50 rounded-full mb-6">
-          <p className="text-xs text-blue-700">{TEXTS.why[lang]} {TEXTS.expiryWhy[lang]}</p>
+      <section className="max-w-md md:max-w-2xl mx-auto px-5 pt-7 pb-28">
+        <h1 className="text-[24px] font-extrabold text-gray-900 tracking-tight mb-1.5">{TEXTS.expiryTitle[lang]}</h1>
+        <p className="text-[15px] text-gray-500 font-medium mb-3">{TEXTS.expirySub[lang]}</p>
+        <div className="inline-block px-3.5 py-1.5 bg-blue-50 rounded-full mb-7">
+          <p className="text-[12px] font-bold text-blue-700">{TEXTS.why[lang]} {TEXTS.expiryWhy[lang]}</p>
         </div>
 
         <div className="mb-6">
           <input type="date" value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)}
-            className="w-full p-4 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
+            className="w-full p-4 text-[17px] font-medium border-2 border-gray-200 rounded-2xl focus:border-blue-700 focus:outline-none" />
         </div>
 
         {warning && (
-          <div className={`p-4 rounded-xl border-l-4 mb-6 ${
+          <div className={`p-4 rounded-2xl border-l-4 mb-6 ${
             warning.type === "danger" ? "bg-red-50 border-red-500"
             : warning.type === "warning" ? "bg-amber-50 border-amber-500"
             : "bg-blue-50 border-blue-500"
           }`}>
-            <p className={`text-sm font-medium mb-1 ${
+            <p className={`text-[16px] font-extrabold mb-1 ${
               warning.type === "danger" ? "text-red-900"
               : warning.type === "warning" ? "text-amber-900"
               : "text-blue-900"
             }`}>{warning.title}</p>
-            <p className={`text-xs leading-relaxed ${
+            <p className={`text-[13px] leading-relaxed ${
               warning.type === "danger" ? "text-red-700"
               : warning.type === "warning" ? "text-amber-700"
               : "text-blue-700"
@@ -77,21 +78,26 @@ export default function Step2Page() {
           </div>
         )}
 
-        <div className="bg-gray-50 border border-gray-100 rounded-lg p-3 mb-6 flex items-center gap-2">
-          <span className="text-base">🔒</span>
-          <p className="text-xs text-gray-600">{TEXTS.noSave[lang]}</p>
+        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-4 flex items-center gap-2.5">
+          <span className="text-lg">🔒</span>
+          <p className="text-[12px] text-gray-600">{TEXTS.noSave[lang]}</p>
         </div>
-
-        {expiryDate ? (
-          <Link href="/start/step3" className="block w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
-            {TEXTS.next[lang]}
-          </Link>
-        ) : (
-          <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
-            {TEXTS.next[lang]}
-          </button>
-        )}
       </section>
+
+      {/* 하단 고정 다음 버튼 */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-5 py-4">
+        <div className="max-w-md md:max-w-2xl mx-auto">
+          {expiryDate ? (
+            <Link href="/start/step3" className="block w-full text-center py-4 rounded-2xl text-[17px] font-extrabold bg-blue-700 text-white hover:bg-blue-800 transition-colors">
+              {TEXTS.next[lang]}
+            </Link>
+          ) : (
+            <button disabled className="w-full py-4 rounded-2xl text-[17px] font-extrabold bg-gray-100 text-gray-400 cursor-not-allowed">
+              {TEXTS.next[lang]}
+            </button>
+          )}
+        </div>
+      </div>
     </main>
   );
 }

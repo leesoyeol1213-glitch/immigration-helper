@@ -144,224 +144,174 @@ export default function Step5Page() {
     <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/start/step4" backLabel={TEXTS.prev[lang]} />
 
-      <div className="max-w-2xl mx-auto px-6 pt-6">
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
-          <span>5 / 5</span><span>·</span><span>{TEXTS.step5Step[lang]}</span>
+      {/* 진행바 */}
+      <div className="max-w-md md:max-w-2xl mx-auto px-5 pt-5">
+        <div className="flex items-center gap-2 text-[13px] font-bold text-gray-500 mb-2">
+          <span className="text-blue-700">5 / 5</span><span>·</span><span>{TEXTS.step5Step[lang]}</span>
         </div>
-        <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
           <div className="h-full bg-blue-700 rounded-full" style={{ width: "100%" }}></div>
         </div>
       </div>
 
-      <section className="max-w-2xl mx-auto px-6 py-10">
-        <h1 className="text-2xl font-medium text-gray-900 mb-2">{TEXTS.step5Title[lang]}</h1>
-        <p className="text-sm text-gray-500 mb-6">{TEXTS.step5Sub[lang]}</p>
+      <section className="max-w-md md:max-w-2xl mx-auto px-5 pt-7 pb-28">
+        <h1 className="text-[24px] font-extrabold text-gray-900 tracking-tight mb-1.5">{TEXTS.step5Title[lang]}</h1>
+        <p className="text-[15px] text-gray-500 font-medium mb-6">{TEXTS.step5Sub[lang]}</p>
 
-        {/* OCR 박스 (강조!) */}
-        <div className="bg-gradient-to-br from-blue-700 to-blue-800 rounded-xl p-5 mb-6 text-white">
+        {/* 외국인등록증 OCR 박스 */}
+        <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-5 mb-4 text-white">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-2xl">📷</span>
-            <h2 className="text-base font-medium">{TEXTS.ocrTitle[lang]}</h2>
-            <span className="ml-auto text-xs bg-white text-blue-700 px-2 py-0.5 rounded-full font-medium">AI</span>
+            <h2 className="text-[16px] font-extrabold">{TEXTS.ocrTitle[lang]}</h2>
+            <span className="ml-auto text-[12px] bg-white text-blue-700 px-2.5 py-0.5 rounded-full font-extrabold">AI</span>
           </div>
-          <p className="text-xs text-blue-100 mb-4">{TEXTS.ocrDesc[lang]}</p>
-          <p className="text-[11px] text-blue-200 mb-3 flex items-center gap-1">{TEXTS.ocrSafeNote[lang]}</p>
+          <p className="text-[13px] text-blue-100 mb-3">{TEXTS.ocrDesc[lang]}</p>
+          <p className="text-[11px] text-blue-200 mb-3">{TEXTS.ocrSafeNote[lang]}</p>
 
           <label className="block">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleOcrUpload}
-              disabled={ocrProcessing}
-              className="hidden"
-            />
-            <div className={`w-full px-4 py-3 bg-white text-blue-700 rounded-lg font-medium text-sm text-center cursor-pointer hover:bg-blue-50 transition-colors ${ocrProcessing ? "opacity-50 cursor-not-allowed" : ""}`}>
-              {ocrProcessing 
-                ? `${TEXTS.ocrProcessing[lang]} ${ocrProgress}%` 
-                : `📁 ${TEXTS.ocrUpload[lang]}`
-              }
+            <input type="file" accept="image/*" onChange={handleOcrUpload} disabled={ocrProcessing} className="hidden" />
+            <div className={`w-full py-4 bg-white text-blue-700 rounded-2xl font-extrabold text-[15px] text-center cursor-pointer hover:bg-blue-50 transition-colors ${ocrProcessing ? "opacity-50 cursor-not-allowed" : ""}`}>
+              {ocrProcessing ? `${TEXTS.ocrProcessing[lang]} ${ocrProgress}%` : `📁 ${TEXTS.ocrUpload[lang]}`}
             </div>
           </label>
 
           {ocrProcessing && (
-            <div className="mt-3 h-1 bg-blue-900 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-white rounded-full transition-all" 
-                style={{ width: `${ocrProgress}%` }}
-              ></div>
+            <div className="mt-3 h-1.5 bg-blue-900 rounded-full overflow-hidden">
+              <div className="h-full bg-white rounded-full transition-all" style={{ width: `${ocrProgress}%` }}></div>
             </div>
           )}
-
           {ocrSuccess && (
-            <div className="mt-3 p-3 bg-blue-900 rounded-lg">
-              <p className="text-xs text-blue-100">{TEXTS.ocrSuccess[lang]}</p>
-              <p className="text-xs text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
+            <div className="mt-3 p-3.5 bg-blue-900 rounded-2xl">
+              <p className="text-[13px] text-blue-100">{TEXTS.ocrSuccess[lang]}</p>
+              <p className="text-[13px] text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
             </div>
           )}
-
           {ocrError && (
-            <div className="mt-3 p-3 bg-white rounded-lg">
-              <p className="text-xs text-blue-800 font-medium">{TEXTS.ocrFail[lang]}</p>
-              <p className="text-xs text-blue-600 mt-1">{TEXTS.ocrFailHint[lang]}</p>
+            <div className="mt-3 p-3.5 bg-white rounded-2xl">
+              <p className="text-[13px] text-blue-800 font-extrabold">{TEXTS.ocrFail[lang]}</p>
+              <p className="text-[13px] text-blue-600 mt-1">{TEXTS.ocrFailHint[lang]}</p>
             </div>
           )}
-
           <p className="text-[11px] text-blue-200 mt-3">{TEXTS.ocrPhotoTip[lang]}</p>
         </div>
 
         {/* 여권 OCR 박스 */}
-        <div className="bg-gradient-to-br from-purple-700 to-purple-800 rounded-xl p-5 mb-6 text-white">
+        <div className="bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl p-5 mb-5 text-white">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-2xl">📷</span>
-            <h2 className="text-base font-medium">{TEXTS.ppOcrTitle[lang]}</h2>
-            <span className="ml-auto text-xs bg-white text-purple-700 px-2 py-0.5 rounded-full font-medium">AI</span>
+            <h2 className="text-[16px] font-extrabold">{TEXTS.ppOcrTitle[lang]}</h2>
+            <span className="ml-auto text-[12px] bg-white text-purple-700 px-2.5 py-0.5 rounded-full font-extrabold">AI</span>
           </div>
-          <p className="text-xs text-purple-100 mb-4">{TEXTS.ppOcrDesc[lang]}</p>
-          <p className="text-[11px] text-purple-200 mb-3 flex items-center gap-1">{TEXTS.ocrSafeNote[lang]}</p>
+          <p className="text-[13px] text-purple-100 mb-3">{TEXTS.ppOcrDesc[lang]}</p>
+          <p className="text-[11px] text-purple-200 mb-3">{TEXTS.ocrSafeNote[lang]}</p>
 
           <label className="block">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handlePassportUpload}
-              disabled={ppProcessing}
-              className="hidden"
-            />
-            <div className={`w-full px-4 py-3 bg-white text-purple-700 rounded-lg font-medium text-sm text-center cursor-pointer hover:bg-purple-50 transition-colors ${ppProcessing ? "opacity-50 cursor-not-allowed" : ""}`}>
-              {ppProcessing 
-                ? `${TEXTS.ocrProcessing[lang]} ${ppProgress}%` 
-                : `📁 ${TEXTS.ppOcrUpload[lang]}`
-              }
+            <input type="file" accept="image/*" onChange={handlePassportUpload} disabled={ppProcessing} className="hidden" />
+            <div className={`w-full py-4 bg-white text-purple-700 rounded-2xl font-extrabold text-[15px] text-center cursor-pointer hover:bg-purple-50 transition-colors ${ppProcessing ? "opacity-50 cursor-not-allowed" : ""}`}>
+              {ppProcessing ? `${TEXTS.ocrProcessing[lang]} ${ppProgress}%` : `📁 ${TEXTS.ppOcrUpload[lang]}`}
             </div>
           </label>
 
           {ppProcessing && (
-            <div className="mt-3 h-1 bg-purple-900 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-white rounded-full transition-all" 
-                style={{ width: `${ppProgress}%` }}
-              ></div>
+            <div className="mt-3 h-1.5 bg-purple-900 rounded-full overflow-hidden">
+              <div className="h-full bg-white rounded-full transition-all" style={{ width: `${ppProgress}%` }}></div>
             </div>
           )}
-
           {ppSuccess && (
-            <div className="mt-3 p-3 bg-purple-900 rounded-lg">
-              <p className="text-xs text-purple-100">{TEXTS.ppOcrSuccess[lang]}</p>
-              <p className="text-xs text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
+            <div className="mt-3 p-3.5 bg-purple-900 rounded-2xl">
+              <p className="text-[13px] text-purple-100">{TEXTS.ppOcrSuccess[lang]}</p>
+              <p className="text-[13px] text-amber-200 mt-2">{TEXTS.ocrWarning[lang]}</p>
             </div>
           )}
-
           {ppError && (
-            <div className="mt-3 p-3 bg-white rounded-lg">
-              <p className="text-xs text-purple-800 font-medium">{TEXTS.ocrFail[lang]}</p>
-              <p className="text-xs text-purple-600 mt-1">{TEXTS.ppOcrFailHint[lang]}</p>
+            <div className="mt-3 p-3.5 bg-white rounded-2xl">
+              <p className="text-[13px] text-purple-800 font-extrabold">{TEXTS.ocrFail[lang]}</p>
+              <p className="text-[13px] text-purple-600 mt-1">{TEXTS.ppOcrFailHint[lang]}</p>
             </div>
           )}
-
           <p className="text-[11px] text-purple-200 mt-3">{TEXTS.ocrPhotoTip[lang]}</p>
         </div>
 
-        <div className="bg-green-50 border border-green-100 rounded-xl p-4 mb-6 flex items-start gap-2">
-          <span className="text-base">🔒</span>
+        {/* 개인정보 보호 */}
+        <div className="bg-green-50 border border-green-100 rounded-2xl p-4 mb-7 flex items-start gap-2.5">
+          <span className="text-lg">🔒</span>
           <div>
-            <p className="text-sm font-medium text-green-900 mb-1">{TEXTS.privacyTitle[lang]}</p>
-            <p className="text-xs text-green-700 leading-relaxed">{TEXTS.privacyDesc[lang]}</p>
-            <Link href="/privacy" className="text-xs text-green-800 underline mt-2 inline-block hover:text-green-900">
+            <p className="text-[14px] font-extrabold text-green-900 mb-1">{TEXTS.privacyTitle[lang]}</p>
+            <p className="text-[13px] text-green-700 leading-relaxed">{TEXTS.privacyDesc[lang]}</p>
+            <Link href="/privacy" className="text-[13px] text-green-800 underline mt-2 inline-block hover:text-green-900 font-bold">
               {TEXTS.privacyMore[lang]}
             </Link>
           </div>
         </div>
 
-        <h3 className="text-sm font-medium text-gray-900 mb-3 mt-4">{TEXTS.basicInfo[lang]}</h3>
+        {/* 기본 정보 */}
+        <h3 className="text-[16px] font-extrabold text-gray-900 mb-3">{TEXTS.basicInfo[lang]}</h3>
         <div className="space-y-4">
-          <div>
-  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fSurname[lang]}</label>
-  <input type="text" value={surname} onChange={(e) => setSurname(e.target.value.toUpperCase())} placeholder="Hong"
-    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-</div>
-<div>
-  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fGivenName[lang]}</label>
-  <input type="text" value={givenName} onChange={(e) => setGivenName(e.target.value.toUpperCase())} placeholder="Gildong"
-    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-</div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fNationality[lang]}</label>
-            <input type="text" value={nationality} onChange={(e) => setNationality(e.target.value)} placeholder="대한민국 / South Korea"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
+          <Field label={TEXTS.fSurname[lang]} value={surname} onChange={(v) => setSurname(v.toUpperCase())} placeholder="Hong" />
+          <Field label={TEXTS.fGivenName[lang]} value={givenName} onChange={(v) => setGivenName(v.toUpperCase())} placeholder="Gildong" />
+          <Field label={TEXTS.fNationality[lang]} value={nationality} onChange={setNationality} placeholder="대한민국 / South Korea" />
         </div>
 
-        <h3 className="text-sm font-medium text-gray-900 mb-3 mt-6">{TEXTS.idInfo[lang]}</h3>
+        {/* 신분 정보 */}
+        <h3 className="text-[16px] font-extrabold text-gray-900 mb-3 mt-6">{TEXTS.idInfo[lang]}</h3>
         <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPassport[lang]}</label>
-            <input type="text" value={passport} onChange={(e) => setPassport(e.target.value.toUpperCase())} placeholder="M12345678"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
-          <div>
-  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPassportIssue[lang]}</label>
-  <input type="text" value={passportIssue} onChange={(e) => setPassportIssue(e.target.value)} placeholder="yyyy.mm.dd"
-    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-</div>
-<div>
-  <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPassportExpiry[lang]}</label>
-  <input type="text" value={passportExpiry} onChange={(e) => setPassportExpiry(e.target.value)} placeholder="yyyy.mm.dd"
-    className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-</div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fAlienNo[lang]}</label>
-            <input type="text" value={alienNo} onChange={(e) => setAlienNo(e.target.value)} placeholder="000000-0000000"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
+          <Field label={TEXTS.fPassport[lang]} value={passport} onChange={(v) => setPassport(v.toUpperCase())} placeholder="M12345678" />
+          <Field label={TEXTS.fPassportIssue[lang]} value={passportIssue} onChange={setPassportIssue} placeholder="yyyy.mm.dd" />
+          <Field label={TEXTS.fPassportExpiry[lang]} value={passportExpiry} onChange={setPassportExpiry} placeholder="yyyy.mm.dd" />
+          <Field label={TEXTS.fAlienNo[lang]} value={alienNo} onChange={setAlienNo} placeholder="000000-0000000" />
         </div>
 
-        <h3 className="text-sm font-medium text-gray-900 mb-3 mt-6">{TEXTS.contactInfo[lang]}</h3>
+        {/* 연락처 */}
+        <h3 className="text-[16px] font-extrabold text-gray-900 mb-3 mt-6">{TEXTS.contactInfo[lang]}</h3>
         <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fPhone[lang]}</label>
-            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="010-0000-0000"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fEmail[lang]}</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@email.com"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
+          <Field label={TEXTS.fPhone[lang]} value={phone} onChange={setPhone} placeholder="010-0000-0000" type="tel" />
+          <Field label={TEXTS.fEmail[lang]} value={email} onChange={setEmail} placeholder="example@email.com" type="email" />
         </div>
 
-        <h3 className="text-sm font-medium text-gray-900 mb-3 mt-6">{TEXTS.addressInfo[lang]}</h3>
+        {/* 주소 */}
+        <h3 className="text-[16px] font-extrabold text-gray-900 mb-3 mt-6">{TEXTS.addressInfo[lang]}</h3>
         <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fAddressKr[lang]}</label>
-            <input type="text" value={addressKr} onChange={(e) => setAddressKr(e.target.value)} placeholder="충청북도 청주시 ..."
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fAddressHome[lang]}</label>
-            <input type="text" value={addressHome} onChange={(e) => setAddressHome(e.target.value)} placeholder="Home country address"
-              className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-          </div>
+          <Field label={TEXTS.fAddressKr[lang]} value={addressKr} onChange={setAddressKr} placeholder="충청북도 청주시 ..." />
+          <Field label={TEXTS.fAddressHome[lang]} value={addressHome} onChange={setAddressHome} placeholder="Home country address" />
         </div>
 
-        <h3 className="text-sm font-medium text-gray-900 mb-3 mt-6">{TEXTS.workplaceInfo[lang]}</h3>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">{TEXTS.fCompany[lang]}</label>
-          <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="㈜○○○○○"
-            className="w-full p-3 text-base border-2 border-gray-200 rounded-xl focus:border-blue-700 focus:outline-none" />
-        </div>
+        {/* 근무처 */}
+        <h3 className="text-[16px] font-extrabold text-gray-900 mb-3 mt-6">{TEXTS.workplaceInfo[lang]}</h3>
+        <Field label={TEXTS.fCompany[lang]} value={companyName} onChange={setCompanyName} placeholder="㈜○○○○○" />
+      </section>
 
-        <div className="mt-8">
+      {/* 하단 고정 버튼 */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-5 py-4">
+        <div className="max-w-md md:max-w-2xl mx-auto">
           {isValid ? (
-            <button onClick={handleNext} className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors">
+            <button onClick={handleNext} className="w-full py-4 rounded-2xl font-extrabold text-[17px] bg-blue-700 text-white hover:bg-blue-800 transition-colors">
               {TEXTS.result[lang]}
             </button>
           ) : (
-            <button disabled className="w-full px-6 py-3 rounded-xl font-medium text-sm bg-gray-100 text-gray-400 cursor-not-allowed">
+            <button disabled className="w-full py-4 rounded-2xl font-extrabold text-[17px] bg-gray-100 text-gray-400 cursor-not-allowed">
               {TEXTS.required[lang]}
             </button>
           )}
         </div>
-      </section>
+      </div>
     </main>
+  );
+}
+
+// 입력 필드 컴포넌트 (반복 줄이기)
+function Field({ label, value, onChange, placeholder, type = "text" }: {
+  label: string; value: string; onChange: (v: string) => void; placeholder: string; type?: string;
+}) {
+  return (
+    <div>
+      <label className="block text-[14px] font-bold text-gray-700 mb-2">{label}</label>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full p-4 text-[16px] border-2 border-gray-200 rounded-2xl focus:border-blue-700 focus:outline-none"
+      />
+    </div>
   );
 }
