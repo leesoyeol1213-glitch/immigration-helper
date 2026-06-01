@@ -246,128 +246,110 @@ export default function ResultPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-blue-50">
+    <main className="min-h-screen bg-white">
       <LanguageHeader backHref="/start/step5" backLabel={TEXTS.prev[lang]} />
 
-      <section className="max-w-2xl mx-auto px-6 py-10">
-        <div className="text-center mb-8">
-          <div className="inline-block w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+      <section className="max-w-md mx-auto px-5 pt-6 pb-16">
+        {/* 완료 헤더 */}
+        <div className="text-center mb-7">
+          <div className="inline-flex w-16 h-16 bg-green-100 rounded-full items-center justify-center mb-3">
             <span className="text-3xl">✅</span>
           </div>
-          <h1 className="text-2xl font-medium text-gray-900 mb-2">{TEXTS.resultTitle[lang]}</h1>
-          <p className="text-sm text-gray-500">{TEXTS.resultSub[lang]}</p>
+          <h1 className="text-[24px] font-extrabold text-gray-900 tracking-tight mb-1.5">{TEXTS.resultTitle[lang]}</h1>
+          <p className="text-[14px] text-gray-500 font-medium">{TEXTS.resultSub[lang]}</p>
         </div>
 
+        {/* 만료 경고 */}
         {daysLeft !== null && daysLeft < 30 && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-xl mb-6">
-            <p className="text-sm font-medium text-red-900 mb-1">
+          <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-2xl mb-5">
+            <p className="text-[15px] font-extrabold text-red-900 mb-1">
               {daysLeft < 0 ? TEXTS.expired[lang] : TEXTS.daysLeft[lang](daysLeft)}
             </p>
-            <p className="text-xs text-red-700">{TEXTS.urgent[lang]}</p>
+            <p className="text-[13px] text-red-700">{TEXTS.urgent[lang]}</p>
           </div>
         )}
 
+        {/* PDF 다운로드 */}
         {personalInfo && (
-          <div className="space-y-3 mb-6">
-            <div className="bg-blue-700 text-white rounded-xl p-6">
-              <h2 className="text-sm font-medium mb-1">{TEXTS.pdfOfficial[lang]}</h2>
-              <p className="text-xs text-blue-100 mb-3">{TEXTS.pdfOfficialDesc[lang]}</p>
-              <button onClick={() => handleDownload("official")} disabled={isGenerating !== ""}
-                className="w-full px-4 py-3 bg-white text-blue-700 rounded-lg font-medium text-sm hover:bg-blue-50 transition-colors disabled:opacity-50">
-                {isGenerating === "official" ? TEXTS.pdfGenerating[lang] : TEXTS.pdfDownload[lang]}
-              </button>
-            </div>
+          <div className="bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-3xl p-6 mb-6">
+            <h2 className="text-[17px] font-extrabold mb-1">{TEXTS.pdfOfficial[lang]}</h2>
+            <p className="text-[13px] text-blue-100 mb-4">{TEXTS.pdfOfficialDesc[lang]}</p>
+            <button onClick={() => handleDownload("official")} disabled={isGenerating !== ""}
+              className="w-full py-4 bg-white text-blue-700 rounded-2xl font-extrabold text-[16px] hover:bg-blue-50 transition-colors disabled:opacity-50">
+              {isGenerating === "official" ? TEXTS.pdfGenerating[lang] : TEXTS.pdfDownload[lang]}
+            </button>
           </div>
         )}
 
-{nearestOffice && (
-  <div className="bg-white border-2 border-blue-200 rounded-xl p-5 mb-6">
-    <h2 className="text-sm font-medium text-blue-900 mb-3">
-      {TEXTS.officeTitle[lang]}
-    </h2>
-    <p className="text-xs text-gray-500 mb-4">
-      {TEXTS.officeDesc[lang]}
-    </p>
+        {/* 출입국 사무소 */}
+        {nearestOffice && (
+          <div className="bg-white border-2 border-blue-100 rounded-3xl p-5 mb-6">
+            <h2 className="text-[16px] font-extrabold text-gray-900 mb-1">📍 {TEXTS.officeTitle[lang]}</h2>
+            <p className="text-[13px] text-gray-500 mb-4">{TEXTS.officeDesc[lang]}</p>
 
-    <div className="bg-blue-50 rounded-lg p-4 space-y-2">
-      <p className="text-base font-medium text-gray-900">
-        {nearestOffice.name[lang]}
-      </p>
-      <div className="text-xs text-gray-700">
-        <span className="font-medium">📍 {TEXTS.officeAddress[lang]}:</span> {nearestOffice.address}
-      </div>
-      <div className="text-xs text-gray-700">
-        <span className="font-medium">📞 {TEXTS.officePhone[lang]}:</span>{" "}
-        <a href={`tel:${nearestOffice.phone}`} className="text-blue-700 hover:underline">
-          {nearestOffice.phone}
-        </a>
-      </div>
-    </div>
+            <div className="bg-blue-50 rounded-2xl p-4 space-y-2">
+              <p className="text-[16px] font-extrabold text-gray-900">{nearestOffice.name[lang]}</p>
+              <div className="text-[13px] text-gray-700">
+                <span className="font-bold">📍 {TEXTS.officeAddress[lang]}:</span> {nearestOffice.address}
+              </div>
+              <div className="text-[13px] text-gray-700">
+                <span className="font-bold">📞 {TEXTS.officePhone[lang]}:</span>{" "}
+                <a href={`tel:${nearestOffice.phone}`} className="text-blue-700 font-bold hover:underline">{nearestOffice.phone}</a>
+              </div>
+            </div>
 
-    {/* 🗺️ 구글 맵 */}
-    <div className="mt-4 rounded-lg overflow-hidden border border-gray-200">
-      <iframe
-        src={`https://www.google.com/maps?q=${encodeURIComponent(nearestOffice.address)}&output=embed`}
-        width="100%"
-        height="200"
-        style={{ border: 0 }}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
-    </div>
+            <div className="mt-4 rounded-2xl overflow-hidden border border-gray-200">
+              <iframe
+                src={`https://www.google.com/maps?q=${encodeURIComponent(nearestOffice.address)}&output=embed`}
+                width="100%" height="200" style={{ border: 0 }} loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
 
-    {/* 길찾기 버튼 */}
-    <a
-  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(nearestOffice.address)}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="mt-4 w-full bg-gradient-to-r from-blue-600 to-indigo-600 
-             hover:from-blue-700 hover:to-indigo-700
-             text-white font-semibold py-4 px-6 rounded-2xl 
-             flex items-center justify-center gap-3 
-             transition-all duration-200 shadow-lg hover:shadow-xl 
-             active:scale-[0.97]"
->
-  <span className="text-2xl">🗺️</span>
-  <span className="text-base">{TEXTS.officeDirections[lang]}</span>
-</a>
+            <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(nearestOffice.address)}`}
+              target="_blank" rel="noopener noreferrer"
+              className="mt-4 w-full bg-blue-700 hover:bg-blue-800 text-white font-extrabold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+              <span className="text-xl">🗺️</span>
+              <span className="text-[16px]">{TEXTS.officeDirections[lang]}</span>
+            </a>
 
-    <p className="text-xs text-gray-400 mt-3">
-      ℹ️ {TEXTS.officeDataSource[lang]}
-    </p>
-  </div>
-)}
-{/* E-7-4 → E-7-4R 지역특화 전환 안내 */}
+            <p className="text-[11px] text-gray-400 mt-3">ℹ️ {TEXTS.officeDataSource[lang]}</p>
+          </div>
+        )}
+
+        {/* E-7-4R 지역특화 안내 */}
         {visa === "E-7-4" && (
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-300 rounded-xl p-5 mb-6">
+          <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-5 mb-6">
             <div className="flex items-start gap-3">
               <span className="text-2xl">💡</span>
               <div className="flex-1">
-                <p className="text-sm font-bold text-amber-900 mb-2">{TEXTS.e74rTitle[lang]}</p>
-                <p className="text-xs text-amber-800 leading-relaxed mb-3">{TEXTS.e74rDesc[lang]}</p>
-                <div className="bg-white rounded-lg p-3 mb-3">
-                  <p className="text-xs font-medium text-amber-900 mb-1">📍 {TEXTS.e74rAreasTitle[lang]}</p>
-                  <p className="text-xs text-amber-700 leading-relaxed">{TEXTS.e74rAreas[lang]}</p>
+                <p className="text-[15px] font-extrabold text-amber-900 mb-2">{TEXTS.e74rTitle[lang]}</p>
+                <p className="text-[13px] text-amber-800 leading-relaxed mb-3">{TEXTS.e74rDesc[lang]}</p>
+                <div className="bg-white rounded-2xl p-3.5 mb-3">
+                  <p className="text-[13px] font-bold text-amber-900 mb-1">📍 {TEXTS.e74rAreasTitle[lang]}</p>
+                  <p className="text-[13px] text-amber-700 leading-relaxed">{TEXTS.e74rAreas[lang]}</p>
                 </div>
                 <p className="text-[11px] text-amber-700 leading-relaxed">{TEXTS.e74rNote[lang]}</p>
               </div>
             </div>
           </div>
-        )}        
-        <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
+        )}
+
+        {/* 서류 체크리스트 */}
+        <div className="bg-white border-2 border-gray-100 rounded-3xl p-5 mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-medium text-gray-900">{TEXTS.docsTitle[lang]} ({docs.length})</h2>
-            <span className="text-xs font-medium text-blue-700 bg-blue-50 px-3 py-1 rounded-full">
+            <h2 className="text-[16px] font-extrabold text-gray-900">{TEXTS.docsTitle[lang]} ({docs.length})</h2>
+            <span className="text-[13px] font-bold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full">
               {Object.values(checked).filter(Boolean).length} / {docs.length} {TEXTS.docDone[lang]}
             </span>
           </div>
-          <ul className="space-y-3">
-            {(["self", "company"] as const).map((g) => {
+
+          {(["self", "company"] as const).map((g) => {
             const groupDocs = docs.map((d, idx) => ({ ...d, idx })).filter((d) => d.group === g);
             if (groupDocs.length === 0) return null;
             return (
-              <div key={g} className="mb-4">
-                <p className="text-xs font-medium text-gray-400 mb-2">
+              <div key={g} className="mb-4 last:mb-0">
+                <p className="text-[13px] font-bold text-gray-400 mb-2">
                   {g === "self" ? `📋 ${TEXTS.docGroupSelf[lang]}` : `🏢 ${TEXTS.docGroupCompany[lang]}`}
                 </p>
                 <ul className="space-y-2">
@@ -377,23 +359,23 @@ export default function ResultPage() {
                       <li
                         key={item.idx}
                         onClick={() => toggleCheck(item.idx)}
-                        className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-colors select-none ${
-                          isChecked ? "bg-green-50" : item.isExtra ? "bg-blue-50" : "hover:bg-gray-50"
+                        className={`flex items-start gap-3 p-3.5 rounded-2xl cursor-pointer transition-colors select-none ${
+                          isChecked ? "bg-green-50" : item.isExtra ? "bg-blue-50" : "bg-gray-50 hover:bg-gray-100"
                         }`}
                       >
                         <span
-                          className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 border-2 transition-colors ${
+                          className={`mt-0.5 w-6 h-6 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 border-2 transition-colors ${
                             isChecked ? "bg-green-600 border-green-600 text-white" : "bg-white border-gray-300 text-transparent"
                           }`}
                         >
                           ✓
                         </span>
                         <div className="flex-1">
-                          <p className={`text-sm font-medium transition-colors ${isChecked ? "text-gray-400 line-through" : "text-gray-900"}`}>
+                          <p className={`text-[15px] font-bold transition-colors ${isChecked ? "text-gray-400 line-through" : "text-gray-900"}`}>
                             {item.name}
-                            {item.isExtra && <span className="ml-2 text-xs text-blue-600 no-underline">{TEXTS.docExtra[lang]}</span>}
+                            {item.isExtra && <span className="ml-2 text-[12px] text-blue-600 no-underline font-medium">{TEXTS.docExtra[lang]}</span>}
                           </p>
-                          <p className={`text-xs mt-0.5 ${isChecked ? "text-gray-300" : "text-gray-500"}`}>{item.desc}</p>
+                          <p className={`text-[13px] mt-0.5 ${isChecked ? "text-gray-300" : "text-gray-500"}`}>{item.desc}</p>
                         </div>
                       </li>
                     );
@@ -402,23 +384,25 @@ export default function ResultPage() {
               </div>
             );
           })}
-          </ul>
+
           {docs.length > 0 && Object.values(checked).filter(Boolean).length === docs.length && (
-            <p className="text-xs text-green-700 font-medium mt-4 text-center">{TEXTS.docAllDone[lang]} 🎉</p>
+            <p className="text-[14px] text-green-700 font-extrabold mt-4 text-center">{TEXTS.docAllDone[lang]} 🎉</p>
           )}
         </div>
 
-        <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 mb-6">
-          <p className="text-xs text-amber-700 leading-relaxed">
+        {/* 안내 */}
+        <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 mb-6">
+          <p className="text-[12px] text-amber-700 leading-relaxed">
             <strong>{TEXTS.warnTitle[lang]}</strong> {TEXTS.warnDesc[lang]}
           </p>
         </div>
 
+        {/* 버튼 */}
         <div className="flex gap-3">
-          <button onClick={handleReset} className="flex-1 px-6 py-3 rounded-xl font-medium text-sm border-2 border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+          <button onClick={handleReset} className="flex-1 py-4 rounded-2xl font-extrabold text-[15px] border-2 border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
             {TEXTS.reset[lang]}
           </button>
-          <Link href="/" className="flex-1 px-6 py-3 rounded-xl font-medium text-sm bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
+          <Link href="/" className="flex-1 py-4 rounded-2xl font-extrabold text-[15px] bg-blue-700 text-white hover:bg-blue-800 transition-colors text-center">
             {TEXTS.homeBtn[lang]}
           </Link>
         </div>
